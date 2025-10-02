@@ -10,15 +10,16 @@ import TipKit
 
 @main
 struct FIFA_GOApp: App {
+    var worldCupStore = WorldCupStore()   // tu fuente de datos
+
     var body: some Scene {
         WindowGroup {
             MapView()
+                .environmentObject(worldCupStore)      // se inyecta aquí
                 .task {
                     try? Tips.configure([
-                        // cuando queremos que se vea el tip , en este caso de forma inmediata para que solo se muestre cuando el usuario se mete a la app por primera vez
                         .displayFrequency(.immediate),
                         .datastoreLocation(.applicationDefault)
-                       
                     ])
                 }
         }

@@ -108,6 +108,7 @@ struct Partido: Identifiable, Codable, Hashable {
     var estadioID: Estadio.ID
 }
 
+
 // MARK: - Helpers de FanFest
 
 extension FanFest {

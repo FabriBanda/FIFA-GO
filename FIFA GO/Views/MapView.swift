@@ -19,14 +19,30 @@ struct MapView: View {
     
     @State private var isExpanded : Bool = false
     
+    @EnvironmentObject var worldCupStore:WorldCupStore
+    
     let locationManager = CLLocationManager()
     
     var body: some View {
         Map(position:$cameraPosition){
             
-//            Annotation("Lumen", coordinate: <#T##CLLocationCoordinate2D#>) {
-//
-//            }
+            ForEach(worldCupStore.estadios){ estadio in
+                Annotation(estadio.nombre, coordinate: estadio.ubicacion.coordinate){
+                    MarkerView(imageName: "soccerball.inverse",colorBackground: Color.green,color:.black)
+                        .onTapGesture {
+//                            withAnimation {
+//                                cameraPosition = .region(MKCoordinateRegion(center: estadio.ubicacion.coordinate, latitudinalMeters: 500, longitudinalMeters: 500))
+//                            }
+                            currentModal = .estadio(estadio.id)
+                    }
+                }
+            }
+            
+            ForEach(worldCupStore.fanfests){ fanFest in
+                Annotation(fanFest.nombre, coordinate: fanFest.ubicacion.coordinate) {
+                    MarkerView(imageName: "party.popper.fill",colorBackground: Color.black,color:.white)
+                }
+            }
             
             
             
@@ -84,25 +100,33 @@ struct MapView: View {
         .sheet(item: $currentModal) { route in
             switch route{
             case .estadioList:
+                // vista de la lista de los estadio
                 StadiumsList(cameraPosition: $cameraPosition)
+                
             case .fanFestList:
-                VStack{
-                    Text("Lista de fan fests")
-                }
+               // vista de la lista de los fanfest
+                EmptyView()
                 
             case .traductor:
-                VStack{
-                    Text("Vista del traductor")
-                }
                 
-            case .estadio:
-                VStack{
-                    Text("Vista personalizada de estadio")
+                // vista del traductor ( bini )
+                EmptyView()
+            case .estadio(let id):
+                
+                // vista personalizada del estadio
+                
+                if let estadio = worldCupStore.estadios.first(where: {$0.id == id}) {
+                    StadiumDetail(estadio: estadio)
+                        .presentationDetents([.medium,.large])
                 }
+               
+                
             case .fanFest:
-                VStack{
-                    Text("Vista personalizada del fan fest")
-                }
+                
+                // vista personzalizada del fan fest
+                
+               EmptyView()
+                
             }
                
         }
@@ -118,5 +142,5 @@ extension MKCoordinateRegion {
 
 
 #Preview {
-    MapView()
+    MapView().environmentObject(WorldCupStore())
 }
