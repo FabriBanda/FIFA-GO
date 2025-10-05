@@ -27,7 +27,7 @@ struct StadiumDetail: View {
                     .bold()
                     .foregroundStyle(.primary)
                 
-                Text("Stadium Fabricio")
+                Text("Stadium Fabricioooo")
                 
 //                GeometryReader { proxy in
                     RoundedRectangle(cornerRadius: 30)
