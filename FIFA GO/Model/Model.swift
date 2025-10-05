@@ -64,7 +64,7 @@ struct Accesibilidad: Codable, Hashable {
 struct Estadio: Identifiable, Codable, Hashable {
     var id: UUID = UUID()
     var nombre: String
-    var imagenAssetName: String?
+    var imagenAssetName: String
     var ubicacion: Coordenada
     var puertas: [Coordenada]
     var accesibilidad: Accesibilidad?

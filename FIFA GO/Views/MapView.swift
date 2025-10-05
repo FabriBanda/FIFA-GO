@@ -13,8 +13,6 @@ struct MapView: View {
     
     @Namespace var namespace
     
-    @State private var cameraPosition:MapCameraPosition = .region(.userRegion)
-    
     @State private var currentModal : ModalRoute?
     
     @State private var isExpanded : Bool = false
@@ -24,15 +22,12 @@ struct MapView: View {
     let locationManager = CLLocationManager()
     
     var body: some View {
-        Map(position:$cameraPosition){
+        Map(position:$worldCupStore.cameraPosition){
             
             ForEach(worldCupStore.estadios){ estadio in
                 Annotation(estadio.nombre, coordinate: estadio.ubicacion.coordinate){
                     MarkerView(imageName: "soccerball.inverse",colorBackground: Color.green,color:.black)
                         .onTapGesture {
-//                            withAnimation {
-//                                cameraPosition = .region(MKCoordinateRegion(center: estadio.ubicacion.coordinate, latitudinalMeters: 500, longitudinalMeters: 500))
-//                            }
                             currentModal = .estadio(estadio.id)
                     }
                 }
@@ -101,7 +96,7 @@ struct MapView: View {
             switch route{
             case .estadioList:
                 // vista de la lista de los estadio
-                StadiumsList(cameraPosition: $cameraPosition)
+                StadiumsList()
                 
             case .fanFestList:
                // vista de la lista de los fanfest
@@ -130,13 +125,6 @@ struct MapView: View {
             }
                
         }
-    }
-}
-
-
-extension MKCoordinateRegion {
-    static var userRegion : MKCoordinateRegion {
-        return .init(center: .init(latitude: 37.3346, longitude: -122.0090), latitudinalMeters: 10000, longitudinalMeters: 10000)
     }
 }
 

@@ -7,12 +7,15 @@
 
 import Foundation
 import Combine
+import MapKit
+import _MapKit_SwiftUI
 
 class WorldCupStore : ObservableObject {
     
     @Published var estadios: [Estadio]
     @Published var fanfests: [FanFest]
     @Published var partidos: [Partido]
+    @Published var cameraPosition:MapCameraPosition = .region(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.3346, longitude: -122.0090), latitudinalMeters: 1000, longitudinalMeters: 1000))
     
     
     init(){
@@ -29,7 +32,7 @@ class WorldCupStore : ObservableObject {
 
 
             // Canada
-            Estadio(nombre: "BCPLACE",imagenAssetName: "BCPLACE", ubicacion: Coordenada(lat: 49.276670, lon: -123.111940), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
+            Estadio(nombre: "BCPLACE",imagenAssetName: "BCPlace", ubicacion: Coordenada(lat: 49.276670, lon: -123.111940), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
             Estadio(nombre: "BMO Field",imagenAssetName: "BMO", ubicacion: Coordenada(lat: 43.632780, lon: -79.418610), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
 
 
@@ -43,7 +46,7 @@ class WorldCupStore : ObservableObject {
 
             Estadio(nombre: "Levis",imagenAssetName: "Levis", ubicacion: Coordenada(lat: 37.403000, lon: -121.970000), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
 
-            Estadio(nombre: "Lincoln Financial",imagenAssetName: "LinconlnFinancial", ubicacion: Coordenada(lat: 39.900898, lon: -75.168098), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
+            Estadio(nombre: "Lincoln Financial",imagenAssetName: "LincolnFinancial", ubicacion: Coordenada(lat: 39.900898, lon: -75.168098), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
 
             Estadio(nombre: "Lumen",imagenAssetName: "Lumen", ubicacion: Coordenada(lat: 47.595097, lon: -122.332245), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
 
