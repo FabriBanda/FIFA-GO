@@ -4,12 +4,14 @@ import MapKit
 struct StadiumDetail: View {
     @State private var showTicket = false
     @Environment(\.dismiss) private var dismiss
-
+    
     @State private var lookAroundScene: MKLookAroundScene?
     @State private var isLoadingScene = false
-
+    
+    @EnvironmentObject var worldCupStore:WorldCupStore
+    
     let estadio: Estadio
-
+    
     var body: some View {
         NavigationStack {
             VStack{
@@ -17,11 +19,11 @@ struct StadiumDetail: View {
                     .font(.largeTitle)
                     .bold()
                     .foregroundStyle(.primary)
-
+                
                 Text("Stadium")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
-
+                
                 // Look Around / Fallback
                 Group {
                     if let _ = lookAroundScene {
@@ -38,7 +40,6 @@ struct StadiumDetail: View {
                         }
                         .padding(.bottom, 8)
                     } else {
-                        // Fallback si no hay cobertura de Look Around
                         Map(initialPosition: .region(.init(
                             center: estadio.ubicacion.coordinate,
                             latitudinalMeters: 1200,
@@ -52,13 +53,15 @@ struct StadiumDetail: View {
                         }
                         .frame(height: 220)
                         .clipShape(RoundedRectangle(cornerRadius: 16))
+                        
+                        
                     }
                 }
-
+                
                 HStack(spacing: 15) {
                     Button {
                         // Abrir en Apple Maps con nombre y coordenada
-                        
+                        abrirEnMapas(lat: estadio.ubicacion.lat, lon: estadio.ubicacion.lon, nombre: estadio.nombre)
                     } label: {
                         HStack {
                             Image(systemName: "location.fill")
@@ -68,7 +71,7 @@ struct StadiumDetail: View {
                         }
                     }
                     .buttonStyle(.glass)
-
+                    
                     Button {
                         withAnimation { showTicket.toggle() }
                     } label: {
@@ -81,30 +84,28 @@ struct StadiumDetail: View {
                     }
                     .buttonStyle(.glass)
                 }
-
+                
                 if showTicket {
                     TicketView()
                 }
-
+                
                 VStack {
                     Text("Matches Today")
                         .font(.title3)
                         .bold()
                     Divider()
-
+                    
                     // Demo / placeholder
-                    MatchView(
-                        partido: Partido(
-                            id: UUID(),
-                            equipo1: Equipo(id: UUID(), nombre: "Mexico", bandera: "🇲🇽"),
-                            equipo2: Equipo(id: UUID(), nombre: "Canada", bandera: "🇨🇦"),
-                            inicio: Date.now,
-                            estadioID: estadio.id
-                        )
-                    )
+                    
+                    let juegos = worldCupStore.getPartidos(enEstadio: estadio.id)
+                    
+                    ForEach(juegos) { partido in
+                        MatchView(showAllHorizontal: false,partido: partido)
+                    }
+                    
                 }
                 .padding(.top)
-
+                
                 Spacer()
             }
             .padding()
@@ -122,15 +123,20 @@ struct StadiumDetail: View {
         .onChange(of: estadio.ubicacion.lat) { _, _ in loadLookAround() }
         .onChange(of: estadio.ubicacion.lon) { _, _ in loadLookAround() }
     }
-
-    // MARK: - Look Around loader
-
+    
+    func abrirEnMapas(lat: Double, lon: Double, nombre: String) {
+        let url = URL(string: "maps://?q=\(nombre.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&ll=\(lat),\(lon)")!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     private func loadLookAround() {
         isLoadingScene = true
         lookAroundScene = nil
-
+        
         Task {
-            // Solicitud por coordenada (no necesitas MKMapItem ni MKAddress)
+            
             let req = MKLookAroundSceneRequest(coordinate: estadio.ubicacion.coordinate)
             let scene = try? await req.scene
             await MainActor.run {
@@ -141,7 +147,7 @@ struct StadiumDetail: View {
     }
 }
 
-// === Tus subviews existentes ===
+
 
 struct TicketView: View {
     var body: some View {
@@ -168,23 +174,51 @@ struct TicketView: View {
 }
 
 struct MatchView: View {
+    
+    let showAllHorizontal: Bool
     let partido: Partido
     var body: some View {
         VStack {
             HStack {
-                Spacer()
+                if !showAllHorizontal{
+                    Spacer()
+                }
                 Text(partido.equipo1.bandera + partido.equipo1.nombre)
                     .font(.title3)
                     .bold()
-                Spacer()
+                if showAllHorizontal{
+                    Text("vs")
+                        .font(.title3)
+                        .bold()
+                    
+                }else{
+                    Spacer()
+                }
                 Text(partido.equipo2.nombre + partido.equipo2.bandera)
                     .font(.title3)
                     .bold()
                 Spacer()
+                if showAllHorizontal{
+                    Text(partido.inicio,style: .time)
+                        .font(.headline)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                }
+               
             }
-            Text("11:00 am")
-                .font(.headline)
-                .foregroundStyle(.secondary)
+            if !showAllHorizontal{
+                Text(partido.inicio,style: .time)
+                    .font(.headline)
+                    .foregroundStyle(.secondary)
+            }
+          
         }
     }
 }
+
+
+//#Preview {
+//    let store = WorldCupStore()
+//    return StadiumDetail(estadio: store.estadios[1])
+//        .environmentObject(store)
+//}
