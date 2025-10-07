@@ -99,9 +99,11 @@ struct StadiumDetail: View {
                     
                     let juegos = worldCupStore.getPartidos(enEstadio: estadio.id)
                     
-                    ForEach(juegos) { partido in
+                    List(juegos) { partido in
                         MatchView(showAllHorizontal: false,partido: partido)
-                    }
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.clear)
+                    }.listStyle(.plain)
                     
                 }
                 .padding(.top)

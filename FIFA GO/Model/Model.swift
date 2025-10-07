@@ -8,27 +8,18 @@
 import Foundation
 import MapKit
 
+
 struct Coordenada: Codable, Hashable {
     var lat: Double
     var lon: Double
     var coordinate: CLLocationCoordinate2D { .init(latitude: lat, longitude: lon) }
-
-    init(_ c: CLLocationCoordinate2D) {
-        self.lat = c.latitude
-        self.lon = c.longitude
-    }
-    init(lat: Double, lon: Double) {
-        self.lat = lat
-        self.lon = lon
-    }
 }
 
-// Enums
-
 enum TipoEvento: String, Codable, CaseIterable {
-    case liveEvents       = "Live Events"
-    case activities       = "Activities"
-    case liveBroadcasts   = "Live Broadcasts"
+    case liveBroadcasts = "liveBroadcasts"
+    case liveEvents = "liveEvents"
+    case activities = "activities"
+   
 }
 
 enum VenueType: String, Codable, CaseIterable {
@@ -40,21 +31,19 @@ enum ModalRoute: Identifiable {
     case estadioList
     case fanFestList
     case traductor
-    case estadio(UUID)
-    case fanFest(UUID)
+    case estadio(String)   // <- String
+    case fanFest(String)   // <- String
 
     var id: String {
         switch self {
         case .estadioList: return "estadioList"
         case .fanFestList: return "fanFestList"
-        case .traductor: return "traductor"
-        case .estadio(let id): return "estadio-\(id.uuidString)"
-        case .fanFest(let id): return "fanFest-\(id.uuidString)"
+        case .traductor:   return "traductor"
+        case .estadio(let id): return "estadio-\(id)"
+        case .fanFest(let id): return "fanFest-\(id)"
         }
     }
 }
-
-// MARK: - Entidades
 
 struct Accesibilidad: Codable, Hashable {
     var sillaRuedas: Bool
@@ -62,50 +51,52 @@ struct Accesibilidad: Codable, Hashable {
 }
 
 struct Estadio: Identifiable, Codable, Hashable {
-    var id: UUID = UUID()
+    var id: String
     var nombre: String
     var imagenAssetName: String
     var ubicacion: Coordenada
     var puertas: [Coordenada]
     var accesibilidad: Accesibilidad?
-    var lookAroundAvailable:Bool = false
-    
 }
 
 struct FanFest: Identifiable, Codable, Hashable {
-    var id: UUID = UUID()
+    var id: String
     var nombre: String
     var imagenAssetName: String?
     var ubicacion: Coordenada
     var horario: DateInterval?
-    var eventos: [Evento.ID] = []
+    var eventos: [String] = []        // IDs de Evento
     var lookAroundAvailable: Bool = false
     var accesibilidad: Accesibilidad?
+    var web:String
 }
 
 struct Evento: Identifiable, Codable, Hashable {
-    var id: UUID = UUID()
+    var id: String
     var titulo: String
     var tipo: TipoEvento
     var inicio: Date
     var fin: Date
     var allDay: Bool = false
-    var venueID: UUID
-    var venueType: VenueType  // .fanFest / .estadio
+    var venueID: String
+    var venueType: VenueType
+    // opcional: para broadcasts
+    var equipo1Id: String?
+    var equipo2Id: String?
 }
 
 struct Equipo: Identifiable, Codable, Hashable {
-    var id: UUID = UUID()
+    var id: String
     var nombre: String
-    var bandera: String // emoji de la bandera
+    var bandera: String
 }
 
 struct Partido: Identifiable, Codable, Hashable {
-    var id: UUID = UUID()
+    var id: String
     var equipo1: Equipo
     var equipo2: Equipo
     var inicio: Date
-    var estadioID: Estadio.ID
+    var estadioID: String            // <- String
 }
 
 

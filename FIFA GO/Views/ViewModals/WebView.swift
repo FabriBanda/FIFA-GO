@@ -6,13 +6,28 @@
 //
 
 import SwiftUI
+import WebKit
 
-struct WebView: View {
+struct WebApi: View {
+    @Environment(\.dismiss) var dismiss
+    let url:String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            
+            WebView(url:URL(string: url)
+            )
+            .ignoresSafeArea()
+            .toolbar {
+                Button{
+                    dismiss()
+                }label:{
+                    Image(systemName:"xmark")
+                        .font(.headline)
+                     
+                }
+            }
+        }
     }
 }
 
-#Preview {
-    WebView()
-}
+

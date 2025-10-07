@@ -1,0 +1,310 @@
+{
+  "estadios": [
+    {
+      "id": "E-BBVA",
+      "nombre": "BBVA",
+      "imagenAssetName": "bbva",
+      "ubicacion": { "lat": 25.671193, "lon": -100.244166 },
+      "puertas": [{ "lat": 25.67160, "lon": -100.24390 }],
+      "accesibilidad": { "sillaRuedas": true, "personalApoyo": true }
+    },
+    {
+      "id": "E-AZTECA",
+      "nombre": "Azteca",
+      "imagenAssetName": "azteca",
+      "ubicacion": { "lat": 19.302911, "lon": -99.150442 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-AKRON",
+      "nombre": "Akron",
+      "imagenAssetName": "akron",
+      "ubicacion": { "lat": 20.681670, "lon": -103.462780 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-BCPLACE",
+      "nombre": "BC Place",
+      "imagenAssetName": "BCPlace",
+      "ubicacion": { "lat": 49.276670, "lon": -123.111940 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-BMO",
+      "nombre": "BMO Field",
+      "imagenAssetName": "BMO",
+      "ubicacion": { "lat": 43.632780, "lon": -79.418610 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-ARROW",
+      "nombre": "Arrowhead",
+      "imagenAssetName": "Arrowhead",
+      "ubicacion": { "lat": 39.048786, "lon": -94.484566 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-ATT",
+      "nombre": "AT&T Stadium",
+      "imagenAssetName": "AT&T",
+      "ubicacion": { "lat": 32.747780, "lon": -97.092780 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-GILLETE",
+      "nombre": "Gillete Stadium",
+      "imagenAssetName": "Gillete",
+      "ubicacion": { "lat": 42.091000, "lon": -71.264000 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-HARDROCK",
+      "nombre": "Hard Rock",
+      "imagenAssetName": "HardRock",
+      "ubicacion": { "lat": 25.957960, "lon": -80.239311 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-LEVIS",
+      "nombre": "Levi's Stadium",
+      "imagenAssetName": "Levis",
+      "ubicacion": { "lat": 37.403000, "lon": -121.970000 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-LINCOLN",
+      "nombre": "Lincoln Financial",
+      "imagenAssetName": "LincolnFinancial",
+      "ubicacion": { "lat": 39.900898, "lon": -75.168098 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-LUMEN",
+      "nombre": "Lumen Field",
+      "imagenAssetName": "Lumen",
+      "ubicacion": { "lat": 47.595097, "lon": -122.332245 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-MERCEDES",
+      "nombre": "Mercedes-Benz",
+      "imagenAssetName": "MercedesBenz",
+      "ubicacion": { "lat": 33.755560, "lon": -84.400000 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-METLIFE",
+      "nombre": "MetLife",
+      "imagenAssetName": "metlife",
+      "ubicacion": { "lat": 40.813610, "lon": -74.074440 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-NRG",
+      "nombre": "NRG",
+      "imagenAssetName": "NRG",
+      "ubicacion": { "lat": 29.684720, "lon": -95.410830 },
+      "puertas": [],
+      "accesibilidad": null
+    },
+    {
+      "id": "E-SOFI",
+      "nombre": "Sofi Stadium",
+      "imagenAssetName": "SofiStadium",
+      "ubicacion": { "lat": 33.953000, "lon": -118.339000 },
+      "puertas": [],
+      "accesibilidad": null
+    }
+  ],
+  "equipos": [
+    { "id": "T-MEX", "nombre": "Mexico",   "bandera": "🇲🇽" },
+    { "id": "T-CAN", "nombre": "Canada",   "bandera": "🇨🇦" },
+    { "id": "T-USA", "nombre": "USA",      "bandera": "🇺🇸" },
+    { "id": "T-ESP", "nombre": "Spain",    "bandera": "🇪🇸" },
+    { "id": "T-ARG", "nombre": "Argentina","bandera": "🇦🇷" },
+    { "id": "T-FRA", "nombre": "France",   "bandera": "🇫🇷" },
+    { "id": "T-GER", "nombre": "Germany",  "bandera": "🇩🇪" },
+    { "id": "T-BRA", "nombre": "Brazil",   "bandera": "🇧🇷" },
+    { "id": "T-ITA", "nombre": "Italy",    "bandera": "🇮🇹" },
+    { "id": "T-ENG", "nombre": "England",  "bandera": "🏴" },
+    { "id": "T-JPN", "nombre": "Japan",    "bandera": "🇯🇵" },
+    { "id": "T-KOR", "nombre": "Korea",    "bandera": "🇰🇷" },
+    { "id": "T-NED", "nombre": "Netherlands","bandera": "🇳🇱" },
+    { "id": "T-POR", "nombre": "Portugal", "bandera": "🇵🇹" },
+    { "id": "T-URU", "nombre": "Uruguay",  "bandera": "🇺🇾" },
+    { "id": "T-MAR", "nombre": "Morocco",  "bandera": "🇲🇦" }
+  ],
+  "partidos": [
+    { "equipo1Id": "T-MEX", "equipo2Id": "T-CAN", "inicio": "2026-06-11T20:00:00Z", "estadioId": "E-AZTECA" },
+    { "equipo1Id": "T-USA", "equipo2Id": "T-ESP", "inicio": "2026-06-12T18:30:00Z", "estadioId": "E-BBVA" },
+    { "equipo1Id": "T-MEX", "equipo2Id": "T-ARG", "inicio": "2026-06-13T16:00:00Z", "estadioId": "E-BBVA" },
+    { "equipo1Id": "T-ARG", "equipo2Id": "T-FRA", "inicio": "2026-06-14T17:00:00Z", "estadioId": "E-LUMEN" },
+    { "equipo1Id": "T-GER", "equipo2Id": "T-BRA", "inicio": "2026-06-15T19:30:00Z", "estadioId": "E-METLIFE" },
+    { "equipo1Id": "T-ITA", "equipo2Id": "T-ENG", "inicio": "2026-06-16T14:00:00Z", "estadioId": "E-AKRON" },
+    { "equipo1Id": "T-JPN", "equipo2Id": "T-KOR", "inicio": "2026-06-16T20:00:00Z", "estadioId": "E-BCPLACE" },
+    { "equipo1Id": "T-NED", "equipo2Id": "T-POR", "inicio": "2026-06-17T18:30:00Z", "estadioId": "E-ATT" },
+    { "equipo1Id": "T-URU", "equipo2Id": "T-MAR", "inicio": "2026-06-17T21:00:00Z", "estadioId": "E-GILLETE" },
+    { "equipo1Id": "T-ESP", "equipo2Id": "T-ITA", "inicio": "2026-06-18T17:00:00Z", "estadioId": "E-LEVIS" },
+    { "equipo1Id": "T-BRA", "equipo2Id": "T-ENG", "inicio": "2026-06-18T20:30:00Z", "estadioId": "E-LINCOLN" },
+    { "equipo1Id": "T-FRA", "equipo2Id": "T-GER", "inicio": "2026-06-19T18:00:00Z", "estadioId": "E-MERCEDES" },
+    { "equipo1Id": "T-POR", "equipo2Id": "T-URU", "inicio": "2026-06-19T21:00:00Z", "estadioId": "E-NRG" },
+    { "equipo1Id": "T-MAR", "equipo2Id": "T-JPN", "inicio": "2026-06-20T16:00:00Z", "estadioId": "E-SOFI" },
+    { "equipo1Id": "T-CAN", "equipo2Id": "T-USA", "inicio": "2026-06-20T19:00:00Z", "estadioId": "E-BMO" },
+    { "equipo1Id": "T-NED", "equipo2Id": "T-MEX", "inicio": "2026-06-21T18:00:00Z", "estadioId": "E-ARROW" }
+  ],
+  "fanfests": [
+    {
+      "id": "FF-SEA",
+      "nombre": "Seattle Center",
+      "imagenAssetName": "SeattleCenter",
+      "ubicacion": { "lat": 47.6205888, "lon": -122.3529166 },
+      "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
+      "eventos": ["EV-SEA-BRD-1", "EV-SEA-BRD-2", "EV-SEA-BRD-3", "EV-SEA-LIVE-1", "EV-SEA-LIVE-2", "EV-SEA-ACT-1", "EV-SEA-ACT-2"],
+      "lookAroundAvailable": true,
+      "accesibilidad": { "sillaRuedas": true, "personalApoyo": true },
+      "web": "https://www.seattlefwc26.org"
+    },
+    {
+      "id": "FF-MTY",
+      "nombre": "Macroplaza",
+      "imagenAssetName": "Macroplaza",
+      "ubicacion": { "lat": 25.666667, "lon": -100.316666 },
+      "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
+      "eventos": ["EV-MTY-BRD-1", "EV-MTY-LIVE-1", "EV-MTY-ACT-1"],
+      "lookAroundAvailable": false,
+      "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
+      "web": "https://www.fwc26monterrey.com/es-mx/who-we-are"
+    }
+    
+  ],
+  "eventos": [
+ 
+    {
+      "id": "EV-SEA-BRD-1",
+      "titulo": "Mexico vs Canada",
+      "tipo": "liveBroadcasts",
+      "inicio": "2026-06-12T18:00:00Z",
+      "fin":    "2026-06-12T20:00:00Z",
+      "allDay": false,
+      "venueId": "FF-SEA",
+      "venueType": "fanFest",
+      "equipo1Id": "T-MEX",
+      "equipo2Id": "T-CAN"
+    },
+    {
+      "id": "EV-SEA-BRD-2",
+      "titulo": "Colombia vs Spain",
+      "tipo": "liveBroadcasts",
+      "inicio": "2026-06-12T22:00:00Z",
+      "fin":    "2026-06-13T00:00:00Z",
+      "allDay": false,
+      "venueId": "FF-SEA",
+      "venueType": "fanFest",
+      "equipo1Id": "T-URU",
+      "equipo2Id": "T-ESP"
+    },
+    {
+      "id": "EV-SEA-BRD-3",
+      "titulo": "Argentina vs France",
+      "tipo": "liveBroadcasts",
+      "inicio": "2026-06-13T00:00:00Z",
+      "fin":    "2026-06-13T02:00:00Z",
+      "allDay": false,
+      "venueId": "FF-SEA",
+      "venueType": "fanFest",
+      "equipo1Id": "T-ARG",
+      "equipo2Id": "T-FRA"
+    },
+
+
+    {
+      "id": "EV-SEA-LIVE-1",
+      "titulo": "DJ Set - Main Stage",
+      "tipo": "liveEvents",
+      "inicio": "2026-06-12T19:30:00Z",
+      "fin":    "2026-06-12T20:30:00Z",
+      "allDay": false,
+      "venueId": "FF-SEA",
+      "venueType": "fanFest"
+    },
+    {
+      "id": "EV-SEA-LIVE-2",
+      "titulo": "Freestyle Football Show",
+      "tipo": "liveEvents",
+      "inicio": "2026-06-12T21:30:00Z",
+      "fin":    "2026-06-12T22:30:00Z",
+      "allDay": false,
+      "venueId": "FF-SEA",
+      "venueType": "fanFest"
+    },
+
+
+    {
+      "id": "EV-SEA-ACT-1",
+      "titulo": "Penalty Challenge",
+      "tipo": "activities",
+      "inicio": "2026-06-12T10:00:00Z",
+      "fin":    "2026-06-12T22:00:00Z",
+      "allDay": true,
+      "venueId": "FF-SEA",
+      "venueType": "fanFest"
+    },
+    {
+      "id": "EV-SEA-ACT-2",
+      "titulo": "Skills Fotball",
+      "tipo": "activities",
+      "inicio": "2026-06-12T10:00:00Z",
+      "fin":    "2026-06-12T22:00:00Z",
+      "allDay": true,
+      "venueId": "FF-SEA",
+      "venueType": "fanFest"
+    },
+
+
+    {
+      "id": "EV-MTY-BRD-1",
+      "titulo": "USA vs Spain",
+      "tipo": "liveBroadcasts",
+      "inicio": "2026-06-12T18:30:00Z",
+      "fin":    "2026-06-12T20:30:00Z",
+      "allDay": false,
+      "venueId": "FF-MTY",
+      "venueType": "fanFest",
+      "equipo1Id": "T-USA",
+      "equipo2Id": "T-ESP"
+    },
+    {
+      "id": "EV-MTY-LIVE-1",
+      "titulo": "Banda en vivo",
+      "tipo": "liveEvents",
+      "inicio": "2026-06-12T21:00:00Z",
+      "fin":    "2026-06-12T22:00:00Z",
+      "allDay": false,
+      "venueId": "FF-MTY",
+      "venueType": "fanFest"
+    },
+    {
+      "id": "EV-MTY-ACT-1",
+      "titulo": "Tiro de precisión",
+      "tipo": "activities",
+      "inicio": "2026-06-12T10:00:00Z",
+      "fin":    "2026-06-12T22:00:00Z",
+      "allDay": true,
+      "venueId": "FF-MTY",
+      "venueType": "fanFest"
+    }
+  ]
+}

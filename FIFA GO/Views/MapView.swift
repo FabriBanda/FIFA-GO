@@ -13,6 +13,12 @@ struct MapView: View {
     
     @Namespace var namespace
     
+    @State private var showStadiums:Bool = true
+    
+    @State private var showFanFests:Bool = false
+    
+    @State private var sheetPresentation = PresentationDetent.medium
+    
     @State private var currentModal : ModalRoute?
     
     @State private var isExpanded : Bool = false
@@ -25,18 +31,29 @@ struct MapView: View {
         Map(position:$worldCupStore.cameraPosition){
             
             ForEach(worldCupStore.estadios){ estadio in
-                Annotation(estadio.nombre, coordinate: estadio.ubicacion.coordinate){
-                    MarkerView(imageName: "soccerball.inverse",colorBackground: Color.green,color:.black)
-                        .onTapGesture {
-                            currentModal = .estadio(estadio.id)
+                
+                if showStadiums{
+                    Annotation(estadio.nombre, coordinate: estadio.ubicacion.coordinate){
+                        MarkerView(imageName: "soccerball.inverse",colorBackground: Color.green,color:.black)
+                            .onTapGesture {
+                                currentModal = .estadio(estadio.id)
+                        }
                     }
                 }
+               
             }
             
             ForEach(worldCupStore.fanfests){ fanFest in
-                Annotation(fanFest.nombre, coordinate: fanFest.ubicacion.coordinate) {
-                    MarkerView(imageName: "party.popper.fill",colorBackground: Color.black,color:.white)
+                
+                if showFanFests{
+                    Annotation(fanFest.nombre, coordinate: fanFest.ubicacion.coordinate) {
+                        MarkerView(imageName: "party.popper.fill",colorBackground: Color.black,color:.white)
+                            .onTapGesture {
+                                currentModal = .fanFest(fanFest.id)
+                            }
+                    }
                 }
+               
             }
             
             
@@ -57,6 +74,29 @@ struct MapView: View {
         .mapStyle(.standard(elevation: .automatic))
         .overlay {
             VStack{
+                HStack(spacing: 13){
+                    Button {
+                        withAnimation {
+                            showFanFests.toggle()
+                        }
+                    
+                    } label: {
+                        Text(showFanFests ? "Hide FanFets":"Show FanFests")
+                    }.buttonStyle(.glass)
+    
+                    Button {
+                        withAnimation {
+                            showStadiums.toggle()
+                        }
+                        
+                    } label: {
+                        Text(showStadiums ? "Hide Stadiums":"Show Stadiums")
+                    }.buttonStyle(.glass)
+                    
+                    
+                }
+                
+
                 Spacer()
                 HStack{
                     
@@ -112,11 +152,15 @@ struct MapView: View {
                 
                 if let estadio = worldCupStore.estadios.first(where: {$0.id == id}) {
                     StadiumDetail(estadio: estadio)
-                        .presentationDetents([.medium,.large])
+                        .presentationDetents([.medium,.large],selection: $sheetPresentation)
                 }
                
                 
-            case .fanFest:
+            case .fanFest(let id):
+                
+                if let fanfest = worldCupStore.fanfests.first(where: {$0.id==id}){
+                    FanFestDetail(fanFest: fanfest)
+                }
                 
                 // vista personzalizada del fan fest
                 

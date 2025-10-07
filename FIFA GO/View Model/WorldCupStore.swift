@@ -1,75 +1,136 @@
-//
-//  WorldCupStore.swift
-//  FIFA GO
-//
-//  Created by Fabricio Banda on 01/10/25.
-//
-
+// WorldCupStore.swift
 import Foundation
-import Combine
 import MapKit
-import _MapKit_SwiftUI
+import SwiftUI
+import Combine
 
-class WorldCupStore : ObservableObject {
+class WorldCupStore: ObservableObject {
+    @Published var estadios: [Estadio] = []
+    @Published var fanfests: [FanFest] = []
+    @Published var equipos:  [Equipo]  = []
+    @Published var eventos:  [Evento]  = []
+    @Published var partidos: [Partido] = []
+
+    @Published var cameraPosition: MapCameraPosition =
+        .region(.init(center: .init(latitude: 37.3346, longitude: -122.0090),
+                      latitudinalMeters: 1000, longitudinalMeters: 1000))
+
+    init() { loadFromJSON() }
+
+    private func loadFromJSON() {
+        guard
+            let url  = Bundle.main.url(forResource: "WorldCupData", withExtension: "json"),
+            let data = try? Data(contentsOf: url)
+        else {
+            print("⚠️ No se encontró WorldCupData.json")
+            return
+        }
+
+        do {
+            let dto = try JSONDecoder().decode(WorldCupDataDTO.self, from: data)
+
+            // Cargamos directos
+            self.estadios = dto.estadios
+            self.equipos  = dto.equipos
+
+            // Parser ISO8601
+            let iso = ISO8601DateFormatter()
+            iso.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            func d(_ s: String) -> Date? { iso.date(from: s) ?? ISO8601DateFormatter().date(from: s) }
+
+            // Eventos (parseo de fecha y enums)
+            self.eventos = dto.eventos.compactMap { e in
+                guard
+                    let inicio = d(e.inicio),
+                    let fin    = d(e.fin),
+                    let tipo   = TipoEvento(rawValue: e.tipo),
+                    let vType  = VenueType(rawValue: e.venueType)
+                else { return nil }
+
+                return Evento(
+                    id: e.id,
+                    titulo: e.titulo,
+                    tipo: tipo,
+                    inicio: inicio,
+                    fin: fin,
+                    allDay: e.allDay ?? false,
+                    venueID: e.venueID,
+                    venueType: vType,
+                    equipo1Id: e.equipo1Id,
+                    equipo2Id: e.equipo2Id
+                )
+            }
+
+            // FanFests (DateInterval y flags)
+            self.fanfests = dto.fanfests.map { f in
+                let intervalo: DateInterval? = {
+                    guard let h = f.horario,
+                          let i = d(h.inicio),
+                          let e = d(h.fin) else { return nil }
+                    return DateInterval(start: i, end: e)
+                }()
+                return FanFest(
+                    id: f.id,
+                    nombre: f.nombre,
+                    imagenAssetName: f.imagenAssetName,
+                    ubicacion: f.ubicacion,
+                    horario: intervalo,
+                    eventos: f.eventos,
+                    accesibilidad: f.accesibilidad,
+                    web: f.web
+                )
+            }
+
+            // Partidos (resolver equipos por id y estadio por id)
+            self.partidos = dto.partidos.compactMap { p in
+                guard
+                    let fecha = d(p.inicio),
+                    let e1 = equipos.first(where: { $0.id == p.equipo1Id }),
+                    let e2 = equipos.first(where: { $0.id == p.equipo2Id })
+                else { return nil }
+
+                return Partido(
+                    id: p.id ?? UUID().uuidString,
+                    equipo1: e1,
+                    equipo2: e2,
+                    inicio: fecha,
+                    estadioID: p.estadioId
+                )
+            }
+
+            print("✅ Cargado: \(estadios.count) estadios, \(equipos.count) equipos, \(eventos.count) eventos, \(fanfests.count) fanfests, \(partidos.count) partidos")
+        } catch {
+            print("❌ Error decodificando WorldCupData.json: \(error)")
+        }
+    }
+
+    // MARK: - Helpers
+    func getPartidos(enEstadio estadioID: String) -> [Partido] {
+        partidos
+            .filter { $0.estadioID == estadioID }
+            .sorted { $0.inicio < $1.inicio }
+    }
+
+    func eventosEnFanFest(_ fanFestID: String) -> [TipoEvento: [Evento]] {
+        let evs = eventos.filter { $0.venueType == .fanFest && $0.venueID == fanFestID }
+        return Dictionary(grouping: evs, by: { $0.tipo })
+    }
+
+    func equiposParaBroadcast(eventID: String) -> (Equipo, Equipo)? {
+        guard
+            let ev = eventos.first(where: { $0.id == eventID }),
+            let id1 = ev.equipo1Id,
+            let id2 = ev.equipo2Id,
+            let e1 = equipos.first(where: { $0.id == id1 }),
+            let e2 = equipos.first(where: { $0.id == id2 })
+        else { return nil }
+        return (e1, e2)
+    }
     
-    @Published var estadios: [Estadio]
-    @Published var fanfests: [FanFest]
-    @Published var partidos: [Partido]
-    @Published var cameraPosition:MapCameraPosition = .region(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.3346, longitude: -122.0090), latitudinalMeters: 1000, longitudinalMeters: 1000))
-    
-    
-    init(){
-        
-        estadios = [
-            
-            // Mexico
-            
-            Estadio(nombre: "BBVA",imagenAssetName: "bbva", ubicacion: Coordenada(lat: 25.67119328280499, lon: -100.24416690079325), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-
-            Estadio(nombre: "Azteca",imagenAssetName: "azteca", ubicacion: Coordenada(lat: 19.302911, lon: -99.150442), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-                
-            Estadio(nombre: "Akron",imagenAssetName: "akron", ubicacion: Coordenada(lat: 20.681670, lon: -103.462780), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-
-
-            // Canada
-            Estadio(nombre: "BCPLACE",imagenAssetName: "BCPlace", ubicacion: Coordenada(lat: 49.276670, lon: -123.111940), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-            Estadio(nombre: "BMO Field",imagenAssetName: "BMO", ubicacion: Coordenada(lat: 43.632780, lon: -79.418610), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-
-
-            // Usa
-            Estadio(nombre: "Arrow Head",imagenAssetName: "Arrowhead", ubicacion: Coordenada(lat: 39.048786, lon: -94.484566), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-            Estadio(nombre: "AT&T",imagenAssetName: "AT&T", ubicacion: Coordenada(lat: 32.747780, lon: -97.092780), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-
-            Estadio(nombre: "Gillete Stadium",imagenAssetName: "Gillete", ubicacion: Coordenada(lat: 42.091000, lon: -71.264000), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-
-            Estadio(nombre: "Hard Rock",imagenAssetName: "HardRock", ubicacion: Coordenada(lat: 25.957960, lon: -80.239311), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-
-            Estadio(nombre: "Levis",imagenAssetName: "Levis", ubicacion: Coordenada(lat: 37.403000, lon: -121.970000), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-
-            Estadio(nombre: "Lincoln Financial",imagenAssetName: "LincolnFinancial", ubicacion: Coordenada(lat: 39.900898, lon: -75.168098), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-
-            Estadio(nombre: "Lumen",imagenAssetName: "Lumen", ubicacion: Coordenada(lat: 47.595097, lon: -122.332245), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-
-            Estadio(nombre: "MercedesBenz",imagenAssetName: "MercedesBenz", ubicacion: Coordenada(lat: 33.755560, lon: -84.400000), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-
-            Estadio(nombre: "Metlife",imagenAssetName: "metlife", ubicacion: Coordenada(lat: 40.813610, lon: -74.074440), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-
-            Estadio(nombre: "NRG",imagenAssetName: "NRG", ubicacion: Coordenada(lat: 29.684720, lon: -95.410830), puertas: [Coordenada(lat: 0.0, lon: 0.0)]),
-            Estadio(nombre: "Sofi",imagenAssetName: "SofiStadium", ubicacion: Coordenada(lat: 33.953000, lon: -118.339000), puertas: [Coordenada(lat: 0.0, lon: 0.0)])
-            
-            
-            
-            
-            
-            
-        ]
-        
-        fanfests = [FanFest(nombre:"Seattle Center", ubicacion: Coordenada(lat: 47.6205888, lon: -122.3529166))]
-        
-        
-        partidos = []
-    
-        
+    func timeString(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
     }
     
 }
