@@ -133,4 +133,13 @@ class WorldCupStore: ObservableObject {
         return formatter.string(from: date)
     }
     
+    func abrirEnMapas(lat: Double, lon: Double, nombre: String) {
+        let url = URL(string: "maps://?q=\(nombre.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&ll=\(lat),\(lon)")!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    
+    
 }

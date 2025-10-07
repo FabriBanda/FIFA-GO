@@ -146,6 +146,7 @@ struct MapView: View {
                 
                 // vista del traductor ( bini )
                 EmptyView()
+                
             case .estadio(let id):
                 
                 // vista personalizada del estadio

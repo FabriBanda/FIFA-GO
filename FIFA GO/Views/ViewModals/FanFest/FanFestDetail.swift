@@ -6,99 +6,133 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct FanFestDetail: View {
     let fanFest:FanFest
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var worldCupStore:WorldCupStore
+    @State private var isLoadingScene = false
+    @State private var lookAroundScene: MKLookAroundScene?
+    
     var body: some View {
-        NavigationStack {
+        
                 
-                VStack{
+        NavigationStack {
+            VStack{
+                
+                VStack(spacing: 0){
                     
-                    Image(systemName: "party.popper.fill")
-                        .foregroundStyle(Gradient(colors: [.red,.blue,.green]))
-                        .font(.system(size: 50))
-                    
-                    Text("FIFA Fan Fest")
-                        .font(.title)
-                        .bold()
-                    Text(fanFest.nombre)
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
-                    
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(lineWidth: 7)
-                        .frame(width: 340,height: 200)
-                        .overlay {
-                            VStack{
-                                HStack{
-                                    Spacer()
-                                    OpenToday()
-                                }
-                                Spacer()
-                            }.padding(10)
-                        }.padding(.top)
-                    
-                        ScrollView {
-                        VStack(alignment: .leading){
-                        
-                            let eventosFanFest = worldCupStore.eventosEnFanFest(fanFest.id)
-                            
-                            ForEach(TipoEvento.allCases, id: \.self) { tipo in
-                                if let eventos = eventosFanFest[tipo] {
-                                     
-                                    Text(title(for: tipo))
-                                        .font(.title2)
-                                        .bold()
-                                        .padding(.vertical, 4)
-                                   
-                                        ForEach(eventos) { evento in
-                                            EventoView(evento: evento)
-                                        }
-                                   
+                    Image("seattle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 250,height: 180)
+                        .padding(.bottom)
+                    Group {
+                        if let _ = lookAroundScene {
+                            LookAroundPreview(scene: $lookAroundScene)
+                                .frame(height: 220) // IMPORTANTE: altura fija
+                                .clipShape(RoundedRectangle(cornerRadius: 16))
+                                .padding(.bottom, 8)
+                        } else if isLoadingScene {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(.ultraThinMaterial)
+                                    .frame(height: 220)
+                                ProgressView("Cargando vista previa…")
+                            }
+                            .padding(.bottom, 8)
+                        } else {
+                            Map(initialPosition: .region(.init(
+                                center: fanFest.ubicacion.coordinate,
+                                latitudinalMeters: 1200,
+                                longitudinalMeters: 1200
+                            ))) {
+                                Annotation(fanFest.nombre, coordinate: fanFest.ubicacion.coordinate) {
+                                    Image(systemName: "mappin.circle.fill")
+                                        .font(.title)
+                                        .foregroundStyle(.red)
                                 }
                             }
+                            .frame(height: 220)
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                            
                             
                         }
-                    }
-                    
-                    HStack{
                         
-                        NavigationLink(destination: WebApi(url:fanFest.web)) {
-                           
-                            Text("Open Website")
-                         
-                            
-                        }
-                       
-                        Button {
-                            
-                        } label: {
-                            Text("Get Directions")
-                        }.buttonStyle(.glass)
                     }
-                    
-                    
-                    
+                    .overlay{
+                        VStack{
+                            HStack{
+                                Spacer()
+                                OpenToday()
+                                    .padding(5)
+                            }
+                            
+                            Spacer()
+                        }
+                    } .padding(.horizontal)
                     Spacer()
-                    }.padding()
-                    .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: "xmark")
-                                .foregroundStyle(.primary)
-                                .font(.headline)
+                }
+                
+                ScrollView {
+                    VStack(alignment: .leading){
+                        
+                        let eventosFanFest = worldCupStore.eventosEnFanFest(fanFest.id)
+                        
+                        ForEach(TipoEvento.allCases, id: \.self) { tipo in
+                            if let eventos = eventosFanFest[tipo] {
+                                
+                                Text(title(for: tipo))
+                                    .font(.title2)
+                                    .bold()
+                                    .padding(.vertical, 4)
+                                
+                                ForEach(eventos) { evento in
+                                    EventoView(evento: evento)
+                                }
+                                
+                            }
                         }
                         
                     }
-                }
+                }.padding(.horizontal)
+                
+                HStack{
                     
-                   
-   
+                    NavigationLink(destination: WebApi(url:fanFest.web)) {
+                       
+                            Text("Open Web")
+                            .foregroundStyle(Color(.label))
+                            .padding()
+                            .glassEffect()
+                        
+                    }
+                    
+                    Text("Get Directions")
+                    .foregroundStyle(.white)
+                    .padding()
+                    .glassEffect()
+                    
+                    
+                }
+                
+                Spacer()
             }
+            .background(Gradient(colors: [getColorFanFest(name: fanFest.nombre),Color(.systemBackground)]))
+            .onAppear { loadLookAround() }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.headline)
+                    }
+
+                }
+            }
+        }
         }
     func formatDateInterval(_ interval: DateInterval) -> String {
            let formatter = DateFormatter()
@@ -113,15 +147,41 @@ struct FanFestDetail: View {
            case .liveBroadcasts: return "Live Broadcasts"
            }
        }
+    
+    private func loadLookAround() {
+        isLoadingScene = true
+        lookAroundScene = nil
+        
+        Task {
+            
+            let req = MKLookAroundSceneRequest(coordinate: fanFest.ubicacion.coordinate)
+            let scene = try? await req.scene
+            await MainActor.run {
+                self.lookAroundScene = scene
+                self.isLoadingScene = false
+            }
+        }
+    }
+    
+    
+    private func getColorFanFest(name:String)->Color{
+        switch name{
+        case "Seattle Center": return Color.colorSeattle
+        case "Macroplaza": return Color.colorMexico
+        default: return Color.primary
+        
+        }
+    }
+    
     }
 
 struct OpenToday:View {
     var body: some View {
         VStack{
             Text("OPEN TODAY")
-                .font(.title3)
-            Text("10:00 AM - 10:00 PM")
                 .font(.headline)
+            Text("10:00 AM - 10:00 PM")
+                .font(.caption)
         }
         .bold()
         .foregroundStyle(Color.openTodayFont)

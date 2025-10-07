@@ -38,7 +38,7 @@ struct EventoView: View {
                         Spacer()
                         hora
                     }
-                    Spacer()
+                   
                 }
             }
             

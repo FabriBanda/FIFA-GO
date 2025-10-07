@@ -61,7 +61,7 @@ struct StadiumDetail: View {
                 HStack(spacing: 15) {
                     Button {
                         // Abrir en Apple Maps con nombre y coordenada
-                        abrirEnMapas(lat: estadio.ubicacion.lat, lon: estadio.ubicacion.lon, nombre: estadio.nombre)
+                        worldCupStore.abrirEnMapas(lat: estadio.ubicacion.lat, lon: estadio.ubicacion.lon, nombre: estadio.nombre)
                     } label: {
                         HStack {
                             Image(systemName: "location.fill")
@@ -124,13 +124,6 @@ struct StadiumDetail: View {
         .onChange(of: estadio.id) { _, _ in loadLookAround() }
         .onChange(of: estadio.ubicacion.lat) { _, _ in loadLookAround() }
         .onChange(of: estadio.ubicacion.lon) { _, _ in loadLookAround() }
-    }
-    
-    func abrirEnMapas(lat: Double, lon: Double, nombre: String) {
-        let url = URL(string: "maps://?q=\(nombre.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&ll=\(lat),\(lon)")!
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url)
-        }
     }
     
     private func loadLookAround() {

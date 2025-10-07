@@ -1,103 +1,138 @@
-//
-//  StadiumsList.swift
-//  FIFA GO
-//
-//  Created by Fabricio Banda on 01/10/25.
-//
-
 import SwiftUI
 import MapKit
 
 struct StadiumsList: View {
-    @State private var searchText:String = ""
-    @EnvironmentObject var worldCupStore:WorldCupStore
-    @Environment(\.dismiss) var dismiss
+    @State private var searchText: String = ""
+    @State private var countryFilter: CountryFilter = .all
+
+    @EnvironmentObject var worldCupStore: WorldCupStore
+    @Environment(\.dismiss) private var dismiss
+
     var body: some View {
-        NavigationStack{
-            VStack{
-                
-                HStack{
-                
-                    Spacer()
-                    PaisButtonFilter(pais: "🇲🇽Mexico")
-                    Spacer()
-                    PaisButtonFilter(pais: "🇺🇸USA")
-                    Spacer()
-                    PaisButtonFilter(pais: "🇨🇦Canada")
-                    Spacer()
+        NavigationStack {
+            VStack(spacing: 12) {
+
+                // Filtro por país
+                Picker("Country", selection: $countryFilter) {
+                    ForEach(CountryFilter.allCases, id: \.self) { f in
+                        Text(f.title).tag(f)
+                            .font(.largeTitle)
+                        
+                    }
                 }
-                List{
-                    ForEach(worldCupStore.estadios.filter{searchText.isEmpty ? true : $0.nombre.contains(searchText)}){ estadio in
-                        EstadioView(estadio: estadio)
+                .pickerStyle(.segmented)
+                .padding(.horizontal)
+
+                List {
+                    ForEach(filteredAndSortedEstadios) { estadio in
+                        EstadioRow(estadio: estadio)
                             .listRowBackground(Color.clear)
                             .listRowSeparator(.hidden)
+                            .contentShape(Rectangle())
                             .onTapGesture {
                                 withAnimation {
+                                    // Centrar mapa y cerrar la lista
+                                    worldCupStore.cameraPosition = .region(
+                                        .init(center: estadio.ubicacion.coordinate,
+                                              latitudinalMeters: 1000,
+                                              longitudinalMeters: 1000)
+                                    )
                                     dismiss()
-                                    worldCupStore.cameraPosition = .region(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: estadio.ubicacion.lat, longitude: estadio.ubicacion.lon), latitudinalMeters: 1000, longitudinalMeters: 1000))
-                                    
                                 }
                             }
                     }
-                }.listStyle(.plain)
-                
-            }.navigationTitle("Stadiums")
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: "xmark")
-                                .font(.headline)
-                        }
-
+                }
+                .listStyle(.plain)
+            }
+            .navigationTitle("Stadiums")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.headline)
                     }
                 }
-                .searchable(text: $searchText, placement: .navigationBarDrawer, prompt: "Search Stadiums")
+            }
+            .searchable(text: $searchText,
+                        placement: .navigationBarDrawer,
+                        prompt: "Search Stadiums")
+        }
+    }
+
+    // MARK: - Data derivada
+
+    private var filteredAndSortedEstadios: [Estadio] {
+        worldCupStore.estadios
+            .filter { estadio in
+                // Filtro por país
+                countryFilter == .all || stadiumCountry(estadio) == countryFilter
+            }
+            .filter { estadio in
+                // Filtro por búsqueda
+                searchText.isEmpty ||
+                estadio.nombre.localizedCaseInsensitiveContains(searchText)
+            }
+            .sorted { $0.nombre.localizedCaseInsensitiveCompare($1.nombre) == .orderedAscending }
+    }
+
+    // Determinar país sin tocar el modelo (ajusta IDs/nombres si cambian)
+    private func stadiumCountry(_ estadio: Estadio) -> CountryFilter {
+        // Por ID (recomendado, estable)
+        let id = estadio.id  // String en tu modelo actual
+        if id.hasPrefix("E-AZTECA") || id.hasPrefix("E-AKRON") || id.hasPrefix("E-BBVA") {
+            return .mexico
+        }
+        if id.hasPrefix("E-BCPLACE") || id.hasPrefix("E-BMO") {
+            return .canada
+        }
+        // El resto de IDs conocidos del JSON son de USA
+        return .usa
+    }
+}
+
+// MARK: - UI auxiliares
+
+private enum CountryFilter: String, CaseIterable {
+    case all, mexico, usa, canada
+
+    var title: String {
+        switch self {
+        case .all:    return "All"
+        case .mexico: return "🇲🇽"
+        case .usa:    return "🇺🇸"
+        case .canada: return "🇨🇦"
         }
     }
 }
 
-struct PaisButtonFilter:View {
-    let pais:String
-    var body: some View {
-        
-        Button {
-            withAnimation {
-                
-            }
-        } label: {
-            Text(pais)
-                .foregroundStyle(.primary)
-                .font(.headline)
-        }.buttonStyle(.glass)
+private struct EstadioRow: View {
+    let estadio: Estadio
 
-    }
-}
-
-struct EstadioView:View {
-    let estadio : Estadio
     var body: some View {
-        Image(estadio.imagenAssetName)
-            .resizable()
-            .scaledToFit()
-            .overlay {
-                VStack{
-                    Spacer()
-                    HStack{
-                        Spacer()
-                        Text(estadio.nombre)
-                            .font(.title2)
-                            .foregroundStyle(.white)
-                            .bold()
-                        Spacer()
-                    }
-                    .padding(.vertical,10)
-                    .background(Color.black.opacity(0.5))
-                     
-                }
+        ZStack {
+            Image(estadio.imagenAssetName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 160)
+                    .clipped()
+           
+        }
+        .overlay(alignment: .bottom) {
+            HStack {
+                Spacer()
+                Text(estadio.nombre)
+                    .font(.title3)
+                    .bold()
+                    .foregroundStyle(.white)
+                Spacer()
             }
-            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .padding(.vertical, 8)
+            .background(.black.opacity(0.45))
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .contentShape(RoundedRectangle(cornerRadius: 20))
     }
 }
 
