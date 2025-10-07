@@ -32,17 +32,10 @@ struct StadiumsList: View {
         Stadium(name: "BMO", country: "🇨🇦 Canada", imageName: "BMO")
     ]
     
-        var filteredStadiums: [Stadium] {
-            if searchText.isEmpty {
-                // Si no hay texto en el buscador, aplica el filtro por país
-                return stadiums.filter { stadium in
-                    selectedCountry == nil || stadium.country == selectedCountry
-                }
-            } else {
-                // Si hay texto en el buscador, ignora el filtro por país
-                return stadiums.filter { stadium in
-                    stadium.name.localizedCaseInsensitiveContains(searchText)
-                }
+    var filteredStadiums: [Stadium] {
+            stadiums.filter { stadium in
+                (selectedCountry == nil || stadium.country == selectedCountry) &&
+                (searchText.isEmpty || stadium.name.localizedCaseInsensitiveContains(searchText))
             }
         }
     
