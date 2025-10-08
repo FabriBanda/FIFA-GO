@@ -23,7 +23,7 @@ struct FanFestDetail: View {
                 
                 VStack(spacing: 0){
                     
-                    Image("seattle")
+                    Image("boston")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 250,height: 180)
@@ -31,14 +31,14 @@ struct FanFestDetail: View {
                     Group {
                         if let _ = lookAroundScene {
                             LookAroundPreview(scene: $lookAroundScene)
-                                .frame(height: 220) // IMPORTANTE: altura fija
+                                .frame(height: 200) // IMPORTANTE: altura fija
                                 .clipShape(RoundedRectangle(cornerRadius: 16))
                                 .padding(.bottom, 8)
                         } else if isLoadingScene {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 16)
                                     .fill(.ultraThinMaterial)
-                                    .frame(height: 220)
+                                    .frame(height: 200)
                                 ProgressView("Cargando vista previa…")
                             }
                             .padding(.bottom, 8)
@@ -54,7 +54,7 @@ struct FanFestDetail: View {
                                         .foregroundStyle(.red)
                                 }
                             }
-                            .frame(height: 220)
+                            .frame(height: 200)
                             .clipShape(RoundedRectangle(cornerRadius: 16))
                             
                             
@@ -65,7 +65,7 @@ struct FanFestDetail: View {
                         VStack{
                             HStack{
                                 Spacer()
-                                OpenToday()
+                              //  OpenToday()
                                     .padding(5)
                             }
                             
@@ -102,17 +102,11 @@ struct FanFestDetail: View {
                     
                     NavigationLink(destination: WebApi(url:fanFest.web)) {
                        
-                            Text("Open Web")
-                            .foregroundStyle(Color(.label))
-                            .padding()
-                            .glassEffect()
+                           TextBottom(text: "Open Web")
                         
                     }
                     
-                    Text("Get Directions")
-                    .foregroundStyle(.white)
-                    .padding()
-                    .glassEffect()
+                    TextBottom(text: "Get Directions")
                     
                     
                 }
@@ -127,6 +121,7 @@ struct FanFestDetail: View {
                         dismiss()
                     } label: {
                         Image(systemName: "xmark")
+                            .foregroundStyle(.white)
                             .font(.headline)
                     }
 
@@ -134,6 +129,7 @@ struct FanFestDetail: View {
             }
         }
         }
+    
     func formatDateInterval(_ interval: DateInterval) -> String {
            let formatter = DateFormatter()
            formatter.timeStyle = .short
@@ -166,7 +162,7 @@ struct FanFestDetail: View {
     
     private func getColorFanFest(name:String)->Color{
         switch name{
-        case "Seattle Center": return Color.colorSeattle
+        case "Seattle Center": return Color.colorBoston
         case "Macroplaza": return Color.colorMexico
         default: return Color.primary
         
@@ -198,6 +194,16 @@ struct TextFanFest:View {
             .font(.title3)
             .bold()
             .foregroundStyle(.primary)
+    }
+}
+
+struct TextBottom:View {
+    let text:String
+    var body: some View {
+        Text(text)
+            .foregroundStyle(Color(.label))
+            .padding()
+            .glassEffect()
     }
 }
 
