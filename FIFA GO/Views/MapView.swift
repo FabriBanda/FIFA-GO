@@ -145,7 +145,8 @@ struct MapView: View {
             case .traductor:
                 
                 // vista del traductor ( bini )
-                EmptyView()
+                //EmptyView()
+                TraductorView()
                 
             case .estadio(let id):
                 
