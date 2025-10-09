@@ -4,7 +4,7 @@ import MapKit
 struct StadiumsList: View {
     @State private var searchText: String = ""
     @State private var countryFilter: CountryFilter = .all
-
+    @Binding var showEstadiums : Bool
     @EnvironmentObject var worldCupStore: WorldCupStore
     @Environment(\.dismiss) private var dismiss
 
@@ -32,12 +32,14 @@ struct StadiumsList: View {
                             .onTapGesture {
                                 withAnimation {
                                     // Centrar mapa y cerrar la lista
+                                    showEstadiums = true
                                     worldCupStore.cameraPosition = .region(
                                         .init(center: estadio.ubicacion.coordinate,
                                               latitudinalMeters: 1000,
                                               longitudinalMeters: 1000)
                                     )
                                     dismiss()
+                                    
                                 }
                             }
                     }
@@ -136,6 +138,3 @@ private struct EstadioRow: View {
     }
 }
 
-#Preview {
-    StadiumsList().environmentObject(WorldCupStore())
-}

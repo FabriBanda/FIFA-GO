@@ -69,6 +69,7 @@ struct FanFest: Identifiable, Codable, Hashable {
     var lookAroundAvailable: Bool = false
     var accesibilidad: Accesibilidad?
     var web:String
+    var ciudad:String
 }
 
 struct Evento: Identifiable, Codable, Hashable {

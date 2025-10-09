@@ -32,7 +32,7 @@ struct EventoView: View {
                         let equipo1 = equipos.0
                         let equipo2 = equipos.1
                         
-                        TextFanFest(text:equipo1.bandera + equipo1.nombre + "  vs ")
+                        TextFanFest(text:equipo1.bandera + equipo1.nombre + "  vs")
                         TextFanFest(text:equipo2.nombre + equipo2.bandera)
                         
                         Spacer()
@@ -44,7 +44,7 @@ struct EventoView: View {
             
             Spacer()
         }
-        .padding()
+        .padding(12)
         .background(.ultraThinMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 20))
             

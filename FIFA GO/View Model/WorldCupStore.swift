@@ -77,7 +77,8 @@ class WorldCupStore: ObservableObject {
                     horario: intervalo,
                     eventos: f.eventos,
                     accesibilidad: f.accesibilidad,
-                    web: f.web
+                    web: f.web,
+                    ciudad: f.ciudad
                 )
             }
 

@@ -136,7 +136,7 @@ struct MapView: View {
             switch route{
             case .estadioList:
                 // vista de la lista de los estadio
-                StadiumsList()
+                StadiumsList(showEstadiums: $showStadiums)
                 
             case .fanFestList:
                // vista de la lista de los fanfest
