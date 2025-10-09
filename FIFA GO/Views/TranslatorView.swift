@@ -1,7 +1,9 @@
 import SwiftUI
+import Translation
 
 struct TraductorView: View {
     @StateObject var scanProvider = ScanProvider()  // Observa el texto publicado desde ScanProvider
+    @State private var isTranslatingShowing = false
     
     var body: some View {
         VStack {
@@ -14,6 +16,12 @@ struct TraductorView: View {
                 .font(.headline)
                 .padding()
                 .multilineTextAlignment(.center)
+                .translationPresentation(isPresented: $isTranslatingShowing, text: scanProvider.text)
+            Button{
+                isTranslatingShowing.toggle()
+            } label:{
+                Text("Translate")
+            }
         }
     }
 }
