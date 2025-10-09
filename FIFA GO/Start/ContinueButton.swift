@@ -9,7 +9,20 @@ import SwiftUI
 
 struct ContinueButton: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+         
+            Image(systemName: "arrowshape.forward.circle.fill")
+                .font(.system(size: 24))
+            
+            Text("Continue")
+                .font(.subheadline)
+          
+        }
+        .foregroundStyle(.white)
+        .bold()
+        .padding(.horizontal, 20)
+        .padding(.vertical, 12)
+        .glassEffect(.regular.tint(Color.blue))
     }
 }
 

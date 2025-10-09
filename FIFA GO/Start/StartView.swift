@@ -8,26 +8,29 @@
 import SwiftUI
 
 struct StartView: View {
-    @EnvironmentObject var worldCup:WorldCupStore
+    
+    @EnvironmentObject var worldCupStore: WorldCupStore
     @State private var startAnimation : Bool = false
+    @State private var showTutorial : Bool = false
     @Environment(\.colorScheme) var colorScheme
     var body: some View {
-        NavigationStack {
+
             VStack(alignment: .center,spacing: 20){
-                
+                 
                 if startAnimation{
-                    
-                Image(colorScheme == .dark ? "worldcupDark":"worldcup")
+                     
+                Image(colorScheme == .dark ? "worldcupDark":"worldcup") 
                     .resizable()
                     .scaledToFit()
                     .transition(.scale)
-                }
+                
                     Text("FIFA GO")
                         .multilineTextAlignment(.center)
                         .font(.largeTitle)
-                        .foregroundStyle(.primary)   
+                        .foregroundStyle(.primary)
                         .bold()
-                        
+                        .transition(.scale)
+                         
               
                 Text("Your all-in-one guide to the FIFA World Cup 2026. Explore stadiums, matches, accessible routes, and entrances for everyone")
                     .foregroundStyle(.primary)
@@ -36,12 +39,12 @@ struct StartView: View {
                     .padding(.horizontal)
                     .opacity(startAnimation ? 1:0)
                 
-                if startAnimation{
                     
-                    NavigationLink(destination:EmptyView()){
-                        
+                    Button{
+                        showTutorial = true
+                    }label:{
                             Image(systemName: "arrowshape.forward.circle")
-                                .font(.system(size: 60))
+                                .font(.system(size: 60)) 
                                 .foregroundStyle(Color(.label))
                               
                     }  .transition(.offset(x:-400,y:0))
@@ -54,7 +57,10 @@ struct StartView: View {
                     startAnimation = true
                 }
             }
-        }
+            .fullScreenCover(isPresented: $showTutorial) {
+                TutorialView().environmentObject(worldCupStore)
+            }
+        
         
         
     }

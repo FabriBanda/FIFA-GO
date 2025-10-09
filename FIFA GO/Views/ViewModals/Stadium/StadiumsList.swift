@@ -31,7 +31,7 @@ struct StadiumsList: View {
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 withAnimation {
-                                    // Centrar mapa y cerrar la lista
+                                   
                                     showEstadiums = true
                                     worldCupStore.cameraPosition = .region(
                                         .init(center: estadio.ubicacion.coordinate,
@@ -79,7 +79,7 @@ struct StadiumsList: View {
             .sorted { $0.nombre.localizedCaseInsensitiveCompare($1.nombre) == .orderedAscending }
     }
 
-    // Determinar país sin tocar el modelo (ajusta IDs/nombres si cambian)
+    
     private func stadiumCountry(_ estadio: Estadio) -> CountryFilter {
         // Por ID (recomendado, estable)
         let id = estadio.id  // String en tu modelo actual
@@ -94,7 +94,7 @@ struct StadiumsList: View {
     }
 }
 
-// MARK: - UI auxiliares
+
 
 private enum CountryFilter: String, CaseIterable {
     case all, mexico, usa, canada

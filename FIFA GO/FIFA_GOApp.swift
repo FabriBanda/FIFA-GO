@@ -10,18 +10,30 @@ import TipKit
 
 @main
 struct FIFA_GOApp: App {
-    var worldCupStore = WorldCupStore()   // tu fuente de datos
+    @StateObject var worldCupStore = WorldCupStore()
+    @StateObject var login = Login()
 
+    init() {
+            try? Tips.configure([
+                .displayFrequency(.immediate),
+                .datastoreLocation(.applicationDefault)
+            ])
+        }
+    
     var body: some Scene {
         WindowGroup {
-            MapView()
-                .environmentObject(worldCupStore)      // se inyecta aquí
-                .task {
-                    try? Tips.configure([
-                        .displayFrequency(.immediate),
-                        .datastoreLocation(.applicationDefault)
-                    ])
+            Group {
+                if login.hasSeenMapView {
+                    MapView()
+                      
+                } else {
+                    StartView()
+                       
                 }
+            }
+            .environmentObject(login)
+            .environmentObject(worldCupStore)
+            
         }
     }
 }

@@ -6,3 +6,18 @@
 //
 
 import Foundation
+import Combine
+
+final class Login:ObservableObject{
+    init(){
+        UserDefaults.standard.register(defaults: [
+            "app.login.hasSeenMapView":false
+        ])
+    }
+    
+    @Published var hasSeenMapView : Bool = UserDefaults.standard.bool(forKey: "app.login.hasSeenMapView"){
+        didSet{
+            UserDefaults.standard.setValue(hasSeenMapView, forKey: "app.login.hasSeenMapView")
+        }
+    }
+}

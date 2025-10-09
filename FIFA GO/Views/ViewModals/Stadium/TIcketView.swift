@@ -7,12 +7,26 @@
 
 import SwiftUI
 
-struct TIcketView: View {
+struct TicketView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Image("ticket")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 300)
+            Button {
+                // lógica de búsqueda de puerta
+            } label: {
+                HStack {
+                    Spacer()
+                    Text("Search Gate")
+                        .font(.headline)
+                        .bold()
+                    Spacer()
+                }
+            }
+            .buttonStyle(.glassProminent)
+            .padding(.horizontal, 40)
+        }
     }
-}
-
-#Preview {
-    TIcketView()
 }

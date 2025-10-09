@@ -15,7 +15,11 @@ class WorldCupStore: ObservableObject {
         .region(.init(center: .init(latitude: 37.3346, longitude: -122.0090),
                       latitudinalMeters: 1000, longitudinalMeters: 1000))
 
-    init() { loadFromJSON() }
+    init() {
+        
+        loadFromJSON()
+        
+    }
 
     private func loadFromJSON() {
         guard

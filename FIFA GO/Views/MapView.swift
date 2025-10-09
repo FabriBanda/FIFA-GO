@@ -13,6 +13,7 @@ struct MapView: View {
     
     @Namespace var namespace
     
+    
     @State private var showStadiums:Bool = true
     
     @State private var showFanFests:Bool = false
@@ -64,6 +65,7 @@ struct MapView: View {
             
         }.onAppear{
             locationManager.requestWhenInUseAuthorization( )
+        
         }
         .mapControls {
             MapUserLocationButton()
