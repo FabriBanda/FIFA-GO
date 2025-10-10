@@ -90,6 +90,9 @@ struct StadiumDetail: View {
                 // MARK: Ticket
                 if showTicket {
                     TicketView()
+                            .transition(.asymmetric(insertion: .scale.combined(with: .opacity),
+                                                    removal: .opacity))
+                            .padding(.top)
                 }
                 
                 // MARK: Partidos
