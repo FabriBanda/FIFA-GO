@@ -6,7 +6,8 @@
       "imagenAssetName": "bbva",
       "ubicacion": { "lat": 25.671193, "lon": -100.244166 },
       "puertas": [{ "lat": 25.67160, "lon": -100.24390 }],
-      "accesibilidad": { "sillaRuedas": true, "personalApoyo": true }
+      "accesibilidad": { "sillaRuedas": true, "personalApoyo": true },
+      "ciudad": "Monterrey"
     },
     {
       "id": "E-AZTECA",
@@ -14,7 +15,8 @@
       "imagenAssetName": "azteca",
       "ubicacion": { "lat": 19.302911, "lon": -99.150442 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Ciudad de México"
     },
     {
       "id": "E-AKRON",
@@ -22,7 +24,8 @@
       "imagenAssetName": "akron",
       "ubicacion": { "lat": 20.681670, "lon": -103.462780 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Guadalajara"
     },
     {
       "id": "E-BCPLACE",
@@ -30,7 +33,8 @@
       "imagenAssetName": "BCPlace",
       "ubicacion": { "lat": 49.276670, "lon": -123.111940 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Vancouver"
     },
     {
       "id": "E-BMO",
@@ -38,7 +42,8 @@
       "imagenAssetName": "BMO",
       "ubicacion": { "lat": 43.632780, "lon": -79.418610 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Toronto"
     },
     {
       "id": "E-ARROW",
@@ -46,7 +51,8 @@
       "imagenAssetName": "Arrowhead",
       "ubicacion": { "lat": 39.048786, "lon": -94.484566 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Kansas City"
     },
     {
       "id": "E-ATT",
@@ -54,7 +60,8 @@
       "imagenAssetName": "AT&T",
       "ubicacion": { "lat": 32.747780, "lon": -97.092780 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Dallas"
     },
     {
       "id": "E-GILLETE",
@@ -62,7 +69,8 @@
       "imagenAssetName": "Gillete",
       "ubicacion": { "lat": 42.091000, "lon": -71.264000 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Boston"
     },
     {
       "id": "E-HARDROCK",
@@ -70,7 +78,8 @@
       "imagenAssetName": "HardRock",
       "ubicacion": { "lat": 25.957960, "lon": -80.239311 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Miami"
     },
     {
       "id": "E-LEVIS",
@@ -78,7 +87,8 @@
       "imagenAssetName": "Levis",
       "ubicacion": { "lat": 37.403000, "lon": -121.970000 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "San Francisco"
     },
     {
       "id": "E-LINCOLN",
@@ -86,7 +96,8 @@
       "imagenAssetName": "LincolnFinancial",
       "ubicacion": { "lat": 39.900898, "lon": -75.168098 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Philadelphia"
     },
     {
       "id": "E-LUMEN",
@@ -94,7 +105,8 @@
       "imagenAssetName": "Lumen",
       "ubicacion": { "lat": 47.595097, "lon": -122.332245 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Seattle"
     },
     {
       "id": "E-MERCEDES",
@@ -102,7 +114,8 @@
       "imagenAssetName": "MercedesBenz",
       "ubicacion": { "lat": 33.755560, "lon": -84.400000 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Atlanta"
     },
     {
       "id": "E-METLIFE",
@@ -110,7 +123,8 @@
       "imagenAssetName": "metlife",
       "ubicacion": { "lat": 40.813610, "lon": -74.074440 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Nueva York"
     },
     {
       "id": "E-NRG",
@@ -118,7 +132,8 @@
       "imagenAssetName": "NRG",
       "ubicacion": { "lat": 29.684720, "lon": -95.410830 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Houston"
     },
     {
       "id": "E-SOFI",
@@ -126,7 +141,8 @@
       "imagenAssetName": "SofiStadium",
       "ubicacion": { "lat": 33.953000, "lon": -118.339000 },
       "puertas": [],
-      "accesibilidad": null
+      "accesibilidad": null,
+      "ciudad": "Los Ángeles"
     }
   ],
   "equipos": [

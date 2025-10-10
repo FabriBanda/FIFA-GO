@@ -19,6 +19,8 @@ struct StadiumDetail: View {
                     .font(.largeTitle)
                     .bold()
                     .foregroundStyle(.primary)
+                    .accessibilityLabel("Estadio \(estadio.nombre), \(estadio.ciudad)")
+                    .accessibilityAddTraits(.isHeader)
                 
                 Text("Stadium")
                     .font(.subheadline)
@@ -73,6 +75,8 @@ struct StadiumDetail: View {
                         }
                     }
                     .buttonStyle(.glass)
+                    .accessibilityLabel("Abrir en Google Maps la ubicación del estadio")
+                    .accessibilityHint("Toca para abrir la ubicación del estadio en Google Maps")
                     
                     Button {
                         withAnimation { showTicket.toggle() }
@@ -85,6 +89,8 @@ struct StadiumDetail: View {
                         }
                     }
                     .buttonStyle(.glass)
+                    .accessibilityLabel("Encontrar mi puerta")
+                    .accessibilityHint("Toca para encontrar tu puerta de acceso al estadio")
                 }
                 
                 // MARK: Ticket

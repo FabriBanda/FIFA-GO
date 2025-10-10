@@ -39,6 +39,8 @@ struct MapView: View {
                             .onTapGesture {
                                 currentModal = .estadio(estadio.id)
                         }
+                            .accessibilityLabel("Estadio \(estadio.nombre), \(estadio.ciudad)")
+                            .accessibilityHint("Toca para ver detalles del estadio")
                     }
                 }
                
@@ -52,6 +54,8 @@ struct MapView: View {
                             .onTapGesture {
                                 currentModal = .fanFest(fanFest.id)
                             }
+                            .accessibilityLabel("FanFest \(fanFest.nombre) en \(fanFest.ciudad)")
+                            .accessibilityHint("Toca para ver detalles del FanFest")
                     }
                 }
                
@@ -81,20 +85,23 @@ struct MapView: View {
                         withAnimation {
                             showFanFests.toggle()
                         }
-                    
                     } label: {
                         Text(showFanFests ? "Hide FanFets":"Show FanFests")
-                    }.buttonStyle(.glass)
+                    }
+                    .buttonStyle(.glass)
+                    .accessibilityLabel(showFanFests ? "Ocultar FanFests" : "Mostrar FanFests")
+                    .accessibilityHint("Toca para alternar la visibilidad de los FanFests")
     
                     Button {
                         withAnimation {
                             showStadiums.toggle()
                         }
-                        
                     } label: {
                         Text(showStadiums ? "Hide Stadiums":"Show Stadiums")
-                    }.buttonStyle(.glass)
-                    
+                    }
+                    .buttonStyle(.glass)
+                    .accessibilityLabel(showStadiums ? "Ocultar Estadios" : "Mostrar Estadios")
+                    .accessibilityHint("Toca para alternar la visibilidad de los estadios")
                     
                 }
                 
@@ -116,6 +123,19 @@ struct MapView: View {
                                             currentModal = badge.type
                                             isExpanded = false
                                         }
+                                        .accessibilityLabel({
+                                            switch badge.type {
+                                            case .estadioList:
+                                                return "Estadios"
+                                            case .fanFestList:
+                                                return "Fan Fests"
+                                            case .traductor:
+                                                return "Traductor"
+                                            default:
+                                                return "Opción"
+                                            }
+                                        }())
+                                        .accessibilityHint("Toca para abrir esta opción")
                                 }
                          
                             }
@@ -123,6 +143,8 @@ struct MapView: View {
                             ButtonToggle(show: $isExpanded)
                                 .glassEffectID("badgeToggle", in: namespace)
                                 .popoverTip(TipUno(),arrowEdge: .trailing)
+                                .accessibilityLabel(isExpanded ? "Cerrar menú de opciones" : "Abrir menú de opciones")
+                                .accessibilityHint("Toca para expandir o contraer el menú de opciones")
                         }
                         
                     }
