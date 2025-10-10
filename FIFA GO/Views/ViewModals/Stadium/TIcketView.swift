@@ -19,7 +19,7 @@ struct TicketView: View {
             } label: {
                 HStack {
                     Spacer()
-                    Text("Search Gate")
+                    Text(LocalizedStringKey("Search Gate"))
                         .font(.headline)
                         .bold()
                     Spacer()

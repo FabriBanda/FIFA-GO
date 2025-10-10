@@ -169,197 +169,211 @@
     {
       "id": "FF-SEA",
       "nombre": "Seattle Center",
-      "imagenAssetName": "SeattleCenter",
+      "imagenAssetName": "seattle_center",
       "ubicacion": { "lat": 47.6205888, "lon": -122.3529166 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-SEA-BRD-1", "EV-SEA-BRD-2", "EV-SEA-BRD-3", "EV-SEA-LIVE-1", "EV-SEA-LIVE-2", "EV-SEA-ACT-1", "EV-SEA-ACT-2"],
       "lookAroundAvailable": true,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": true },
       "web": "https://www.seattlefwc26.org",
-      "ciudad": "seattle"
+      "ciudad": "seattle",
+      "pais": "USA"
     },
     {
       "id": "FF-MTY",
-      "nombre": "Macroplaza",
-      "imagenAssetName": "Macroplaza",
+      "nombre": "Fundidora",
+      "imagenAssetName": "parque_fundidora",
       "ubicacion": { "lat": 25.666667, "lon": -100.316666 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-MTY-BRD-1", "EV-MTY-LIVE-1", "EV-MTY-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://www.fwc26monterrey.com/es-mx/who-we-are",
-      "ciudad": "monterrey"
+      "ciudad": "monterrey",
+      "pais": "Mexico"
     },
     {
       "id": "FF-CDMX",
       "nombre": "Zócalo",
-      "imagenAssetName": "Macroplaza",
-      "ubicacion": { "lat": 19.4326, "lon":-99.1693704 },
+      "imagenAssetName": "zocalo",
+      "ubicacion": { "lat": 19.4326, "lon": -99.1693704 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-CDMX-BRD-1", "EV-CDMX-LIVE-1", "EV-CDMX-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://www.fifa.com/es/tournaments/mens/worldcup/canadamexicousa2026/mexico/mexico-city",
-      "ciudad": "mexicocity"
+      "ciudad": "mexicocity",
+      "pais": "Mexico"
     },
     {
       "id": "FF-GDL",
       "nombre": "Plaza de la Liberación",
-      "imagenAssetName": "Macroplaza",
+      "imagenAssetName": "plaza_liberacion",
       "ubicacion": { "lat": 20.676645, "lon": -103.345863 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-GDL-BRD-1", "EV-GDL-LIVE-1", "EV-GDL-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://guadalajarafwc26.com",
-      "ciudad": "guadalajara"
+      "ciudad": "guadalajara",
+      "pais": "Mexico"
     },
     {
       "id": "FF-TO",
       "nombre": "Fort York National Historic Site and The Bentway",
-      "imagenAssetName": "Macroplaza",
-      "ubicacion": { "lat": 43.6380, "lon": -79.413157, },
+      "imagenAssetName": "fort_york_national",
+      "ubicacion": { "lat": 43.6380, "lon": -79.413157 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-TO-BRD-1", "EV-TO-LIVE-1", "EV-TO-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://torontofwc26.ca",
-      "ciudad": "toronto"
+      "ciudad": "toronto",
+      "pais": "Canada"
     },
     {
       "id": "FF-VAN",
       "nombre": "Hastings Park",
-      "imagenAssetName": "Macroplaza",
+      "imagenAssetName": "hastings_park",
       "ubicacion": { "lat": 49.2840, "lon": -123.0404922 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-VAN-BRD-1", "EV-VAN-LIVE-1", "EV-VAN-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://www.vancouverfwc26.ca/",
-      "ciudad": "vancouver"
+      "ciudad": "vancouver",
+      "pais": "Canada"
     },
     {
       "id": "FF-BOS",
       "nombre": "Boston Common and City Hall Plaza",
-      "imagenAssetName": "Macroplaza",
-      "ubicacion": { "lat":  42.3619, "lon": -71.0613863 },
+      "imagenAssetName": "boston_common",
+      "ubicacion": { "lat": 42.3619, "lon": -71.0613863 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-BOS-BRD-1", "EV-BOS-LIVE-1", "EV-BOS-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://bostonfwc26.com/",
-      "ciudad": "boston"
-      
+      "ciudad": "boston",
+      "pais": "USA"
     },
     {
       "id": "FF-NJ",
       "nombre": "Liberty State Park",
-      "imagenAssetName": "Macroplaza",
-      "ubicacion": { "lat": 40.709965, "lon": -74.051976},
+      "imagenAssetName": "liberty_state",
+      "ubicacion": { "lat": 40.709965, "lon": -74.051976 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-NJ-BRD-1", "EV-NJ-LIVE-1", "EV-NJ-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": " https://nynjfwc26.com/",
-      "ciudad": "newjersey"
+      "ciudad": "newjersey",
+      "pais": "USA"
     },
     {
       "id": "FF-DAL",
       "nombre": "Fair Park",
-      "imagenAssetName": "Macroplaza",
-      "ubicacion": { "lat": 32.774, "lon": -96.757},
+      "imagenAssetName": "fair_park",
+      "ubicacion": { "lat": 32.774, "lon": -96.757 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-DAL-BRD-1", "EV-DAL-LIVE-1", "EV-DAL-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://www.dallasfwc26.com/our-venues/fan-festival/",
-      "ciudad": "dallas"
+      "ciudad": "dallas",
+      "pais": "USA"
     },
     {
       "id": "FF-ATL",
       "nombre": "Centennial Olympic Park",
-      "imagenAssetName": "Macroplaza",
-      "ubicacion": { "lat": 33.760, "lon": -84.393},
+      "imagenAssetName": "centennial_olympic",
+      "ubicacion": { "lat": 33.760, "lon": -84.393 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-ATL-BRD-1", "EV-ATL-LIVE-1", "EV-ATL-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://atlantafwc26.com/fan-fest/",
-      "ciudad": "atlanta"
+      "ciudad": "atlanta",
+      "pais": "USA"
     },
     {
       "id": "FF-MIA",
       "nombre": "Bayfront Park",
-      "imagenAssetName": "Macroplaza",
-      "ubicacion": { "lat": 25.775, "lon": -80.186},
+      "imagenAssetName": "bayfront",
+      "ubicacion": { "lat": 25.775, "lon": -80.186 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-MIA-BRD-1", "EV-MIA-LIVE-1", "EV-MIA-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://miamifwc26.com/es/fifa-fan-festival/",
-      "ciudad": "miami"
+      "ciudad": "miami",
+      "pais": "USA"
     },
     {
       "id": "FF-SF",
       "nombre": "Downtown San Jose",
-      "imagenAssetName": "Macroplaza",
-      "ubicacion": { "lat": 37.3338979, "lon": -121.8986475},
+      "imagenAssetName": "downton_sanjose",
+      "ubicacion": { "lat": 37.3338979, "lon": -121.8986475 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-SF-BRD-1", "EV-SF-LIVE-1", "EV-SF-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://bayareahostcommittee.com/fifa-world-cup-26",
-      "ciudad": "sanfrancisco"
+      "ciudad": "sanfrancisco",
+      "pais": "USA"
     },
     {
       "id": "FF-PHI",
       "nombre": "Lemon Hill in East Fairmount Park",
-      "imagenAssetName": "Macroplaza",
-      "ubicacion": { "lat": 39.970, "lon": -75.187},
+      "imagenAssetName": "lemon_hill",
+      "ubicacion": { "lat": 39.970, "lon": -75.187 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-PHI-BRD-1", "EV-PHI-LIVE-1", "EV-PHI-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://www.fifa.com/es/tournaments/mens/worldcup/canadamexicousa2026/usa/philadelphia",
-      "ciudad": "philadelphia"
+      "ciudad": "philadelphia",
+      "pais": "USA"
     },
     {
       "id": "FF-HOU",
       "nombre": "East Downtown (EaDo)",
-      "imagenAssetName": "Macroplaza",
-      "ubicacion": { "lat": 29.752, "lon": -95.352},
+      "imagenAssetName": "east_downtown",
+      "ubicacion": { "lat": 29.752, "lon": -95.352 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-HOU-BRD-1", "EV-HOU-LIVE-1", "EV-HOU-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://www.fifa.com/es/tournaments/mens/worldcup/canadamexicousa2026/fifa-fan-festival",
-      "ciudad": "houston"
+      "ciudad": "houston",
+      "pais": "USA"
     },
     {
       "id": "FF-LA",
       "nombre": "Exposition Park",
-      "imagenAssetName": "Macroplaza",
-      "ubicacion": { "lat": 34.015, "lon": -118.288},
+      "imagenAssetName": "exposition_park",
+      "ubicacion": { "lat": 34.015, "lon": -118.288 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-LA-BRD-1", "EV-LA-LIVE-1", "EV-LA-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://www.fifa.com/es/tournaments/mens/worldcup/canadamexicousa2026/usa/los-angeles",
-      "ciudad": "losangeles"
+      "ciudad": "losangeles",
+      "pais": "USA"
     },
     {
       "id": "FF-KC",
       "nombre": "National WWI Museum and Memorial",
-      "imagenAssetName": "Macroplaza",
-      "ubicacion": { "lat": 39.080, "lon": -94.588},
+      "imagenAssetName": "national_wwmi",
+      "ubicacion": { "lat": 39.080, "lon": -94.588 },
       "horario": { "inicio": "2026-06-12T10:00:00Z", "fin": "2026-06-12T22:00:00Z" },
       "eventos": ["EV-KC-BRD-1", "EV-KC-LIVE-1", "EV-KC-ACT-1"],
       "lookAroundAvailable": false,
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": false },
       "web": "https://kansascityfwc26.com/es/fan-fest/",
-      "ciudad": "kansas"
+      "ciudad": "kansas",
+      "pais": "USA"
     }
-    
   ],
   "eventos": [
  

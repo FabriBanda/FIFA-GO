@@ -83,7 +83,7 @@ struct MapView: View {
                         }
                     
                     } label: {
-                        Text(showFanFests ? "Hide FanFets":"Show FanFests")
+                        Text(showFanFests ? LocalizedStringKey("Hide FanFets"):LocalizedStringKey("Show FanFests"))
                     }.buttonStyle(.glass)
     
                     Button {
@@ -92,7 +92,7 @@ struct MapView: View {
                         }
                         
                     } label: {
-                        Text(showStadiums ? "Hide Stadiums":"Show Stadiums")
+                        Text(showStadiums ? LocalizedStringKey("Hide Stadiums"):LocalizedStringKey("Show Stadiums"))
                     }.buttonStyle(.glass)
                     
                     
@@ -142,12 +142,12 @@ struct MapView: View {
                 
             case .fanFestList:
                // vista de la lista de los fanfest
-                EmptyView()
+                FanFestList(showFanfests: $showFanFests)
                 
             case .traductor:
                 
                 // vista del traductor ( bini )
-                //EmptyView()
+
                 TraductorView()
                 
             case .estadio(let id):

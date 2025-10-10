@@ -70,6 +70,7 @@ struct FanFest: Identifiable, Codable, Hashable {
     var accesibilidad: Accesibilidad?
     var web:String
     var ciudad:String
+    var pais:String
 }
 
 struct Evento: Identifiable, Codable, Hashable {

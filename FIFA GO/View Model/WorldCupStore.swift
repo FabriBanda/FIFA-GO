@@ -82,7 +82,8 @@ class WorldCupStore: ObservableObject {
                     eventos: f.eventos,
                     accesibilidad: f.accesibilidad,
                     web: f.web,
-                    ciudad: f.ciudad
+                    ciudad: f.ciudad,
+                    pais: f.pais
                 )
             }
 

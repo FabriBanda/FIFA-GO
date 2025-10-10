@@ -29,6 +29,7 @@ struct FanFestDTO: Codable {
     let accesibilidad: Accesibilidad?
     let web:String
     let ciudad:String
+    let pais:String
 }
 
 struct DateIntervalDTO: Codable {
