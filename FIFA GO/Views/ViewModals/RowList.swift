@@ -13,14 +13,14 @@ struct RowList: View {
     
     let name:String
     let imageName: String
-    
+    @Environment(\.dynamicTypeSize) var dynamicType
 
     var body: some View {
         ZStack {
             Image(imageName)
                     .resizable()
                     .scaledToFill()
-                    .frame(height: 160)
+                    .frame(height: dynamicType == .accessibility5 || dynamicType == .accessibility4 ? 220:160)
                     .clipped()
            
         }
@@ -31,6 +31,8 @@ struct RowList: View {
                     .font(.title3)
                     .bold()
                     .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
                 Spacer()
             }
             .padding(.vertical, 8)

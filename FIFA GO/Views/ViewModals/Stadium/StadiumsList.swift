@@ -21,7 +21,7 @@ struct StadiumsList: View {
                     }
                 }
                 .pickerStyle(.segmented)
-                .padding(8)
+                .padding(.horizontal)
 
                 List {
                     ForEach(filteredAndSortedEstadios) { estadio in

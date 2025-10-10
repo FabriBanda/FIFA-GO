@@ -14,118 +14,137 @@ struct StadiumDetail: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Text(estadio.nombre)
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundStyle(.primary)
-                    .accessibilityLabel("Estadio \(estadio.nombre), \(estadio.ciudad)")
-                    .accessibilityAddTraits(.isHeader)
-                
-                Text(LocalizedStringKey("Stadium"))
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                
-                // MARK: Look Around / Fallback
-                Group {
-                    if let _ = lookAroundScene {
-                        LookAroundPreview(scene: $lookAroundScene)
+            ScrollView {
+                VStack {
+                    // MARK: - Encabezado
+                    Text(estadio.nombre)
+                        .font(.largeTitle)
+                        .bold()
+                        .foregroundStyle(.primary)
+                        .accessibilityLabel("Estadio \(estadio.nombre)")
+                        .accessibilityAddTraits(.isHeader)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                    
+                    Text(LocalizedStringKey("Stadium"))
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                    
+                    // MARK: - Look Around / Fallback
+                    Group {
+                        if let _ = lookAroundScene {
+                            LookAroundPreview(scene: $lookAroundScene)
+                                .frame(height: 220)
+                                .clipShape(RoundedRectangle(cornerRadius: 16))
+                                .padding(.bottom, 8)
+                        } else if isLoadingScene {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(.ultraThinMaterial)
+                                    .frame(height: 220)
+                                ProgressView(LocalizedStringKey("Loading Preview…"))
+                            }
+                            .padding(.bottom, 8)
+                        } else {
+                            Map(initialPosition: .region(.init(
+                                center: estadio.ubicacion.coordinate,
+                                latitudinalMeters: 1200,
+                                longitudinalMeters: 1200
+                            ))) {
+                                Annotation(estadio.nombre, coordinate: estadio.ubicacion.coordinate) {
+                                    Image(systemName: "mappin.circle.fill")
+                                        .font(.title)
+                                        .foregroundStyle(.red)
+                                }
+                            }
                             .frame(height: 220)
                             .clipShape(RoundedRectangle(cornerRadius: 16))
-                            .padding(.bottom, 8)
-                    } else if isLoadingScene {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 16)
-                                .fill(.ultraThinMaterial)
-                                .frame(height: 220)
-                            ProgressView(LocalizedStringKey("LoadingPreview"))
                         }
-                        .padding(.bottom, 8)
-                    } else {
-                        Map(initialPosition: .region(.init(
-                            center: estadio.ubicacion.coordinate,
-                            latitudinalMeters: 1200,
-                            longitudinalMeters: 1200
-                        ))) {
-                            Annotation(estadio.nombre, coordinate: estadio.ubicacion.coordinate) {
-                                Image(systemName: "mappin.circle.fill")
-                                    .font(.title)
-                                    .foregroundStyle(.red)
+                    }
+                    
+                    // MARK: - Botones
+                    HStack(spacing: 15) {
+                        Button {
+                            worldCupStore.abrirEnMapas(
+                                lat: estadio.ubicacion.lat,
+                                lon: estadio.ubicacion.lon,
+                                nombre: estadio.nombre
+                            )
+                        } label: {
+                            HStack {
+                                Image(systemName: "location.fill")
+                                    .foregroundColor(.green)
+                                    .bold()
+                                Text(LocalizedStringKey("Open in Maps"))
+                                    .font(.headline)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
                             }
                         }
-                        .frame(height: 220)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                    }
-                }
-                
-                // MARK: Botones
-                HStack(spacing: 15) {
-                    Button {
-                        worldCupStore.abrirEnMapas(
-                            lat: estadio.ubicacion.lat,
-                            lon: estadio.ubicacion.lon,
-                            nombre: estadio.nombre
-                        )
-                    } label: {
-                        HStack {
-                            Image(systemName: "location.fill")
-                                .foregroundColor(.green)
-                                .bold()
-                            Text(LocalizedStringKey("Open in Maps"))
+                        .buttonStyle(.glass)
+                        .accessibilityLabel("Abrir la ubicación del estadio en Mapas")
+                        .accessibilityHint("Toca para abrir la ubicación del estadio en Apple Maps")
+                        
+                        Button {
+                            withAnimation { showTicket.toggle() }
+                        } label: {
+                            HStack {
+                                Image(systemName: "ticket.fill")
+                                    .foregroundColor(.red)
+                                    .bold()
+                                Text(LocalizedStringKey("Find My Gate"))
+                                    .font(.headline)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
+                            }
                         }
+                        .buttonStyle(.glass)
+                        .accessibilityLabel("Encontrar mi puerta")
+                        .accessibilityHint("Toca para ver tu puerta de acceso al estadio")
                     }
-                    .buttonStyle(.glass)
-                    .accessibilityLabel("Abrir en Google Maps la ubicación del estadio")
-                    .accessibilityHint("Toca para abrir la ubicación del estadio en Google Maps")
+                    .padding(.top)
                     
-                    Button {
-                        withAnimation { showTicket.toggle() }
-                    } label: {
-                        HStack {
-                            Image(systemName: "ticket.fill")
-                                .foregroundColor(.red)
-                                .bold()
-                            Text(LocalizedStringKey("Find My Gate"))
-                        }
-                    }
-                    .buttonStyle(.glass)
-                    .accessibilityLabel("Encontrar mi puerta")
-                    .accessibilityHint("Toca para encontrar tu puerta de acceso al estadio")
-                }
-                
-                // MARK: Ticket
-                if showTicket {
-                    TicketView()
-                            .transition(.asymmetric(insertion: .scale.combined(with: .opacity),
-                                                    removal: .opacity))
+                    // MARK: - TicketView
+                    if showTicket {
+                        TicketView()
+                            .transition(.asymmetric(
+                                insertion: .scale.combined(with: .opacity),
+                                removal: .opacity
+                            ))
                             .padding(.top)
-                }
-                
-                // MARK: Partidos
-                VStack {
-                    Text(LocalizedStringKey("Matches Today"))
-                        .font(.title3)
-                        .bold()
-                    Divider()
-                    
-                    let juegos = worldCupStore.getPartidos(enEstadio: estadio.id)
-                    
-                    List(juegos) { partido in
-                        MatchView(showAllHorizontal: false, partido: partido)
-                            .listRowSeparator(.hidden)
-                            .listRowBackground(Color.clear)
                     }
-                    .listStyle(.plain)
+                    
+                    // MARK: - Partidos
+                    VStack {
+                        Text(LocalizedStringKey("Matches Today"))
+                            .font(.title3)
+                            .bold()
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.8)
+                        Divider()
+                        
+                        let juegos = worldCupStore.getPartidos(enEstadio: estadio.id)
+                        
+                        List(juegos) { partido in
+                            MatchView(showAllHorizontal: false, partido: partido)
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
+                        }
+                        .listStyle(.plain)
+                        .frame(maxHeight: 400)
+                    }
+                    .padding(.top)
+                    
+                    Spacer()
                 }
-                .padding(.top)
-                
-                Spacer()
-            }
-            .padding()
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button { dismiss() } label: {
-                        Image(systemName: "xmark").bold()
+                .padding()
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button { dismiss() } label: {
+                            Image(systemName: "xmark").bold()
+                        }
                     }
                 }
             }
@@ -153,7 +172,6 @@ struct StadiumDetail: View {
     }
 
     private func unloadLookAround() {
-        // Cancela y libera para evitar fugas de memoria
         loadTask?.cancel()
         loadTask = nil
         lookAroundScene = nil
@@ -206,8 +224,8 @@ struct MatchView: View {
     }
 }
 
-// #Preview {
-//    let store = WorldCupStore()
-//    StadiumDetail(estadio: store.estadios[1])
-//         .environmentObject(store)
-//}
+#Preview {
+    let store = WorldCupStore()
+    StadiumDetail(estadio: store.estadios[1])
+        .environmentObject(store)
+}

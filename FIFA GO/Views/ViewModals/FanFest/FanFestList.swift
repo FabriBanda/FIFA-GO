@@ -24,7 +24,7 @@ struct FanFestList: View {
                             
                     }
                 }.pickerStyle(.segmented)
-                .padding(8)
+                    .padding(.horizontal)
                 
                 List {
                     ForEach(filteredFamfests()) { fanfest in

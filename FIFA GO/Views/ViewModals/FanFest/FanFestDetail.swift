@@ -13,13 +13,14 @@ struct FanFestDetail: View {
     let fanFest:FanFest
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var worldCupStore:WorldCupStore
-
+    @Environment(\.dynamicTypeSize) var dynamicType
     @State private var isLoadingScene = false
     @State private var lookAroundScene: MKLookAroundScene?
     @State private var loadTask: Task<Void, Never>?
 
     var body: some View {
         NavigationStack {
+            ScrollView {
             VStack{
                 VStack(spacing: 0){
                     Image(fanFest.ciudad)
@@ -27,7 +28,7 @@ struct FanFestDetail: View {
                         .scaledToFit()
                         .frame(width: 250,height: 180)
                         .padding(.bottom)
-
+                    
                     Group {
                         if let _ = lookAroundScene {
                             LookAroundPreview(scene: $lookAroundScene)
@@ -68,11 +69,11 @@ struct FanFestDetail: View {
                         }
                     }
                     .padding(.horizontal)
-
+                    
                     Spacer()
                 }
-
-                ScrollView {
+                
+                
                     VStack(alignment: .leading){
                         let eventosFanFest = worldCupStore.eventosEnFanFest(fanFest.id)
                         ForEach(TipoEvento.allCases, id: \.self) { tipo in
@@ -87,18 +88,27 @@ struct FanFestDetail: View {
                             }
                         }
                     }
-                }
                 .padding(.horizontal)
-
-                HStack{
-                    NavigationLink(destination: WebApi(url:fanFest.web)) {
-                        TextBottom(text: LocalizedStringKey("Open Web"))
+                if dynamicType.showExpandView{
+                    VStack{
+                        NavigationLink(destination: WebApi(url:fanFest.web)) {
+                            TextBottom(text: LocalizedStringKey("Open Web"))
+                        }
+                        TextBottom(text: LocalizedStringKey("Get Directions"))
                     }
-                    TextBottom(text: LocalizedStringKey("Get Directions"))
+                }else{
+                    HStack{
+                        NavigationLink(destination: WebApi(url:fanFest.web)) {
+                            TextBottom(text: LocalizedStringKey("Open Web"))
+                        }
+                        TextBottom(text: LocalizedStringKey("Get Directions"))
+                    }
                 }
-
+                
+                
                 Spacer()
             }
+        }
             .background(Gradient(colors: [getColorFanFest(name: fanFest.ciudad), Color(.systemBackground)]))
             .onAppear { loadLookAround() }
             .onDisappear { unloadLookAround() }
@@ -124,7 +134,7 @@ struct FanFestDetail: View {
         switch tipo {
         case .liveEvents: return LocalizedStringKey("Live Events")
         case .activities: return LocalizedStringKey("Activities")
-        case .liveBroadcasts: return "Live Broadcasts"
+        case .liveBroadcasts: return LocalizedStringKey("Live Broadcasts")
         }
     }
 
@@ -197,13 +207,15 @@ struct OpenToday:View {
 }
 
 struct TextFanFest:View {
+    @Environment(\.dynamicTypeSize) var dynamicType
     let text:String
     var body: some View {
         Text(text)
             .font(.body)
             .bold()
             .foregroundStyle(.primary)
-            .minimumScaleFactor(0.6)
+            .lineLimit(dynamicType.showExpandView ? 2:1)
+            .minimumScaleFactor(0.9)
     }
 }
 
@@ -212,8 +224,11 @@ struct TextBottom:View {
     var body: some View {
         Text(text)
             .foregroundStyle(Color(.label))
+            .font(.subheadline)
             .padding()
             .glassEffect()
+            .lineLimit(2)
+            .minimumScaleFactor(0.7)
     }
 }
 

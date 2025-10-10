@@ -12,7 +12,7 @@ struct ContinueButton: View {
         HStack{
          
             Image(systemName: "arrowshape.forward.circle.fill")
-                .font(.system(size: 24))
+                .font(.title)
             
             Text("Continue")
                 .font(.subheadline)

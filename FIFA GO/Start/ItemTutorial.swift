@@ -12,29 +12,29 @@ struct ItemTutorial: View {
     let description:LocalizedStringKey
     let nameImage:String
     let backgroundColor:Color
+    @Environment(\.dynamicTypeSize) var dynamicTipe
     
     var body: some View {
         HStack{
-            Image(systemName: "hexagon.fill")
-                .font(.system(size: 45))
+
+            Image(systemName:nameImage)
+                .font(.title2)
                 .foregroundStyle(backgroundColor)
-                .overlay {
-                    Image(systemName:nameImage)
-                        .font(.title2)
-                        .foregroundStyle(Color.white)
-                        .bold()
-                }
-                .padding(3)
+                .bold()
             
             VStack(alignment: .leading,spacing: 5){
                 Text(title)
                     .bold()
                     .font(.headline)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
                 
                 Text(description)
                     .font(.caption2)
                     .multilineTextAlignment(.leading)
                     .foregroundStyle(.secondary)
+                    .lineLimit(4)
+                    .minimumScaleFactor(0.8)
                 
             }
             
