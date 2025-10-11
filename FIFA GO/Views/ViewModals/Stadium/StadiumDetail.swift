@@ -1,5 +1,6 @@
 import SwiftUI
 import MapKit
+import AVFoundation
 
 struct StadiumDetail: View {
     @State private var showTicket = false
@@ -120,6 +121,20 @@ struct StadiumDetail: View {
                     }
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        setupAudioSession()
+                        speakDescription(for: estadio, store: worldCupStore)
+                    } label: {
+                        Image(systemName: "voiceover")
+                            .foregroundStyle(.black)
+                            .font(.headline)
+                    }
+                    .accessibilityLabel("View description")
+                    .accessibilityHint("Tap to listen to a description of this stadium")
+                }
+            }
         }
         // ✅ Lifecycle: cargar al aparecer, liberar al salir
         .onAppear { loadLookAround() }
@@ -150,6 +165,65 @@ struct StadiumDetail: View {
         lookAroundScene = nil
         isLoadingScene = false
     }
+}
+
+func setupAudioSession() {
+    let audioSession = AVAudioSession.sharedInstance()
+    do {
+        try audioSession.setCategory(.playback, mode: .default)
+        try audioSession.setActive(true)
+        
+    } catch {
+        print("Error setting up audio session: \(error.localizedDescription)")
+    }
+}
+
+func speakDescription(for estadio: Estadio, store: WorldCupStore) {
+    var parts: [String] = []
+
+    parts.append("You're viewing \(estadio.nombre).")
+    parts.append("This is one of the World Cup stadiums where matches are being held.")
+
+    // Location guidance without relying on unavailable city field
+    parts.append("You can view the location details on the map preview or open it in Maps.")
+
+    parts.append("Use the Look Around preview to explore the surrounding area, or open the location in Maps.")
+
+    // Describe today's matches at this stadium
+    let juegos = store.getPartidos(enEstadio: estadio.id)
+    if juegos.isEmpty {
+        parts.append("There are no matches listed here today.")
+    } else {
+        let count = juegos.count
+        let countPhrase = count == 1 ? "There is 1 match scheduled today." : "There are \(count) matches scheduled today."
+        parts.append(countPhrase)
+
+        // Summarize a few matches
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .none
+
+        let summaries = juegos.prefix(3).map { partido in
+            let timeString = formatter.string(from: partido.inicio)
+            return "\(partido.equipo1.nombre) versus \(partido.equipo2.nombre) at \(timeString)"
+        }
+        if !summaries.isEmpty {
+            parts.append("Upcoming matches include: \(summaries.joined(separator: ", ")).")
+        }
+        if juegos.count > 3 { parts.append("And more.") }
+    }
+
+    let description = parts.joined(separator: " ")
+
+    let utterance = AVSpeechUtterance(string: description)
+    utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+    utterance.rate = AVSpeechUtteranceDefaultSpeechRate
+
+    SpeechSynthesizer.shared.speak(utterance)
+}
+
+private final class SpeechSynthesizer {
+    static let shared = AVSpeechSynthesizer()
 }
 
 
@@ -197,8 +271,9 @@ struct MatchView: View {
     }
 }
 
-// #Preview {
-//    let store = WorldCupStore()
-//    StadiumDetail(estadio: store.estadios[1])
-//         .environmentObject(store)
-//}
+ #Preview {
+    let store = WorldCupStore()
+    StadiumDetail(estadio: store.estadios[1])
+        .environmentObject(store)
+}
+
