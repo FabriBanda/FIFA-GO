@@ -1,0 +1,70 @@
+/* 
+  Localizable.strings (English)
+  FIFA GO
+*/
+
+// Stadium accessibility labels
+"stadium.accessibility.label" = "Stadium %@, located in %@";
+"stadium.accessibility.hint" = "Tap to view stadium details";
+
+// Map annotations
+"stadium.map.annotation" = "Stadium %@, %@";
+"stadium.map.hint" = "Tap to view stadium details";
+
+// Stadium detail header
+"stadium.detail.header" = "Stadium %@, %@";
+
+// Buttons
+"open.in.maps" = "Open in Maps";
+"find.my.gate" = "Find My Gate";
+
+// Accessibility hints
+"open.maps.hint" = "Tap to open stadium location in Google Maps";
+"find.gate.hint" = "Tap to find your stadium access gate";
+
+// Stadium type
+"stadium.type" = "Stadium";
+
+// Matches
+"matches.today" = "Matches Today";
+
+// Toggle buttons
+"show.fanfests" = "Show FanFests";
+"hide.fanfests" = "Hide FanFests";
+"show.stadiums" = "Show Stadiums";
+"hide.stadiums" = "Hide Stadiums";
+"toggle.fanfests.hint" = "Tap to toggle FanFests visibility";
+"toggle.stadiums.hint" = "Tap to toggle stadiums visibility";
+
+// Menu options
+"menu.stadiums" = "Stadiums";
+"menu.fanfests" = "Fan Fests";
+"menu.translator" = "Translator";
+"menu.option.hint" = "Tap to open this option";
+
+// Menu toggle
+"menu.open" = "Open options menu";
+"menu.close" = "Close options menu";
+"menu.toggle.hint" = "Tap to expand or collapse the options menu";
+
+// Start screen
+"app.title" = "FIFA GO";
+"app.description" = "Your all-in-one guide to the FIFA World Cup 2026. Explore stadiums, matches, accessible routes, and entrances for everyone";
+"continue.tutorial" = "Continue to tutorial";
+"continue.tutorial.hint" = "Tap to start the app tutorial";
+
+// Tutorial screen
+"tutorial.title" = "Your Guide to\nFIFA GO";
+"tutorial.live.translation.title" = "Live Translation";
+"tutorial.live.translation.description" = "Point your camera at any text and get an instant translation into your preferred language.";
+"tutorial.stadiums.title" = "World Cup Stadiums";
+"tutorial.stadiums.description" = "Browse all 2026 World Cup stadiums. Filter by country or name, and tap to see each on the map.";
+"tutorial.fanfests.title" = "Fan Fests";
+"tutorial.fanfests.description" = "Browse World Cup Fan Fests. Tap any one to see its exact location on the map and find your way there.";
+"tutorial.stadium.marker.title" = "Stadium Marker";
+"tutorial.stadium.marker.description" = "Explore 2026 stadiums by country or name, and view any location on the map.";
+"tutorial.fanfest.marker.title" = "Fan fest Marker";
+"tutorial.fanfest.marker.description" = "Tap a Fan Fest pin to see Look Around, live screenings, and events.";
+"tutorial.location.title" = "My Location";
+"tutorial.location.description" = "Tap to center the map on your current location";
+"continue.button" = "Continue";

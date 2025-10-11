@@ -39,8 +39,8 @@ struct MapView: View {
                             .onTapGesture {
                                 currentModal = .estadio(estadio.id)
                         }
-                            .accessibilityLabel("Estadio \(estadio.nombre), \(estadio.ciudad)")
-                            .accessibilityHint("Toca para ver detalles del estadio")
+                            .accessibilityLabel(String(format: String(localized: "stadium.map.annotation", defaultValue: "Stadium %@, %@"), estadio.nombre, estadio.ciudad))
+                            .accessibilityHint(String(localized: "stadium.map.hint", defaultValue: "Tap to view stadium details"))
                     }
                 }
                
@@ -86,22 +86,22 @@ struct MapView: View {
                             showFanFests.toggle()
                         }
                     } label: {
-                        Text(showFanFests ? "Hide FanFets":"Show FanFests")
+                        Text(showFanFests ? String(localized: "hide.fanfests", defaultValue: "Hide FanFests") : String(localized: "show.fanfests", defaultValue: "Show FanFests"))
                     }
                     .buttonStyle(.glass)
-                    .accessibilityLabel(showFanFests ? "Ocultar FanFests" : "Mostrar FanFests")
-                    .accessibilityHint("Toca para alternar la visibilidad de los FanFests")
+                    .accessibilityLabel(showFanFests ? String(localized: "hide.fanfests", defaultValue: "Hide FanFests") : String(localized: "show.fanfests", defaultValue: "Show FanFests"))
+                    .accessibilityHint(String(localized: "toggle.fanfests.hint", defaultValue: "Tap to toggle FanFests visibility"))
     
                     Button {
                         withAnimation {
                             showStadiums.toggle()
                         }
                     } label: {
-                        Text(showStadiums ? "Hide Stadiums":"Show Stadiums")
+                        Text(showStadiums ? String(localized: "hide.stadiums", defaultValue: "Hide Stadiums") : String(localized: "show.stadiums", defaultValue: "Show Stadiums"))
                     }
                     .buttonStyle(.glass)
-                    .accessibilityLabel(showStadiums ? "Ocultar Estadios" : "Mostrar Estadios")
-                    .accessibilityHint("Toca para alternar la visibilidad de los estadios")
+                    .accessibilityLabel(showStadiums ? String(localized: "hide.stadiums", defaultValue: "Hide Stadiums") : String(localized: "show.stadiums", defaultValue: "Show Stadiums"))
+                    .accessibilityHint(String(localized: "toggle.stadiums.hint", defaultValue: "Tap to toggle stadiums visibility"))
                     
                 }
                 
@@ -126,16 +126,16 @@ struct MapView: View {
                                         .accessibilityLabel({
                                             switch badge.type {
                                             case .estadioList:
-                                                return "Estadios"
+                                                return String(localized: "menu.stadiums", defaultValue: "Stadiums")
                                             case .fanFestList:
-                                                return "Fan Fests"
+                                                return String(localized: "menu.fanfests", defaultValue: "Fan Fests")
                                             case .traductor:
-                                                return "Traductor"
+                                                return String(localized: "menu.translator", defaultValue: "Translator")
                                             default:
-                                                return "Opción"
+                                                return String(localized: "menu.option.hint", defaultValue: "Option")
                                             }
                                         }())
-                                        .accessibilityHint("Toca para abrir esta opción")
+                                        .accessibilityHint(String(localized: "menu.option.hint", defaultValue: "Tap to open this option"))
                                 }
                          
                             }
@@ -143,8 +143,8 @@ struct MapView: View {
                             ButtonToggle(show: $isExpanded)
                                 .glassEffectID("badgeToggle", in: namespace)
                                 .popoverTip(TipUno(),arrowEdge: .trailing)
-                                .accessibilityLabel(isExpanded ? "Cerrar menú de opciones" : "Abrir menú de opciones")
-                                .accessibilityHint("Toca para expandir o contraer el menú de opciones")
+                                .accessibilityLabel(isExpanded ? String(localized: "menu.close", defaultValue: "Close options menu") : String(localized: "menu.open", defaultValue: "Open options menu"))
+                                .accessibilityHint(String(localized: "menu.toggle.hint", defaultValue: "Tap to expand or collapse the options menu"))
                         }
                         
                     }

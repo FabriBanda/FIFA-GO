@@ -19,10 +19,10 @@ struct StadiumDetail: View {
                     .font(.largeTitle)
                     .bold()
                     .foregroundStyle(.primary)
-                    .accessibilityLabel("Estadio \(estadio.nombre), \(estadio.ciudad)")
+                    .accessibilityLabel(String(format: String(localized: "stadium.detail.header", defaultValue: "Stadium %@, %@"), estadio.nombre, estadio.ciudad))
                     .accessibilityAddTraits(.isHeader)
                 
-                Text("Stadium")
+                Text(String(localized: "stadium.type", defaultValue: "Stadium"))
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                 
@@ -71,12 +71,12 @@ struct StadiumDetail: View {
                             Image(systemName: "location.fill")
                                 .foregroundColor(.green)
                                 .bold()
-                            Text("Open in Maps")
+                            Text(String(localized: "open.in.maps", defaultValue: "Open in Maps"))
                         }
                     }
                     .buttonStyle(.glass)
-                    .accessibilityLabel("Abrir en Google Maps la ubicación del estadio")
-                    .accessibilityHint("Toca para abrir la ubicación del estadio en Google Maps")
+                    .accessibilityLabel(String(localized: "open.maps.hint", defaultValue: "Tap to open stadium location in Google Maps"))
+                    .accessibilityHint(String(localized: "open.maps.hint", defaultValue: "Tap to open stadium location in Google Maps"))
                     
                     Button {
                         withAnimation { showTicket.toggle() }
@@ -85,12 +85,12 @@ struct StadiumDetail: View {
                             Image(systemName: "ticket.fill")
                                 .foregroundColor(.red)
                                 .bold()
-                            Text("Find My Gate")
+                            Text(String(localized: "find.my.gate", defaultValue: "Find My Gate"))
                         }
                     }
                     .buttonStyle(.glass)
-                    .accessibilityLabel("Encontrar mi puerta")
-                    .accessibilityHint("Toca para encontrar tu puerta de acceso al estadio")
+                    .accessibilityLabel(String(localized: "find.my.gate", defaultValue: "Find My Gate"))
+                    .accessibilityHint(String(localized: "find.gate.hint", defaultValue: "Tap to find your stadium access gate"))
                 }
                 
                 // MARK: Ticket
@@ -100,7 +100,7 @@ struct StadiumDetail: View {
                 
                 // MARK: Partidos
                 VStack {
-                    Text("Matches Today")
+                    Text(String(localized: "matches.today", defaultValue: "Matches Today"))
                         .font(.title3)
                         .bold()
                     Divider()

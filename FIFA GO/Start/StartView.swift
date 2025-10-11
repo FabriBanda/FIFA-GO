@@ -24,23 +24,23 @@ struct StartView: View {
                     .scaledToFit()
                     .transition(.scale)
                 
-                    Text("FIFA GO")
+                    Text(String(localized: "app.title", defaultValue: "FIFA GO"))
                         .multilineTextAlignment(.center)
                         .font(.largeTitle)
                         .foregroundStyle(.primary)
                         .bold()
                         .transition(.scale)
-                        .accessibilityLabel("FIFA GO")
+                        .accessibilityLabel(String(localized: "app.title", defaultValue: "FIFA GO"))
                         .accessibilityAddTraits(.isHeader)
                          
               
-                Text("Your all-in-one guide to the FIFA World Cup 2026. Explore stadiums, matches, accessible routes, and entrances for everyone")
+                Text(String(localized: "app.description", defaultValue: "Your all-in-one guide to the FIFA World Cup 2026. Explore stadiums, matches, accessible routes, and entrances for everyone"))
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
                     .font(.headline)
                     .padding(.horizontal)
                     .opacity(startAnimation ? 1:0)
-                    .accessibilityLabel("Tu guía completa para la Copa Mundial FIFA 2026. Explora estadios, partidos, rutas accesibles y entradas para todos")
+                    .accessibilityLabel(String(localized: "app.description", defaultValue: "Your all-in-one guide to the FIFA World Cup 2026. Explore stadiums, matches, accessible routes, and entrances for everyone"))
                 
                     
                     Button{
@@ -52,8 +52,8 @@ struct StartView: View {
                               
                     }
                     .transition(.offset(x:-400,y:0))
-                    .accessibilityLabel("Continuar al tutorial")
-                    .accessibilityHint("Toca para comenzar el tutorial de la aplicación")
+                    .accessibilityLabel(String(localized: "continue.tutorial", defaultValue: "Continue to tutorial"))
+                    .accessibilityHint(String(localized: "continue.tutorial.hint", defaultValue: "Tap to start the app tutorial"))
                   
                 }
                 
