@@ -34,7 +34,7 @@ struct StartView: View {
                         .accessibilityAddTraits(.isHeader)
                          
               
-                Text("Your all-in-one guide to the FIFA World Cup 2026. Explore stadiums, matches, accessible routes, and entrances for everyone")
+                Text(LocalizedStringKey("Your all-in-one guide to the FIFA World Cup 2026. Explore stadiums, matches, accessible routes, and entrances for everyone"))
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
                     .font(.headline)

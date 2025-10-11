@@ -21,11 +21,11 @@ struct StadiumsList: View {
                     }
                 }
                 .pickerStyle(.segmented)
-                .padding(.horizontal)
+                .padding(8)
 
                 List {
                     ForEach(filteredAndSortedEstadios) { estadio in
-                        EstadioRow(estadio: estadio)
+                        RowList(name: estadio.nombre, imageName: estadio.imagenAssetName)
                             .listRowBackground(Color.clear)
                             .listRowSeparator(.hidden)
                             .contentShape(Rectangle())
@@ -46,7 +46,7 @@ struct StadiumsList: View {
                 }
                 .listStyle(.plain)
             }
-            .navigationTitle("Stadiums")
+            .navigationTitle(LocalizedStringKey("Stadiums"))
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -59,7 +59,7 @@ struct StadiumsList: View {
             }
             .searchable(text: $searchText,
                         placement: .navigationBarDrawer,
-                        prompt: "Search Stadiums")
+                        prompt: LocalizedStringKey("Search Stadiums"))
         }
     }
 
@@ -96,7 +96,7 @@ struct StadiumsList: View {
 
 
 
-private enum CountryFilter: String, CaseIterable {
+enum CountryFilter: String, CaseIterable {
     case all, mexico, usa, canada
 
     var title: String {
@@ -109,8 +109,6 @@ private enum CountryFilter: String, CaseIterable {
     }
 }
 
-private struct EstadioRow: View {
-    let estadio: Estadio
 
     var body: some View {
         ZStack {

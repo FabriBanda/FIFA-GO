@@ -22,7 +22,7 @@ struct StadiumDetail: View {
                     .accessibilityLabel("Estadio \(estadio.nombre), \(estadio.ciudad)")
                     .accessibilityAddTraits(.isHeader)
                 
-                Text("Stadium")
+                Text(LocalizedStringKey("Stadium"))
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                 
@@ -38,7 +38,7 @@ struct StadiumDetail: View {
                             RoundedRectangle(cornerRadius: 16)
                                 .fill(.ultraThinMaterial)
                                 .frame(height: 220)
-                            ProgressView("Cargando vista previa…")
+                            ProgressView(LocalizedStringKey("LoadingPreview"))
                         }
                         .padding(.bottom, 8)
                     } else {
@@ -71,7 +71,7 @@ struct StadiumDetail: View {
                             Image(systemName: "location.fill")
                                 .foregroundColor(.green)
                                 .bold()
-                            Text("Open in Maps")
+                            Text(LocalizedStringKey("Open in Maps"))
                         }
                     }
                     .buttonStyle(.glass)
@@ -85,7 +85,7 @@ struct StadiumDetail: View {
                             Image(systemName: "ticket.fill")
                                 .foregroundColor(.red)
                                 .bold()
-                            Text("Find My Gate")
+                            Text(LocalizedStringKey("Find My Gate"))
                         }
                     }
                     .buttonStyle(.glass)
@@ -96,11 +96,14 @@ struct StadiumDetail: View {
                 // MARK: Ticket
                 if showTicket {
                     TicketView()
+                            .transition(.asymmetric(insertion: .scale.combined(with: .opacity),
+                                                    removal: .opacity))
+                            .padding(.top)
                 }
                 
                 // MARK: Partidos
                 VStack {
-                    Text("Matches Today")
+                    Text(LocalizedStringKey("Matches Today"))
                         .font(.title3)
                         .bold()
                     Divider()

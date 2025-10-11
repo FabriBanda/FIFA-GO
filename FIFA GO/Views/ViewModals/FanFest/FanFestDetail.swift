@@ -39,7 +39,7 @@ struct FanFestDetail: View {
                                 RoundedRectangle(cornerRadius: 16)
                                     .fill(.ultraThinMaterial)
                                     .frame(height: 215)
-                                ProgressView("Cargando vista previa…")
+                                ProgressView(LocalizedStringKey("Loading Preview…"))
                             }
                             .padding(.bottom, 8)
                         } else {
@@ -92,9 +92,9 @@ struct FanFestDetail: View {
 
                 HStack{
                     NavigationLink(destination: WebApi(url:fanFest.web)) {
-                        TextBottom(text: "Open Web")
+                        TextBottom(text: LocalizedStringKey("Open Web"))
                     }
-                    TextBottom(text: "Get Directions")
+                    TextBottom(text: LocalizedStringKey("Get Directions"))
                 }
 
                 Spacer()
@@ -120,10 +120,10 @@ struct FanFestDetail: View {
         return "\(formatter.string(from: interval.start)) - \(formatter.string(from: interval.end))"
     }
 
-    func title(for tipo: TipoEvento) -> String {
+    func title(for tipo: TipoEvento) -> LocalizedStringKey {
         switch tipo {
-        case .liveEvents: return "Live Events"
-        case .activities: return "Activities"
+        case .liveEvents: return LocalizedStringKey("Live Events")
+        case .activities: return LocalizedStringKey("Activities")
         case .liveBroadcasts: return "Live Broadcasts"
         }
     }
@@ -208,7 +208,7 @@ struct TextFanFest:View {
 }
 
 struct TextBottom:View {
-    let text:String
+    let text:LocalizedStringKey
     var body: some View {
         Text(text)
             .foregroundStyle(Color(.label))

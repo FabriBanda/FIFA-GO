@@ -164,12 +164,12 @@ struct MapView: View {
                 
             case .fanFestList:
                // vista de la lista de los fanfest
-                EmptyView()
+                FanFestList(showFanfests: $showFanFests)
                 
             case .traductor:
                 
                 // vista del traductor ( bini )
-                //EmptyView()
+
                 TraductorView()
                 
             case .estadio(let id):
