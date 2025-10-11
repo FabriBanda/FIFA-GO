@@ -58,7 +58,13 @@
 "Search Stadiums" = "Search Stadiums";
 
 // Ticket View
+
 "Search Gate"="Search Gate";
+"Your Ticket"="Your Ticket";
+"Enter your seat number" = "Enter your seat number";
+"Tap to flip your gate" = "Tap to see your gate";
+"Access Information" = "Access Information";
+"Tap to return" = "Tap to return";
 
 // Transalator View
 "Translate" = "Translate";

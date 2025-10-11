@@ -110,30 +110,5 @@ enum CountryFilter: String, CaseIterable {
 }
 
 
-    var body: some View {
-        ZStack {
-            Image(estadio.imagenAssetName)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 160)
-                    .clipped()
-                    .accessibilityLabel("Estadio \(estadio.nombre), ubicado en \(estadio.ciudad)")
-           
-        }
-        .overlay(alignment: .bottom) {
-            HStack {
-                Spacer()
-                Text(estadio.nombre)
-                    .font(.title3)
-                    .bold()
-                    .foregroundStyle(.white)
-                Spacer()
-            }
-            .padding(.vertical, 8)
-            .background(.black.opacity(0.45))
-        }
-        .clipShape(RoundedRectangle(cornerRadius: 20))
-        .contentShape(RoundedRectangle(cornerRadius: 20))
-    }
-}
+
 

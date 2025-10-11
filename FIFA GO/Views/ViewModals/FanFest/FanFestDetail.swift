@@ -21,7 +21,7 @@ struct FanFestDetail: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-            VStack{
+                VStack{
                 VStack(spacing: 0){
                     Image(fanFest.ciudad)
                         .resizable()
@@ -29,6 +29,14 @@ struct FanFestDetail: View {
                         .frame(width: 250,height: 180)
                         .padding(.bottom)
                     
+                    Text(fanFest.nombre)
+                        .font(.title3.lowercaseSmallCaps())
+                        .bold()
+                        .foregroundStyle(.primary)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.8)
+                        .padding(.bottom)
+                        .multilineTextAlignment(.center)
                     Group {
                         if let _ = lookAroundScene {
                             LookAroundPreview(scene: $lookAroundScene)
@@ -109,7 +117,7 @@ struct FanFestDetail: View {
                 Spacer()
             }
         }
-            .background(Gradient(colors: [getColorFanFest(name: fanFest.ciudad), Color(.systemBackground)]))
+            .background(Gradient(colors: [worldCupStore.getColorFanFest(name: fanFest.ciudad), Color(.systemBackground)]))
             .onAppear { loadLookAround() }
             .onDisappear { unloadLookAround() }
             .toolbar {
@@ -170,27 +178,7 @@ struct FanFestDetail: View {
         }
     }
 
-    private func getColorFanFest(name:String)->Color{
-        switch name{
-        case "mexicocity": return Color.colorMexico
-        case "seattle": return Color.colorSeattle
-        case "monterrey": return Color.colorMonterrey
-        case "guadalajara": return Color.colorGuadalajara
-        case "toronto": return Color.colorToronto
-        case "vancouver" : return Color.colorVancouver
-        case "boston": return Color.colorBoston
-        case "atlanta": return Color.colorAtlanta
-        case "philadelphia" : return Color.colorPhiladelphia
-        case "kansas": return Color.colorKansas
-        case "losangeles": return Color.primary
-        case "houston": return Color.colorHouston
-        case "sanfrancisco": return Color.colorSanfrancisco
-        case "miami": return Color.colorMiami
-        case "newjersey": return Color.primary
-        case "dallas": return Color.primary
-        default: return Color.primary
-        }
-    }
+
 }
 
 struct OpenToday:View {
@@ -239,5 +227,5 @@ struct TextBottom:View {
 
 #Preview {
     let fanfest = WorldCupStore()
-    FanFestDetail(fanFest: fanfest.fanfests[0]).environmentObject(fanfest)
+    FanFestDetail(fanFest: fanfest.fanfests[13]).environmentObject(fanfest)
 }

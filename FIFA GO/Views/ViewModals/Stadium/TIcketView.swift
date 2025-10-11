@@ -46,18 +46,18 @@ struct TicketView: View {
                 .shadow(radius: 4)
             
             VStack(spacing: 12) {
-                Text("🎟️ Your Ticket")
+                Text(LocalizedStringKey("Your Ticket"))
                     .font(.headline)
                     .foregroundStyle(.white)
                 
-                TextField("Enter your seat number", text: $asiento)
+                TextField(LocalizedStringKey("Enter your seat number"), text: $asiento)
                     .keyboardType(.numberPad)
                     .padding(10)
                     .background(Color.white.opacity(0.2))
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 
-                // ✂️ Línea punteada tipo boleto
+  
                 Divider()
                     .overlay(Color.white.opacity(0.6))
                     .blendMode(.overlay)
@@ -69,7 +69,7 @@ struct TicketView: View {
                             .padding(.horizontal, 30)
                     )
                 
-                Text("Tap to flip and see your gate")
+                Text(LocalizedStringKey("Tap to flip and see your gate"))
                     .font(.footnote)
                     .foregroundStyle(.white.opacity(0.7))
             }
@@ -90,11 +90,11 @@ struct TicketView: View {
                 .shadow(radius: 4)
             
             VStack(spacing: 12) {
-                Text("🚪 Access Information")
+                Text(LocalizedStringKey("Access Information"))
                     .font(.headline)
                     .foregroundStyle(.white)
+                    .lineLimit(2)
                 
-                // ✂️ Línea punteada de separación visual
                 Divider()
                     .overlay(Color.white.opacity(0.6))
                     .blendMode(.overlay)
@@ -111,7 +111,7 @@ struct TicketView: View {
                     .bold()
                     .foregroundStyle(.white)
                 
-                Text("Tap to return")
+                Text(LocalizedStringKey("Tap to return"))
                     .font(.footnote)
                     .foregroundStyle(.white.opacity(0.7))
             }
