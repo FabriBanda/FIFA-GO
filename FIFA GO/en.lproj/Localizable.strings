@@ -1,0 +1,73 @@
+///
+///  Localizable.strings (en)
+///  FIFA GO
+///
+
+// "Key" = "Translated Value";
+
+// Start View
+"Your all-in-one guide to the FIFA World Cup 2026. Explore stadiums, matches, accessible routes, and entrances for everyone" = "Your all-in-one guide to the FIFA World Cup 2026. Explore stadiums, matches, accessible routes, and entrances for everyone";
+
+// Tutorial View
+"Your Guide to\nFIFA GO" = "Your Guide to\nFIFA GO";
+
+// Item Tutorial
+"Live Translation" = "Live Translation";
+"Point your camera at any text and get an instant translation into your preferred language" = "Point your camera at any text and get an instant translation into your preferred language";
+
+"World Cup Stadiums" = "World Cup Stadiums";
+"Browse all 2026 World Cup stadiums. Filter by country or name, and tap to see each on the map" = "Browse all 2026 World Cup stadiums. Filter by country or name, and tap to see each on the map";
+
+"Fan Fests" = "Fan Fests";
+"Browse World Cup Fan Fests. Tap any one to see its exact location on the map and find your way there" = "Browse World Cup Fan Fests. Tap any one to see its exact location on the map and find your way there";
+
+"Stadium Marker" = "Stadium Marker";
+"Explore 2026 stadiums by country or name, and view any location on the map" = "Explore 2026 stadiums by country or name, and view any location on the map";
+
+"Fan Fest Marker" = "Fan Fest Marker";
+"Tap a Fan Fest pin to see Look Around, live screenings, and events" = "Tap a Fan Fest pin to see Look Around, live screenings, and events";
+
+"My Location" = "My Location";
+"Tap to center the map on your current location" = "Tap to center the map on your current location";
+
+// MapView
+"Hide FanFests" = "Hide FanFests";
+"Show FanFests" = "Show FanFests";
+
+"Hide Stadiums" = "Hide Stadiums";
+"Show Stadiums" = "Show Stadiums";
+
+// Fan Fest Detail
+
+"Loading Preview…" = "Loading Preview…";
+"Open Web" = "Open Web";
+"Get Directions" = "Get Directions";
+
+"Live Events" = "Live Events";
+"Activities" = "Activities";
+"Live Broadcasts" = "Live Broadcasts";
+
+// Stadium Detail
+"Stadium"="Stadium";
+"Find My Gate" = "Find My Gate";
+"Matches Today" = "Matches Today";
+"Open in Maps" = "Open in Maps";
+
+// Stadium List
+"Stadiums"="Stadiums";
+"Search Stadiums" = "Search Stadiums";
+
+// Ticket View
+
+"Search Gate"="Search Gate";
+"Your Ticket"="Your Ticket";
+"Enter your seat number" = "Enter your seat number";
+"Tap to flip your gate" = "Tap to see your gate";
+"Access Information" = "Access Information";
+"Tap to return" = "Tap to return";
+
+// Transalator View
+"Translate" = "Translate";
+"Scan something to get started…"="Scan something to get started…";
+
+

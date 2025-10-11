@@ -82,7 +82,8 @@ class WorldCupStore: ObservableObject {
                     eventos: f.eventos,
                     accesibilidad: f.accesibilidad,
                     web: f.web,
-                    ciudad: f.ciudad
+                    ciudad: f.ciudad,
+                    pais: f.pais
                 )
             }
 
@@ -144,6 +145,28 @@ class WorldCupStore: ObservableObject {
             UIApplication.shared.open(url)
         }
     }
+    
+    func getColorFanFest(name:String)->Color{
+       switch name{
+       case "mexicocity": return Color.colorMexico
+       case "seattle": return Color.colorSeattle
+       case "monterrey": return Color.colorMonterrey
+       case "guadalajara": return Color.colorGuadalajara
+       case "toronto": return Color.colorToronto
+       case "vancouver" : return Color.colorVancouver
+       case "boston": return Color.colorBoston
+       case "atlanta": return Color.colorAtlanta
+       case "philadelphia" : return Color.colorPhiladelphia
+       case "kansas": return Color.colorKansas
+       case "losangeles": return Color.colorLosangeles
+       case "houston": return Color.colorHouston
+       case "sanfrancisco": return Color.colorSanfrancisco
+       case "miami": return Color.colorMiami
+       case "newjersey": return Color.colorNewjersey
+       case "dallas": return Color.colorToronto
+       default: return Color.primary
+       }
+   }
     
     
     

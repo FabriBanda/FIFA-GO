@@ -14,14 +14,15 @@ struct FanFestDetail: View {
     let fanFest:FanFest
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var worldCupStore:WorldCupStore
-
+    @Environment(\.dynamicTypeSize) var dynamicType
     @State private var isLoadingScene = false
     @State private var lookAroundScene: MKLookAroundScene?
     @State private var loadTask: Task<Void, Never>?
 
     var body: some View {
         NavigationStack {
-            VStack{
+            ScrollView {
+                VStack{
                 VStack(spacing: 0){
                     Image(fanFest.ciudad)
                         .resizable()
@@ -42,7 +43,7 @@ struct FanFestDetail: View {
                                 RoundedRectangle(cornerRadius: 16)
                                     .fill(.ultraThinMaterial)
                                     .frame(height: 215)
-                                ProgressView("Cargando vista previa…")
+                                ProgressView(LocalizedStringKey("Loading Preview…"))
                             }
                             .padding(.bottom, 8)
                         } else {
@@ -71,11 +72,11 @@ struct FanFestDetail: View {
                         }
                     }
                     .padding(.horizontal)
-
+                    
                     Spacer()
                 }
-
-                ScrollView {
+                
+                
                     VStack(alignment: .leading){
                         let eventosFanFest = worldCupStore.eventosEnFanFest(fanFest.id)
                         ForEach(TipoEvento.allCases, id: \.self) { tipo in
@@ -90,16 +91,24 @@ struct FanFestDetail: View {
                             }
                         }
                     }
-                }
                 .padding(.horizontal)
-
-                HStack{
-                    NavigationLink(destination: WebApi(url:fanFest.web)) {
-                        TextBottom(text: "Open Web")
+                if dynamicType.showExpandView{
+                    VStack{
+                        NavigationLink(destination: WebApi(url:fanFest.web)) {
+                            TextBottom(text: LocalizedStringKey("Open Web"))
+                        }
+                        TextBottom(text: LocalizedStringKey("Get Directions"))
                     }
-                    TextBottom(text: "Get Directions")
+                }else{
+                    HStack{
+                        NavigationLink(destination: WebApi(url:fanFest.web)) {
+                            TextBottom(text: LocalizedStringKey("Open Web"))
+                        }
+                        TextBottom(text: LocalizedStringKey("Get Directions"))
+                    }
                 }
-
+                
+                
                 Spacer()
             }
             .background(Gradient(colors: [getColorFanFest(name: fanFest.ciudad), Color(.systemBackground)]))
@@ -144,11 +153,11 @@ struct FanFestDetail: View {
         return "\(formatter.string(from: interval.start)) - \(formatter.string(from: interval.end))"
     }
 
-    func title(for tipo: TipoEvento) -> String {
+    func title(for tipo: TipoEvento) -> LocalizedStringKey {
         switch tipo {
-        case .liveEvents: return "Live Events"
-        case .activities: return "Activities"
-        case .liveBroadcasts: return "Live Broadcasts"
+        case .liveEvents: return LocalizedStringKey("Live Events")
+        case .activities: return LocalizedStringKey("Activities")
+        case .liveBroadcasts: return LocalizedStringKey("Live Broadcasts")
         }
     }
     
@@ -241,27 +250,7 @@ struct FanFestDetail: View {
         }
     }
 
-    private func getColorFanFest(name:String)->Color{
-        switch name{
-        case "mexicocity": return Color.colorMexico
-        case "seattle": return Color.colorSeattle
-        case "monterrey": return Color.colorMonterrey
-        case "guadalajara": return Color.colorGuadalajara
-        case "toronto": return Color.colorToronto
-        case "vancouver" : return Color.colorVancouver
-        case "boston": return Color.colorBoston
-        case "atlanta": return Color.colorAtlanta
-        case "philadelphia" : return Color.colorPhiladelphia
-        case "kansas": return Color.colorKansas
-        case "losangeles": return Color.primary
-        case "houston": return Color.colorHouston
-        case "sanfrancisco": return Color.colorSanfrancisco
-        case "miami": return Color.colorMiami
-        case "newjersey": return Color.primary
-        case "dallas": return Color.primary
-        default: return Color.primary
-        }
-    }
+
 }
 
 struct OpenToday:View {
@@ -278,23 +267,28 @@ struct OpenToday:View {
 }
 
 struct TextFanFest:View {
+    @Environment(\.dynamicTypeSize) var dynamicType
     let text:String
     var body: some View {
         Text(text)
             .font(.body)
             .bold()
             .foregroundStyle(.primary)
-            .minimumScaleFactor(0.6)
+            .lineLimit(dynamicType.showExpandView ? 2:1)
+            .minimumScaleFactor(0.9)
     }
 }
 
 struct TextBottom:View {
-    let text:String
+    let text:LocalizedStringKey
     var body: some View {
         Text(text)
             .foregroundStyle(Color(.label))
+            .font(.subheadline)
             .padding()
             .glassEffect()
+            .lineLimit(2)
+            .minimumScaleFactor(0.7)
     }
 }
 
@@ -305,6 +299,6 @@ struct TextBottom:View {
 
 #Preview {
     let fanfest = WorldCupStore()
-    FanFestDetail(fanFest: fanfest.fanfests[0]).environmentObject(fanfest)
+    FanFestDetail(fanFest: fanfest.fanfests[13]).environmentObject(fanfest)
 }
 

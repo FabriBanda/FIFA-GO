@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ButtonToggle: View {
-    
+    @Environment(\.dynamicTypeSize) var dynamicType
     @Binding var show:Bool
     var body: some View {
 
             Image(systemName: show ? "xmark":"square.grid.2x2.fill")
-                .font(.largeTitle)
+            .font(dynamicType.showExpandView ? .system(size: 50):.largeTitle)
                 .foregroundStyle(.primary)
 
         .padding(8)

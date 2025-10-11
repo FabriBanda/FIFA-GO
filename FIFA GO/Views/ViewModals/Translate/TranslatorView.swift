@@ -12,7 +12,7 @@ struct TraductorView: View {
                 .cornerRadius(20)
                 .padding()
             
-            Text(scanProvider.text.isEmpty ? "Escanea algo para empezar..." : scanProvider.text)
+            Text(scanProvider.text.isEmpty ? String(localized: "Scan something to get started…") : scanProvider.text)
                 .font(.headline)
                 .padding()
                 .multilineTextAlignment(.center)
@@ -20,7 +20,7 @@ struct TraductorView: View {
             Button{
                 isTranslatingShowing.toggle()
             } label:{
-                Text("Translate")
+                Text(LocalizedStringKey("Translate"))
             }
         }
     }
