@@ -119,6 +119,7 @@ private struct EstadioRow: View {
                     .scaledToFill()
                     .frame(height: 160)
                     .clipped()
+                    .accessibilityLabel("Estadio \(estadio.nombre), ubicado en \(estadio.ciudad)")
            
         }
         .overlay(alignment: .bottom) {
