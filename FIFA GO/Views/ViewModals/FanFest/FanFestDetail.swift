@@ -8,6 +8,7 @@
 
 import SwiftUI
 import MapKit
+import AVFoundation
 
 struct FanFestDetail: View {
     let fanFest:FanFest
@@ -29,14 +30,8 @@ struct FanFestDetail: View {
                         .frame(width: 250,height: 180)
                         .padding(.bottom)
                     
-                    Text(fanFest.nombre)
-                        .font(.title3.lowercaseSmallCaps())
-                        .bold()
-                        .foregroundStyle(.primary)
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.8)
-                        .padding(.bottom)
-                        .multilineTextAlignment(.center)
+                    
+
                     Group {
                         if let _ = lookAroundScene {
                             LookAroundPreview(scene: $lookAroundScene)
@@ -116,9 +111,10 @@ struct FanFestDetail: View {
                 
                 Spacer()
             }
-        }
-            .background(Gradient(colors: [worldCupStore.getColorFanFest(name: fanFest.ciudad), Color(.systemBackground)]))
-            .onAppear { loadLookAround() }
+            .background(Gradient(colors: [getColorFanFest(name: fanFest.ciudad), Color(.systemBackground)]))
+            .onAppear {
+                setupAudioSession()
+                loadLookAround() }
             .onDisappear { unloadLookAround() }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -126,6 +122,25 @@ struct FanFestDetail: View {
                         Image(systemName: "xmark")
                             .foregroundStyle(.white)
                             .font(.headline)
+                
+                            .toolbar {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    Button {
+                                        speakDescription()
+                                        
+                                    } label: {
+                                        Image(systemName: "voiceover")
+                                            .foregroundStyle(.white)
+                                            .font(.headline)
+                                    }
+                                    .accessibilityLabel("View description")
+                                    .accessibilityHint("Tap to listen a description")
+                                }
+                            }
+                    
+                        
+    
+                        
                     }
                 }
             }
@@ -144,6 +159,63 @@ struct FanFestDetail: View {
         case .activities: return LocalizedStringKey("Activities")
         case .liveBroadcasts: return LocalizedStringKey("Live Broadcasts")
         }
+    }
+    
+    func setupAudioSession() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(.playback, mode: .default)
+            try audioSession.setActive(true)
+            
+        } catch {
+            print("Error setting up audio session: \(error.localizedDescription)")
+        }
+    }
+    
+    func speakDescription() {
+        // Build a clear, human-friendly description
+        var parts: [String] = []
+
+        parts.append("You're seeing \(fanFest.nombre).")
+        parts.append("Here you can discover the events happening at the festival, from live performances to interactive activities.")
+        parts.append("You can also watch live broadcasts of the events, if available.")
+
+        // Describe location without coordinates; prefer city name if available
+        if !fanFest.ciudad.isEmpty {
+            parts.append("It's located in \(fanFest.ciudad.capitalized).")
+        } else {
+            parts.append("It's located at the festival venue.")
+        }
+
+        parts.append("In the Look Around preview, you can explore the festival grounds and discover more about the venue.")
+
+        let eventosFanFest = worldCupStore.eventosEnFanFest(fanFest.id)
+        if let broadcasts = eventosFanFest[.liveBroadcasts] {
+            if broadcasts.isEmpty {
+                parts.append("There are currently no live broadcasts available.")
+            } else {
+                let count = broadcasts.count
+                let countPhrase = count == 1 ? "There is 1 live broadcast available." : "There are \(count) live broadcasts available."
+                parts.append(countPhrase)
+                // Read the titles in a single sentence
+                let titles = broadcasts.map { $0.titulo }.joined(separator: ", ")
+                parts.append("Broadcasts include: \(titles).")
+            }
+        }
+
+        let description = parts.joined(separator: " ")
+
+        // Configure and speak
+        let utterance = AVSpeechUtterance(string: description)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
+
+        // Keep a synthesizer alive for the duration of speech by using a static shared instance.
+        SpeechSynthesizer.shared.speak(utterance)
+    }
+
+    private final class SpeechSynthesizer {
+        static let shared = AVSpeechSynthesizer()
     }
 
     // MARK: - Look Around lifecycle
@@ -229,3 +301,4 @@ struct TextBottom:View {
     let fanfest = WorldCupStore()
     FanFestDetail(fanFest: fanfest.fanfests[13]).environmentObject(fanfest)
 }
+
