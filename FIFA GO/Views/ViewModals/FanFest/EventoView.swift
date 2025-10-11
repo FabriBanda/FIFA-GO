@@ -51,35 +51,7 @@ struct EventoView: View {
                     let equipo1 = equipos.0
                     let equipo2 = equipos.1
                     
-                    if dynamicType.showExpandView{
-                    
-                        HStack {
-                            Spacer()
-                            VStack(alignment: .center){
-                                
-                                
-                                TextFanFest(text:equipo1.bandera + equipo1.nombre)
-                                TextFanFest(text:equipo2.bandera + equipo2.nombre)
-                                
-                                
-                                hora
-                            }
-                            Spacer()
-                        }
-                    }else{
-                        HStack{
-                            
-                            
-                            
-                            TextFanFest(text:equipo1.bandera + equipo1.nombre + "  vs")
-                            TextFanFest(text:equipo2.nombre + equipo2.bandera)
-                            
-                            Spacer()
-                            hora
-                            
-                            
-                        }
-                    }
+                    MatchView(equipo1: equipo1, equipo2: equipo2, hora: worldcupStore.timeString(from: evento.inicio),showHorizontal: true)
                 }
               
             }

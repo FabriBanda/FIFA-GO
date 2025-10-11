@@ -9,10 +9,16 @@ struct StadiumDetail: View {
     @State private var isLoadingScene = false
     @State private var loadTask: Task<Void, Never>?
 
+    @Environment(\.dynamicTypeSize) var dynamicText
     @EnvironmentObject var worldCupStore: WorldCupStore
     let estadio: Estadio
     
     var body: some View {
+        // Layout se adapta a Dynamic Type (vertical cuando el texto es grande)
+        let layout = dynamicText.showExpandView
+            ? AnyLayout(VStackLayout(spacing: 15))
+            : AnyLayout(HStackLayout(spacing: 15))
+        
         NavigationStack {
             ScrollView {
                 VStack {
@@ -25,12 +31,14 @@ struct StadiumDetail: View {
                         .accessibilityAddTraits(.isHeader)
                         .lineLimit(1)
                         .minimumScaleFactor(0.8)
+                        .multilineTextAlignment(.center)
                     
                     Text(LocalizedStringKey("Stadium"))
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
                         .minimumScaleFactor(0.8)
+                        .multilineTextAlignment(.center)
                     
                     // MARK: - Look Around / Fallback
                     Group {
@@ -65,7 +73,7 @@ struct StadiumDetail: View {
                     }
                     
                     // MARK: - Botones
-                    HStack(spacing: 15) {
+                    layout {
                         Button {
                             worldCupStore.abrirEnMapas(
                                 lat: estadio.ubicacion.lat,
@@ -73,15 +81,11 @@ struct StadiumDetail: View {
                                 nombre: estadio.nombre
                             )
                         } label: {
-                            HStack {
-                                Image(systemName: "location.fill")
-                                    .foregroundColor(.green)
-                                    .bold()
-                                Text(LocalizedStringKey("Open in Maps"))
-                                    .font(.headline)
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.8)
-                            }
+                            ButtonStadiumDetail(
+                                nameImage: "location.fill",
+                                text: "Open in Maps",
+                                color: .green
+                            )
                         }
                         .buttonStyle(.glass)
                         .accessibilityLabel("Abrir la ubicación del estadio en Mapas")
@@ -90,15 +94,11 @@ struct StadiumDetail: View {
                         Button {
                             withAnimation { showTicket.toggle() }
                         } label: {
-                            HStack {
-                                Image(systemName: "ticket.fill")
-                                    .foregroundColor(.red)
-                                    .bold()
-                                Text(LocalizedStringKey("Find My Gate"))
-                                    .font(.headline)
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.8)
-                            }
+                            ButtonStadiumDetail(
+                                nameImage: "ticket.fill",
+                                text: "Find My Gate",
+                                color: .red
+                            )
                         }
                         .buttonStyle(.glass)
                         .accessibilityLabel("Encontrar mi puerta")
@@ -121,19 +121,18 @@ struct StadiumDetail: View {
                         Text(LocalizedStringKey("Matches Today"))
                             .font(.title3)
                             .bold()
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.8)
+                            .multilineTextAlignment(.center)
                         Divider()
                         
                         let juegos = worldCupStore.getPartidos(enEstadio: estadio.id)
-                        
-                        List(juegos) { partido in
-                            MatchView(showAllHorizontal: false, partido: partido)
-                                .listRowSeparator(.hidden)
-                                .listRowBackground(Color.clear)
+                        ForEach(juegos) { partido in
+                            MatchView(
+                                equipo1: partido.equipo1,
+                                equipo2: partido.equipo2,
+                                hora: worldCupStore.timeString(from: partido.inicio),
+                                showHorizontal: false
+                            )
                         }
-                        .listStyle(.plain)
-                        .frame(maxHeight: 400)
                     }
                     .padding(.top)
                     
@@ -149,7 +148,6 @@ struct StadiumDetail: View {
                 }
             }
         }
-        // ✅ Lifecycle: cargar al aparecer, liberar al salir
         .onAppear { loadLookAround() }
         .onDisappear { unloadLookAround() }
     }
@@ -176,51 +174,6 @@ struct StadiumDetail: View {
         loadTask = nil
         lookAroundScene = nil
         isLoadingScene = false
-    }
-}
-
-
-struct MatchView: View {
-    let showAllHorizontal: Bool
-    let partido: Partido
-    
-    var body: some View {
-        VStack {
-            HStack {
-                if !showAllHorizontal { Spacer() }
-                
-                Text(partido.equipo1.bandera + partido.equipo1.nombre)
-                    .font(.title3)
-                    .bold()
-                
-                if showAllHorizontal {
-                    Text("vs")
-                        .font(.title3)
-                        .bold()
-                } else {
-                    Spacer()
-                }
-                
-                Text(partido.equipo2.nombre + partido.equipo2.bandera)
-                    .font(.title3)
-                    .bold()
-                
-                Spacer()
-                
-                if showAllHorizontal {
-                    Text(partido.inicio, style: .time)
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                }
-            }
-            
-            if !showAllHorizontal {
-                Text(partido.inicio, style: .time)
-                    .font(.headline)
-                    .foregroundStyle(.secondary)
-            }
-        }
     }
 }
 
