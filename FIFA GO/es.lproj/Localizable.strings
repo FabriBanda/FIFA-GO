@@ -57,6 +57,11 @@
 
 // Ticket View
 "Search Gate" = "Buscar puerta";
+"Your Ticket"="Tu Ticket";
+"Enter your seat number" = "Ingresa numero de asiento";
+"Tap to see your gate" = "Pulsa para ver tu entrada";
+"Access Information" = "Informacion de Acceso";
+"Tap to return" = "Pulsa para volver";
 
 // Translator View
 "Translate" = "Traducir";

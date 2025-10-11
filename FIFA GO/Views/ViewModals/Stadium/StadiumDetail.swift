@@ -146,7 +146,7 @@ struct StadiumDetail: View {
                         }
                     }
                 }
-            }
+            }.background(Gradient(colors: [worldCupStore.getColorFanFest(name: estadio.ciudad).opacity(0.7),Color(.systemBackground)]))
         }
         .onAppear { loadLookAround() }
         .onDisappear { unloadLookAround() }
@@ -179,6 +179,6 @@ struct StadiumDetail: View {
 
 #Preview {
     let store = WorldCupStore()
-    StadiumDetail(estadio: store.estadios[1])
+    StadiumDetail(estadio: store.estadios[12])
         .environmentObject(store)
 }
