@@ -57,6 +57,7 @@ struct Estadio: Identifiable, Codable, Hashable {
     var ubicacion: Coordenada
     var puertas: [Coordenada]
     var accesibilidad: Accesibilidad?
+    var ciudad: String
 }
 
 struct FanFest: Identifiable, Codable, Hashable {

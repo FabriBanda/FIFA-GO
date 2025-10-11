@@ -30,6 +30,8 @@ struct StartView: View {
                         .foregroundStyle(.primary)
                         .bold()
                         .transition(.scale)
+                        .accessibilityLabel("FIFA GO")
+                        .accessibilityAddTraits(.isHeader)
                          
               
                 Text(LocalizedStringKey("Your all-in-one guide to the FIFA World Cup 2026. Explore stadiums, matches, accessible routes, and entrances for everyone"))
@@ -38,6 +40,7 @@ struct StartView: View {
                     .font(.headline)
                     .padding(.horizontal)
                     .opacity(startAnimation ? 1:0)
+                    .accessibilityLabel("Tu guía completa para la Copa Mundial FIFA 2026. Explora estadios, partidos, rutas accesibles y entradas para todos")
                 
                     
                     Button{
@@ -47,7 +50,10 @@ struct StartView: View {
                                 .font(.system(size: 60)) 
                                 .foregroundStyle(Color(.label))
                               
-                    }  .transition(.offset(x:-400,y:0))
+                    }
+                    .transition(.offset(x:-400,y:0))
+                    .accessibilityLabel("Continuar al tutorial")
+                    .accessibilityHint("Toca para comenzar el tutorial de la aplicación")
                   
                 }
                 
