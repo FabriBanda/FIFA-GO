@@ -107,6 +107,7 @@ struct Acceso: Codable, Equatable, Hashable {
 //    let lat: Double
 //    let lon: Double
     let sections: [Int]
+    let wheelchairAccessible: Bool
 }
 
 // MARK: - Helpers de FanFest
