@@ -9,37 +9,51 @@ import SwiftUI
 
 struct EventoView: View {
     @EnvironmentObject var worldcupStore:WorldCupStore
+    @Environment(\.dynamicTypeSize) var dynamicType
     let evento:Evento
     var body: some View {
         
         let hora = Text(worldcupStore.timeString(from: evento.inicio))
-                    .font(.headline)
+                    .font(.subheadline)
+                    .bold()
                     .foregroundStyle(.secondary)
-        
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.7)
         VStack{
             Spacer()
             if !evento.tipo.rawValue.contains("liveBroadcasts") {
-                HStack{
-                    TextFanFest(text: evento.titulo)
-                    Spacer()
-                    hora
-                }
-                
-            }else{
-                HStack{
+                if dynamicType.showExpandView{
                     
-                    if let equipos = worldcupStore.equiposParaBroadcast(eventID: evento.id){
-                        let equipo1 = equipos.0
-                        let equipo2 = equipos.1
+                    HStack {
+                        Spacer()
+                        VStack(alignment: .center){
+                            TextFanFest(text: evento.titulo)
+                            hora
+                        }
+                        Spacer()
+                    }
+                }else{
+                    HStack{
                         
-                        TextFanFest(text:equipo1.bandera + equipo1.nombre + "  vs")
-                        TextFanFest(text:equipo2.nombre + equipo2.bandera)
+                        TextFanFest(text: evento.titulo)
                         
                         Spacer()
                         hora
+                        
+                        
                     }
-                   
                 }
+                
+                
+            }else{
+                if let equipos = worldcupStore.equiposParaBroadcast(eventID: evento.id){
+                    
+                    let equipo1 = equipos.0
+                    let equipo2 = equipos.1
+                    
+                    MatchView(equipo1: equipo1, equipo2: equipo2, hora: worldcupStore.timeString(from: evento.inicio),showHorizontal: true)
+                }
+              
             }
             
             Spacer()
@@ -50,4 +64,6 @@ struct EventoView: View {
             
     }
 }
+
+
 

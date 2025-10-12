@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* 
   Localizable.strings (French)
   FIFA GO
@@ -68,3 +69,73 @@
 "tutorial.location.title" = "Ma Position";
 "tutorial.location.description" = "Appuyez pour centrer la carte sur votre position actuelle";
 "continue.button" = "Continuer";
+=======
+///
+///  Localizable.strings (fr)
+///  FIFA GO
+///
+
+// "Clé" = "Valeur traduite";
+
+// Start View
+"Your all-in-one guide to the FIFA World Cup 2026. Explore stadiums, matches, accessible routes, and entrances for everyone" = "Votre guide tout-en-un pour la Coupe du Monde de la FIFA 2026. Découvrez les stades, les matchs, les itinéraires accessibles et les entrées pour tous.";
+
+// Tutorial View
+"Your Guide to\nFIFA GO" = "Votre guide de\nFIFA GO";
+
+// Item Tutorial
+"Live Translation" = "Traduction en direct";
+"Point your camera at any text and get an instant translation into your preferred language" = "Pointez votre caméra sur un texte et obtenez une traduction instantanée dans la langue de votre choix.";
+
+"World Cup Stadiums" = "Stades de la Coupe du Monde";
+"Browse all 2026 World Cup stadiums. Filter by country or name, and tap to see each on the map" = "Parcourez tous les stades de la Coupe du Monde 2026. Filtrez par pays ou par nom et touchez pour les voir sur la carte.";
+
+"Fan Fests" = "Fan Fests";
+"Browse World Cup Fan Fests. Tap any one to see its exact location on the map and find your way there" = "Explorez les Fan Fests de la Coupe du Monde. Touchez-en un pour voir son emplacement exact sur la carte et comment vous y rendre.";
+
+"Stadium Marker" = "Marqueur de stade";
+"Explore 2026 stadiums by country or name, and view any location on the map" = "Explorez les stades de 2026 par pays ou par nom et visualisez leur emplacement sur la carte.";
+
+"Fan Fest Marker" = "Marqueur de Fan Fest";
+"Tap a Fan Fest pin to see Look Around, live screenings, and events" = "Touchez une épingle de Fan Fest pour voir Look Around, les diffusions en direct et les événements.";
+
+"My Location" = "Ma position";
+"Tap to center the map on your current location" = "Touchez pour centrer la carte sur votre position actuelle.";
+
+// MapView
+"Hide FanFests" = "Masquer les Fan Fests";
+"Show FanFests" = "Afficher les Fan Fests";
+
+"Hide Stadiums" = "Masquer les stades";
+"Show Stadiums" = "Afficher les stades";
+
+// Fan Fest Detail
+"Loading Preview…" = "Chargement de l’aperçu…";
+"Open Web" = "Ouvrir le site web";
+"Get Directions" = "Obtenir l’itinéraire";
+
+"Live Events" = "Événements en direct";
+"Activities" = "Activités";
+"Live Broadcasts" = "Diffusions en direct";
+
+// Stadium Detail
+"Stadium" = "Stade";
+"Find My Gate" = "Trouver ma porte";
+"Matches Today" = "Matchs du jour";
+"Open in Maps" = "Ouvrir dans Plans";
+// Stadium List
+"Stadiums" = "Stades";
+"Search Stadiums" = "Rechercher des stades";
+
+// Ticket View
+"Search Gate" = "Rechercher une porte";
+"Your Ticket"="Mon billet";
+"Enter your seat number"="entrez votre numéro de siège";
+"Tap to flip your gate" = "Appuyez pour retourner votre portail";
+"Access Information" = "Informations d'accès";
+"Tap to return" = "Appuyez pour revenir";
+
+// Translator View
+"Translate" = "Traduire";
+"Scan something to get started…" = "Scannez quelque chose pour commencer…";
+>>>>>>> 3d946fe66c6a92d6f6b535d5ed2db5a59afa79f8

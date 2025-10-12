@@ -10,15 +10,15 @@ import SwiftUI
 struct ButtonView: View {
 
     let badge : Badge
-    
+    @Environment(\.dynamicTypeSize) var dynamicType
     var body: some View {
 
             Image(systemName: "hexagon.fill")
-                .font(.system(size: 45))
+            .font(dynamicType.showExpandView ? .system(size: 65):.largeTitle)
                 .foregroundStyle(badge.backgroundColor)
                 .overlay {
                     Image(systemName: badge.imageName)
-                        .font(.title2)
+                        .font(dynamicType.showExpandView ? .system(size: 30):.title3)
                         .foregroundStyle(Color.white)
                         .bold()
                 }
