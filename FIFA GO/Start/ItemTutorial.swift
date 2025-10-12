@@ -11,7 +11,7 @@ struct ItemTutorial: View {
     let title:String
     let description:String
     let nameImage:String
-    let backgroundColor:Color
+    let color:Gradient
     @Environment(\.dynamicTypeSize) var dynamicTipe
     
     var body: some View {
@@ -19,7 +19,7 @@ struct ItemTutorial: View {
 
             Image(systemName:nameImage)
                 .font(.title2)
-                .foregroundStyle(backgroundColor)
+                .foregroundStyle(color)
                 .bold()
             
             VStack(alignment: .leading,spacing: 5){

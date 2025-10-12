@@ -44,8 +44,7 @@ struct MatchView: View {
                     }
                     Spacer()
                 }.padding(12)
-                .background(.ultraThinMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+                
             }else{
                 
                 

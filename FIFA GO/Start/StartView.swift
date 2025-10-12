@@ -25,13 +25,13 @@ struct StartView: View {
                     .transition(.scale)
                 
                 // App title
-                Text(String(localized: "app.title", defaultValue: "FIFA GO"))
+                Text(String(localized: "app.title", defaultValue: "FAN GO"))
                     .multilineTextAlignment(.center)
                     .font(.largeTitle)
                     .foregroundStyle(.primary)
                     .bold()
                     .transition(.scale)
-                    .accessibilityLabel(String(localized: "app.title", defaultValue: "FIFA GO"))
+                    .accessibilityLabel(String(localized: "app.title", defaultValue: "FAN GO"))
                     .accessibilityAddTraits(.isHeader)
                  
                 // Description

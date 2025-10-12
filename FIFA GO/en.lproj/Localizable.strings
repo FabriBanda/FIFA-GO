@@ -48,13 +48,13 @@
 "menu.toggle.hint" = "Tap to expand or collapse the options menu";
 
 // Start screen
-"app.title" = "FIFA GO";
+"app.title" = "FAN GO";
 "app.description" = "Your all-in-one guide to the FIFA World Cup 2026. Explore stadiums, matches, accessible routes, and entrances for everyone";
 "continue.tutorial" = "Continue to tutorial";
 "continue.tutorial.hint" = "Tap to start the app tutorial";
 
 // Tutorial screen
-"tutorial.title" = "Your Guide to\nFIFA GO";
+"tutorial.title" = "Your Guide to\nFAN GO";
 "tutorial.live.translation.title" = "Live Translation";
 "tutorial.live.translation.description" = "Point your camera at any text and get an instant translation into your preferred language.";
 "tutorial.stadiums.title" = "World Cup Stadiums";

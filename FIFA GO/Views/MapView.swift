@@ -33,12 +33,12 @@ struct MapView: View {
                 
                 if showStadiums{
                     Annotation(estadio.nombre, coordinate: estadio.ubicacion.coordinate){
-                        MarkerView(imageName: "soccerball.inverse",colorBackground: Color.green,color:.black)
+                        MarkerView(imageName: "soccerball.inverse", colorBackground: Gradient(colors: [.green]), color: Gradient(colors: [Color(.label)]))
                             .onTapGesture {
                                 currentModal = .estadio(estadio.id)
                         }
-                            .accessibilityLabel(String(format: String(localized: "stadium.map.annotation", defaultValue: "Stadium %@, %@"), estadio.nombre, estadio.ciudad))
-                            .accessibilityHint(String(localized: "stadium.map.hint", defaultValue: "Tap to view stadium details"))
+                        .accessibilityLabel(String(format: String(localized: "stadium.map.annotation", defaultValue: "Stadium %@, %@"), estadio.nombre, estadio.ciudad))
+                        .accessibilityHint(String(localized: "stadium.map.hint", defaultValue: "Tap to view stadium details"))
                     }
                 }
             }
@@ -47,7 +47,8 @@ struct MapView: View {
             ForEach(worldCupStore.fanfests) { fanFest in
                 if showFanFests {
                     Annotation(fanFest.nombre, coordinate: fanFest.ubicacion.coordinate) {
-                        MarkerView(imageName: "party.popper.fill", colorBackground: .black, color: .white)
+                        MarkerView(imageName: "party.popper.fill", colorBackground: Gradient(colors: [Color(.label)]), color:Gradient(colors: [
+                            Color.red,Color.blue,Color.green]))
                             .onTapGesture { currentModal = .fanFest(fanFest.id) }
                             .accessibilityLabel("FanFest \(fanFest.nombre) en \(fanFest.ciudad)")
                             .accessibilityHint("Toca para ver detalles del FanFest")
@@ -82,7 +83,7 @@ struct MapView: View {
                             .bold()
                     }
                     .padding()
-                    .glassEffect(.regular.interactive().tint(showFanFests ? .colorKansas : .clear))
+                    .glassEffect(.regular.interactive().tint(showFanFests ? Color.togglefanfest : .clear))
                     .scaleEffect(showFanFests ? 1.2 : 1)
                     .accessibilityLabel(showFanFests ? "Ocultar FanFests" : "Mostrar FanFests")
                     .accessibilityHint("Toca para alternar la visibilidad de los FanFests")
@@ -97,7 +98,7 @@ struct MapView: View {
                             .bold()
                     }
                     .padding(20)
-                    .glassEffect(.regular.interactive().tint(showStadiums ? .colorBoston : .clear), in: Circle())
+                    .glassEffect(.regular.interactive().tint(showStadiums ? .colorEstadio : .clear), in: Circle())
                     .scaleEffect(showStadiums ? 1.2 : 1)
                     .accessibilityLabel(showStadiums ? "Ocultar Estadios" : "Mostrar Estadios")
                     .accessibilityHint("Toca para alternar la visibilidad de los estadios")

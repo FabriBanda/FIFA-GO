@@ -27,7 +27,7 @@ struct StadiumDetail: View {
                     Text(estadio.nombre)
                         .font(.largeTitle)
                         .bold()
-                        .foregroundStyle(.primary)
+                        .foregroundStyle(.white)
                         .accessibilityLabel(
                             String(format: String(localized: "stadium.detail.header", defaultValue: "Stadium %@, %@"), estadio.nombre, estadio.ciudad)
                         )
@@ -38,7 +38,7 @@ struct StadiumDetail: View {
                     
                     Text(String(localized: "stadium.type", defaultValue: "Stadium"))
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.white)
                         .lineLimit(1)
                         .minimumScaleFactor(0.8)
                         .multilineTextAlignment(.center)
@@ -142,6 +142,7 @@ struct StadiumDetail: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { dismiss() } label: {
                         Image(systemName: "xmark").bold()
+                            .foregroundStyle(.primary)
                     }
                     .accessibilityLabel(String(localized: "accessibility.close", defaultValue: "Close"))
                 }
@@ -151,7 +152,7 @@ struct StadiumDetail: View {
                         speakDescription(for: estadio, store: worldCupStore)
                     } label: {
                         Image(systemName: "voiceover")
-                            .foregroundStyle(.black)
+                            .foregroundStyle(.primary)
                             .font(.headline)
                     }
                     .accessibilityLabel(String(localized: "accessibility.description", defaultValue: "View description"))
@@ -161,6 +162,7 @@ struct StadiumDetail: View {
         }
         .onAppear { loadLookAround() }
         .onDisappear { unloadLookAround() }
+        .background(Gradient(colors: [worldCupStore.getColorFanFest(name:estadio.ciudad),Color(.systemBackground)]))
     }
     
     // MARK: - Look Around Lifecycle

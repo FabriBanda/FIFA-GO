@@ -10,14 +10,9 @@ import SwiftUI
 struct MarkerView: View {
     @Environment(\.colorScheme) var colorScheme
     let imageName:String
-    let colorBackground:Color
-    let color:Color
+    let colorBackground:Gradient
+    let color:Gradient
     var body: some View {
-        
-//        Image(colorScheme == .dark ? "worldcupDark":"worldcup")
-//            .resizable()
-//            .scaledToFit()
-//            .frame(width: 80)
         
         Image(systemName: imageName)
             .font(.largeTitle)
@@ -27,8 +22,4 @@ struct MarkerView: View {
         
     }
     
-}
-
-#Preview {
-    MarkerView(imageName: "soccerball.inverse",colorBackground: Color.green,color:.black)
 }

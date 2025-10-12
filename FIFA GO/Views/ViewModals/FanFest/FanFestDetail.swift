@@ -22,6 +22,7 @@ struct FanFestDetail: View {
     var body: some View {
         NavigationStack {
             ScrollView {
+                
                 VStack{
                     VStack(spacing: 0){
                         Image(fanFest.ciudad)
@@ -29,8 +30,6 @@ struct FanFestDetail: View {
                             .scaledToFit()
                             .frame(width: 250,height: 180)
                             .padding(.bottom)
-                        
-                        
                         
                         Group {
                             if let _ = lookAroundScene {
@@ -111,7 +110,6 @@ struct FanFestDetail: View {
                     
                     Spacer()
                 }
-                .background(Gradient(colors: [worldCupStore.getColorFanFest(name: fanFest.ciudad), Color(.systemBackground)]))
                 .onAppear {
                     setupAudioSession()
                     loadLookAround() }
@@ -120,7 +118,7 @@ struct FanFestDetail: View {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button { dismiss() } label: {
                             Image(systemName: "xmark")
-                                .foregroundStyle(.white)
+                                .foregroundStyle(.primary)
                                 .font(.headline)
                             
                         }
@@ -131,8 +129,9 @@ struct FanFestDetail: View {
                             
                         } label: {
                             Image(systemName: "voiceover")
-                                .foregroundStyle(.white)
+                                .foregroundStyle(.primary)
                                 .font(.headline)
+                                
                         }
                         .accessibilityLabel("View description")
                         .accessibilityHint("Tap to listen a description")
@@ -140,6 +139,7 @@ struct FanFestDetail: View {
                 }
             }
         }
+        .background(Gradient(colors: [worldCupStore.getColorFanFest(name: fanFest.ciudad), Color(.systemBackground)]))
     }
         func formatDateInterval(_ interval: DateInterval) -> String {
             let formatter = DateFormatter()
@@ -288,9 +288,9 @@ struct FanFestDetail: View {
 
 
 // #Preview {
-//     let store = WorldCupStore()
-//     FanFestDetail(fanFest: store.fanfests[0]).environmentObject(store)
-// }
+//    let store = WorldCupStore()
+//    FanFestDetail(fanFest: store.fanfests[0]).environmentObject(store)
+//}
 
 //#Preview {
 //    let fanfest = WorldCupStore()
