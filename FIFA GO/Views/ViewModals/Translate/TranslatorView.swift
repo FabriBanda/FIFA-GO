@@ -2,7 +2,7 @@ import SwiftUI
 import Translation
 
 struct TraductorView: View {
-    @StateObject var scanProvider = ScanProvider()  // Observa el texto publicado desde ScanProvider
+    @StateObject var scanProvider = ScanProvider()  
     @State private var isTranslatingShowing = false
     
     var body: some View {
