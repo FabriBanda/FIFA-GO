@@ -110,5 +110,34 @@ enum CountryFilter: String, CaseIterable {
 }
 
 
+<<<<<<< HEAD
+    var body: some View {
+        ZStack {
+            Image(estadio.imagenAssetName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 160)
+                    .clipped()
+                    .accessibilityLabel(String(format: String(localized: "stadium.accessibility.label", defaultValue: "Stadium %@, located in %@"), estadio.nombre, estadio.ciudad))
+           
+        }
+        .overlay(alignment: .bottom) {
+            HStack {
+                Spacer()
+                Text(estadio.nombre)
+                    .font(.title3)
+                    .bold()
+                    .foregroundStyle(.white)
+                Spacer()
+            }
+            .padding(.vertical, 8)
+            .background(.black.opacity(0.45))
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .contentShape(RoundedRectangle(cornerRadius: 20))
+    }
+}
+=======
 
+>>>>>>> 3d946fe66c6a92d6f6b535d5ed2db5a59afa79f8
 

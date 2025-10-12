@@ -14,7 +14,7 @@ struct ContinueButton: View {
             Image(systemName: "arrowshape.forward.circle.fill")
                 .font(.title)
             
-            Text("Continue")
+            Text(String(localized: "continue.button", defaultValue: "Continue"))
                 .font(.subheadline)
           
         }

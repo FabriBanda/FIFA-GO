@@ -1,3 +1,75 @@
+<<<<<<< HEAD
+/* 
+  Localizable.strings (French)
+  FIFA GO
+*/
+
+// Stadium accessibility labels
+"stadium.accessibility.label" = "Stade %@, situé à %@";
+"stadium.accessibility.hint" = "Appuyez pour voir les détails du stade";
+
+// Map annotations
+"stadium.map.annotation" = "Stade %@, %@";
+"stadium.map.hint" = "Appuyez pour voir les détails du stade";
+
+// Stadium detail header
+"stadium.detail.header" = "Stade %@, %@";
+
+// Buttons
+"open.in.maps" = "Ouvrir dans Plans";
+"find.my.gate" = "Trouver ma Porte";
+
+// Accessibility hints
+"open.maps.hint" = "Appuyez pour ouvrir l'emplacement du stade dans Google Maps";
+"find.gate.hint" = "Appuyez pour trouver votre porte d'accès au stade";
+
+// Stadium type
+"stadium.type" = "Stade";
+
+// Matches
+"matches.today" = "Matchs d'Aujourd'hui";
+
+// Toggle buttons
+"show.fanfests" = "Afficher FanFests";
+"hide.fanfests" = "Masquer FanFests";
+"show.stadiums" = "Afficher Stades";
+"hide.stadiums" = "Masquer Stades";
+"toggle.fanfests.hint" = "Appuyez pour basculer la visibilité des FanFests";
+"toggle.stadiums.hint" = "Appuyez pour basculer la visibilité des stades";
+
+// Menu options
+"menu.stadiums" = "Stades";
+"menu.fanfests" = "Fan Fests";
+"menu.translator" = "Traducteur";
+"menu.option.hint" = "Appuyez pour ouvrir cette option";
+
+// Menu toggle
+"menu.open" = "Ouvrir le menu d'options";
+"menu.close" = "Fermer le menu d'options";
+"menu.toggle.hint" = "Appuyez pour développer ou réduire le menu d'options";
+
+// Start screen
+"app.title" = "FIFA GO";
+"app.description" = "Votre guide tout-en-un pour la Coupe du Monde FIFA 2026. Explorez les stades, les matchs, les itinéraires accessibles et les entrées pour tous";
+"continue.tutorial" = "Continuer vers le tutoriel";
+"continue.tutorial.hint" = "Appuyez pour commencer le tutoriel de l'application";
+
+// Tutorial screen
+"tutorial.title" = "Votre Guide de\nFIFA GO";
+"tutorial.live.translation.title" = "Traduction en Direct";
+"tutorial.live.translation.description" = "Pointez votre caméra vers n'importe quel texte et obtenez une traduction instantanée dans votre langue préférée.";
+"tutorial.stadiums.title" = "Stades de la Coupe du Monde";
+"tutorial.stadiums.description" = "Parcourez tous les stades de la Coupe du Monde 2026. Filtrez par pays ou nom, et appuyez pour voir chacun sur la carte.";
+"tutorial.fanfests.title" = "Fan Fests";
+"tutorial.fanfests.description" = "Parcourez les Fan Fests de la Coupe du Monde. Appuyez sur n'importe lequel pour voir son emplacement exact sur la carte et trouver votre chemin.";
+"tutorial.stadium.marker.title" = "Marqueur de Stade";
+"tutorial.stadium.marker.description" = "Explorez les stades de 2026 par pays ou nom, et visualisez n'importe quel emplacement sur la carte.";
+"tutorial.fanfest.marker.title" = "Marqueur de Fan Fest";
+"tutorial.fanfest.marker.description" = "Appuyez sur un pin Fan Fest pour voir Look Around, les diffusions en direct et les événements.";
+"tutorial.location.title" = "Ma Position";
+"tutorial.location.description" = "Appuyez pour centrer la carte sur votre position actuelle";
+"continue.button" = "Continuer";
+=======
 ///
 ///  Localizable.strings (fr)
 ///  FIFA GO
@@ -66,3 +138,4 @@
 // Translator View
 "Translate" = "Traduire";
 "Scan something to get started…" = "Scannez quelque chose pour commencer…";
+>>>>>>> 3d946fe66c6a92d6f6b535d5ed2db5a59afa79f8

@@ -21,6 +21,98 @@ struct StadiumDetail: View {
             : AnyLayout(HStackLayout(spacing: 15))
         
         NavigationStack {
+<<<<<<< HEAD
+            VStack {
+                Text(estadio.nombre)
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundStyle(.primary)
+                    .accessibilityLabel(String(format: String(localized: "stadium.detail.header", defaultValue: "Stadium %@, %@"), estadio.nombre, estadio.ciudad))
+                    .accessibilityAddTraits(.isHeader)
+                
+                Text(String(localized: "stadium.type", defaultValue: "Stadium"))
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                
+                // MARK: Look Around / Fallback
+                Group {
+                    if let _ = lookAroundScene {
+                        LookAroundPreview(scene: $lookAroundScene)
+                            .frame(height: 220)
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                            .padding(.bottom, 8)
+                    } else if isLoadingScene {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(.ultraThinMaterial)
+                                .frame(height: 220)
+                            ProgressView("Cargando vista previa…")
+                        }
+                        .padding(.bottom, 8)
+                    } else {
+                        Map(initialPosition: .region(.init(
+                            center: estadio.ubicacion.coordinate,
+                            latitudinalMeters: 1200,
+                            longitudinalMeters: 1200
+                        ))) {
+                            Annotation(estadio.nombre, coordinate: estadio.ubicacion.coordinate) {
+                                Image(systemName: "mappin.circle.fill")
+                                    .font(.title)
+                                    .foregroundStyle(.red)
+                            }
+                        }
+                        .frame(height: 220)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                    }
+                }
+                
+                // MARK: Botones
+                HStack(spacing: 15) {
+                    Button {
+                        worldCupStore.abrirEnMapas(
+                            lat: estadio.ubicacion.lat,
+                            lon: estadio.ubicacion.lon,
+                            nombre: estadio.nombre
+                        )
+                    } label: {
+                        HStack {
+                            Image(systemName: "location.fill")
+                                .foregroundColor(.green)
+                                .bold()
+                            Text(String(localized: "open.in.maps", defaultValue: "Open in Maps"))
+                        }
+                    }
+                    .buttonStyle(.glass)
+                    .accessibilityLabel(String(localized: "open.maps.hint", defaultValue: "Tap to open stadium location in Google Maps"))
+                    .accessibilityHint(String(localized: "open.maps.hint", defaultValue: "Tap to open stadium location in Google Maps"))
+                    
+                    Button {
+                        withAnimation { showTicket.toggle() }
+                    } label: {
+                        HStack {
+                            Image(systemName: "ticket.fill")
+                                .foregroundColor(.red)
+                                .bold()
+                            Text(String(localized: "find.my.gate", defaultValue: "Find My Gate"))
+                        }
+                    }
+                    .buttonStyle(.glass)
+                    .accessibilityLabel(String(localized: "find.my.gate", defaultValue: "Find My Gate"))
+                    .accessibilityHint(String(localized: "find.gate.hint", defaultValue: "Tap to find your stadium access gate"))
+                }
+                
+                // MARK: Ticket
+                if showTicket {
+                    TicketView()
+                }
+                
+                // MARK: Partidos
+                VStack {
+                    Text(String(localized: "matches.today", defaultValue: "Matches Today"))
+                        .font(.title3)
+                        .bold()
+                    Divider()
+=======
             ScrollView {
                 VStack {
                     // MARK: - Encabezado
@@ -136,6 +228,7 @@ struct StadiumDetail: View {
                         }
                     }
                     .padding(.top)
+>>>>>>> 3d946fe66c6a92d6f6b535d5ed2db5a59afa79f8
                     
                     Spacer()
                 }
