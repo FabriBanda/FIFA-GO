@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-/* 
+/*
   Localizable.strings (Spanish)
   FIFA GO
 */
@@ -69,11 +68,7 @@
 "tutorial.location.title" = "Mi Ubicación";
 "tutorial.location.description" = "Toca para centrar el mapa en tu ubicación actual";
 "continue.button" = "Continuar";
-=======
-///
-///  Localizable.strings (es)
-///  FIFA GO
-///
+
 
 // "Clave" = "Valor traducido";
 
@@ -138,4 +133,3 @@
 // Translator View
 "Translate" = "Traducir";
 "Scan something to get started…" = "Escanea algo para empezar…";
->>>>>>> 3d946fe66c6a92d6f6b535d5ed2db5a59afa79f8

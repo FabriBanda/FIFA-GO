@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ItemTutorial: View {
-    let title:LocalizedStringKey
-    let description:LocalizedStringKey
+    let title:String
+    let description:String
     let nameImage:String
     let backgroundColor:Color
     @Environment(\.dynamicTypeSize) var dynamicTipe

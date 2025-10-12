@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-/* 
+/*
   Localizable.strings (French)
   FIFA GO
 */
@@ -69,11 +68,6 @@
 "tutorial.location.title" = "Ma Position";
 "tutorial.location.description" = "Appuyez pour centrer la carte sur votre position actuelle";
 "continue.button" = "Continuer";
-=======
-///
-///  Localizable.strings (fr)
-///  FIFA GO
-///
 
 // "Clé" = "Valeur traduite";
 
