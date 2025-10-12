@@ -123,14 +123,29 @@
 "Stadiums"="Stadiums";
 "Search Stadiums" = "Search Stadiums";
 
-// Ticket View
 
-"Search Gate"="Search Gate";
-"Your Ticket"="Your Ticket";
+// Ticket View
+"Search Gate" = "Search Gate";
+"Your Ticket" = "Your Ticket";
 "Enter your seat number" = "Enter your seat number";
-"Tap to flip your gate" = "Tap to see your gate";
+"Enter your seat number to proceed" = "Enter your seat number to proceed";
+"Enter your seat section number" = "Enter your seat section number";
+"Tap to see your gate" = "Tap to see your gate";
+"Tap to reveal your Gate" = "Tap to reveal your Gate";
+"Please check your section number" = "Please check your section number";
 "Access Information" = "Access Information";
+"Access Gate" = "Access Gate";
+"Wheelchair Accessible" = "Wheelchair Accessible";
+"Standard Access" = "Standard Access";
+"Gate information is not available for this stadium" = "Gate information is not available for this stadium";
+"This seat belongs to section %d" = "This seat belongs to section %d";
+"Section %d is not mapped to an available access gate" = "Section %d is not mapped to an available access gate";
+"STADIUM: %@" = "STADIUM: %@";
+"Gate %@" = "Gate %@";
+"Your section" = "Your section";
 "Tap to return" = "Tap to return";
+"Invalid seat format" = "Invalid seat format";
+
 
 // Transalator View
 "Translate" = "Translate";

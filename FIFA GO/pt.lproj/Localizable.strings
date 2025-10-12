@@ -1,39 +1,39 @@
-/* 
-  Localizable.strings (Portuguese)
+/*
+  Localizable.strings (Portuguese - Brazil)
   FIFA GO
 */
 
 // Stadium accessibility labels
 "stadium.accessibility.label" = "Estádio %@, localizado em %@";
-"stadium.accessibility.hint" = "Toque para ver detalhes do estádio";
+"stadium.accessibility.hint" = "Toque para ver os detalhes do estádio";
 
 // Map annotations
 "stadium.map.annotation" = "Estádio %@, %@";
-"stadium.map.hint" = "Toque para ver detalhes do estádio";
+"stadium.map.hint" = "Toque para ver os detalhes do estádio";
 
 // Stadium detail header
 "stadium.detail.header" = "Estádio %@, %@";
 
 // Buttons
 "open.in.maps" = "Abrir no Mapas";
-"find.my.gate" = "Encontrar Minha Porta";
+"find.my.gate" = "Encontrar minha entrada";
 
 // Accessibility hints
 "open.maps.hint" = "Toque para abrir a localização do estádio no Google Maps";
-"find.gate.hint" = "Toque para encontrar sua porta de acesso ao estádio";
+"find.gate.hint" = "Toque para encontrar sua entrada de acesso ao estádio";
 
 // Stadium type
 "stadium.type" = "Estádio";
 
 // Matches
-"matches.today" = "Jogos de Hoje";
+"matches.today" = "Jogos de hoje";
 
 // Toggle buttons
-"show.fanfests" = "Mostrar FanFests";
-"hide.fanfests" = "Ocultar FanFests";
-"show.stadiums" = "Mostrar Estádios";
-"hide.stadiums" = "Ocultar Estádios";
-"toggle.fanfests.hint" = "Toque para alternar a visibilidade dos FanFests";
+"show.fanfests" = "Mostrar Fan Fests";
+"hide.fanfests" = "Ocultar Fan Fests";
+"show.stadiums" = "Mostrar estádios";
+"hide.stadiums" = "Ocultar estádios";
+"toggle.fanfests.hint" = "Toque para alternar a visibilidade dos Fan Fests";
 "toggle.stadiums.hint" = "Toque para alternar a visibilidade dos estádios";
 
 // Menu options
@@ -47,24 +47,46 @@
 "menu.close" = "Fechar menu de opções";
 "menu.toggle.hint" = "Toque para expandir ou recolher o menu de opções";
 
+// Ticket View
+"Search Gate" = "Procurar portão";
+"Your Ticket" = "Seu ingresso";
+"Enter your seat number" = "Digite o número do seu assento";
+"Enter your seat number to proceed" = "Digite o número do seu assento para continuar";
+"Enter your seat section number" = "Digite o número da sua seção";
+"Tap to see your gate" = "Toque para ver seu portão";
+"Tap to reveal your Gate" = "Toque para mostrar seu portão";
+"Please check your section number" = "Verifique o número da sua seção";
+"Access Information" = "Informações de acesso";
+"Access Gate" = "Portão de acesso";
+"Wheelchair Accessible" = "Acesso para cadeira de rodas";
+"Standard Access" = "Acesso padrão";
+"Gate information is not available for this stadium" = "As informações de acesso não estão disponíveis para este estádio";
+"This seat belongs to section %d" = "Este assento pertence à seção %d";
+"Section %d is not mapped to an available access gate" = "A seção %d não está associada a um portão de acesso disponível";
+"STADIUM: %@" = "ESTÁDIO: %@";
+"Gate %@" = "Portão %@";
+"Your section" = "Sua seção";
+"Tap to return" = "Toque para voltar";
+"Invalid seat format" = "Formato de assento inválido";
+
 // Start screen
 "app.title" = "FIFA GO";
-"app.description" = "Seu guia completo para a Copa do Mundo FIFA 2026. Explore estádios, jogos, rotas acessíveis e entradas para todos";
+"app.description" = "Seu guia completo para a Copa do Mundo FIFA 2026. Explore estádios, jogos, rotas acessíveis e entradas para todos.";
 "continue.tutorial" = "Continuar para o tutorial";
 "continue.tutorial.hint" = "Toque para iniciar o tutorial do aplicativo";
 
 // Tutorial screen
-"tutorial.title" = "Seu Guia do\nFIFA GO";
-"tutorial.live.translation.title" = "Tradução ao Vivo";
-"tutorial.live.translation.description" = "Aponte sua câmera para qualquer texto e obtenha uma tradução instantânea para seu idioma preferido.";
+"tutorial.title" = "Seu guia do\nFIFA GO";
+"tutorial.live.translation.title" = "Tradução ao vivo";
+"tutorial.live.translation.description" = "Aponte a câmera para qualquer texto e obtenha uma tradução instantânea para seu idioma preferido.";
 "tutorial.stadiums.title" = "Estádios da Copa do Mundo";
 "tutorial.stadiums.description" = "Navegue por todos os estádios da Copa do Mundo 2026. Filtre por país ou nome e toque para ver cada um no mapa.";
 "tutorial.fanfests.title" = "Fan Fests";
-"tutorial.fanfests.description" = "Navegue pelos Fan Fests da Copa do Mundo. Toque em qualquer um para ver sua localização exata no mapa e encontrar seu caminho.";
-"tutorial.stadium.marker.title" = "Marcador de Estádio";
+"tutorial.fanfests.description" = "Explore os Fan Fests da Copa do Mundo. Toque em qualquer um para ver sua localização exata no mapa e encontrar o caminho até lá.";
+"tutorial.stadium.marker.title" = "Marcador de estádio";
 "tutorial.stadium.marker.description" = "Explore os estádios de 2026 por país ou nome e visualize qualquer localização no mapa.";
 "tutorial.fanfest.marker.title" = "Marcador de Fan Fest";
-"tutorial.fanfest.marker.description" = "Toque em um pin de Fan Fest para ver Look Around, transmissões ao vivo e eventos.";
-"tutorial.location.title" = "Minha Localização";
-"tutorial.location.description" = "Toque para centralizar o mapa em sua localização atual";
+"tutorial.fanfest.marker.description" = "Toque em um marcador de Fan Fest para ver o Look Around, transmissões ao vivo e eventos.";
+"tutorial.location.title" = "Minha localização";
+"tutorial.location.description" = "Toque para centralizar o mapa na sua localização atual";
 "continue.button" = "Continuar";

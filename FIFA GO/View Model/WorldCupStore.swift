@@ -12,8 +12,8 @@ class WorldCupStore: ObservableObject {
     @Published var partidos: [Partido] = []
 
     @Published var cameraPosition: MapCameraPosition =
-        .region(.init(center: .init(latitude: 37.3346, longitude: -122.0090),
-                      latitudinalMeters: 1000, longitudinalMeters: 1000))
+        .region(.init(center: .init(latitude: 25.670383, longitude: -100.2491141),
+                      latitudinalMeters: 5000, longitudinalMeters: 5000))
 
     init() {
         

@@ -122,14 +122,28 @@
 "Search Stadiums" = "Rechercher des stades";
 
 // Ticket View
-"Search Gate" = "Rechercher une porte";
-"Your Ticket"="Mon billet";
-"Enter your seat number"="entrez votre numéro de siège";
-"Tap to flip your gate" = "Appuyez pour retourner votre portail";
-"Access Information" = "Informations d'accès";
-"Tap to return" = "Appuyez pour revenir";
+"Search Gate" = "Rechercher la porte";
+"Your Ticket" = "Votre billet";
+"Enter your seat number" = "Entrez votre numéro de siège";
+"Enter your seat number to proceed" = "Entrez votre numéro de siège pour continuer";
+"Enter your seat section number" = "Entrez le numéro de votre section";
+"Tap to see your gate" = "Touchez pour voir votre entrée";
+"Tap to reveal your Gate" = "Touchez pour afficher votre entrée";
+"Please check your section number" = "Veuillez vérifier votre numéro de section";
+"Access Information" = "Informations d’accès";
+"Access Gate" = "Porte d’accès";
+"Wheelchair Accessible" = "Accès en fauteuil roulant";
+"Standard Access" = "Accès standard";
+"Gate information is not available for this stadium" = "Les informations sur les portes d’accès ne sont pas disponibles pour ce stade";
+"This seat belongs to section %d" = "Ce siège appartient à la section %d";
+"Section %d is not mapped to an available access gate" = "La section %d n’est pas associée à une porte d’accès disponible";
+"STADIUM: %@" = "STADE : %@";
+"Gate %@" = "Porte %@";
+"Your section" = "Votre section";
+"Tap to return" = "Touchez pour revenir";
+"Invalid seat format" = "Format de siège invalide";
 
 // Translator View
 "Translate" = "Traduire";
 "Scan something to get started…" = "Scannez quelque chose pour commencer…";
->>>>>>> 3d946fe66c6a92d6f6b535d5ed2db5a59afa79f8
+
