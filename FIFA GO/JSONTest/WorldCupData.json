@@ -7,7 +7,59 @@
       "ubicacion": { "lat": 25.671193, "lon": -100.244166 },
       "puertas": [{ "lat": 25.67160, "lon": -100.24390 }],
       "accesibilidad": { "sillaRuedas": true, "personalApoyo": true },
-      "ciudad": "monterrey"
+      "ciudad": "monterrey",
+      "accesos": [
+        {
+          "id": "1",
+          "sections": [101,102,103,104,105,106,107,108,109,110,111,112],
+          "wheelchairAccessible": true
+        },
+        {
+          "id": "2",
+          "sections": [],
+          "wheelchairAccessible": false
+        },
+        {
+          "id": "3",
+          "sections": [201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216],
+          "wheelchairAccessible": false
+        },
+        {
+          "id": "4",
+          "sections": [217,218,219,220],
+          "wheelchairAccessible": false
+        },
+        {
+          "id": "5",
+          "sections": [221,222,223],
+          "wheelchairAccessible": true
+        },
+        {
+          "id": "6",
+          "sections": [224,225,226,227,228,229],
+          "wheelchairAccessible": false
+        },
+        {
+          "id": "7",
+          "sections": [230,231,232],
+          "wheelchairAccessible": true
+        },
+        {
+          "id": "8",
+          "sections": [233,234,235,236,237],
+          "wheelchairAccessible": false
+        },
+        {
+          "id": "9",
+          "sections": [238,239,240,241,242,243,244],
+          "wheelchairAccessible": true
+        },
+        {
+          "id": "10",
+          "sections": [245,246,247,248,249,250,251,252,253],
+          "wheelchairAccessible": false
+        }
+      ]
     },
     {
       "id": "E-AZTECA",
@@ -144,7 +196,8 @@
       "accesibilidad": null,
       "ciudad": "losangeles"
     }
-  ],
+  ]
+  ,
   "equipos": [
     { "id": "T-MEX", "nombre": "Mexico",   "bandera": "🇲🇽" },
     { "id": "T-CAN", "nombre": "Canada",   "bandera": "🇨🇦" },

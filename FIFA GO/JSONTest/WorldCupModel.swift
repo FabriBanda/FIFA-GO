@@ -11,7 +11,7 @@ import Foundation
 
 // Contenedor raíz del JSON
 struct WorldCupDataDTO: Codable {
-    let estadios: [Estadio]       // decodifica directo a tus modelos de dominio
+    let estadios: [Estadio]      
     let equipos:  [Equipo]
     let fanfests: [FanFestDTO]
     let eventos:  [EventoDTO]

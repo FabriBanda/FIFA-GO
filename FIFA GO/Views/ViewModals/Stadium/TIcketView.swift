@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct TicketView: View {
+    @EnvironmentObject var worldCupStore: WorldCupStore
+    
+    let estadio: Estadio   // el estadio donde se va a buscar el acceso
     @State private var asiento: String = ""
     @State private var mostrarAcceso = false
     
     var acceso: String {
-        if let numero = Int(asiento) {
-            return "Gate \(numero % 5 + 1)"
+        guard let numero = Int(asiento) else { return "Gate not available" }
+        
+        guard let accesosDisponibles = estadio.accesos else {
+            return "Gate info not available for this stadium" // Mensaje más preciso
         }
-        return "Gate ?"
+        
+        if let gate = accesosDisponibles.first(where: { $0.sections.contains(numero) }) {
+            return "Gate \(gate.id)"
+        } else {
+            return "Gate not available for section \(numero)"
+        }
     }
 
     var body: some View {
@@ -46,18 +56,17 @@ struct TicketView: View {
                 .shadow(radius: 4)
             
             VStack(spacing: 12) {
-                Text(LocalizedStringKey("Your Ticket"))
+                Text("Your Ticket")
                     .font(.headline)
                     .foregroundStyle(.white)
                 
-                TextField(LocalizedStringKey("Enter your seat number"), text: $asiento)
+                TextField("Enter your seat number", text: $asiento)
                     .keyboardType(.numberPad)
                     .padding(10)
                     .background(Color.white.opacity(0.2))
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 
-  
                 Divider()
                     .overlay(Color.white.opacity(0.6))
                     .blendMode(.overlay)
@@ -69,7 +78,7 @@ struct TicketView: View {
                             .padding(.horizontal, 30)
                     )
                 
-                Text(LocalizedStringKey("Tap to flip and see your gate"))
+                Text("Tap to flip and see your gate")
                     .font(.footnote)
                     .foregroundStyle(.white.opacity(0.7))
             }
@@ -90,7 +99,7 @@ struct TicketView: View {
                 .shadow(radius: 4)
             
             VStack(spacing: 12) {
-                Text(LocalizedStringKey("Access Information"))
+                Text("Access Information")
                     .font(.headline)
                     .foregroundStyle(.white)
                     .lineLimit(2)
@@ -111,7 +120,7 @@ struct TicketView: View {
                     .bold()
                     .foregroundStyle(.white)
                 
-                Text(LocalizedStringKey("Tap to return"))
+                Text("Tap to return")
                     .font(.footnote)
                     .foregroundStyle(.white.opacity(0.7))
             }
@@ -121,6 +130,7 @@ struct TicketView: View {
         .padding(.horizontal)
     }
 }
+
 
 // MARK: - Forma personalizada del boleto
 struct TicketShape: Shape {

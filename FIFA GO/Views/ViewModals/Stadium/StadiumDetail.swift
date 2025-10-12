@@ -111,7 +111,7 @@ struct StadiumDetail: View {
                     
                     // MARK: - TicketView
                     if showTicket {
-                        TicketView()
+                        TicketView(estadio: estadio)
                             .transition(.asymmetric(
                                 insertion: .scale.combined(with: .opacity),
                                 removal: .opacity

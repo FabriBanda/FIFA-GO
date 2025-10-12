@@ -50,12 +50,12 @@ struct Accesibilidad: Codable, Hashable {
     var personalApoyo: Bool
 }
 
-struct Estadio: Identifiable, Codable, Hashable {
+struct Estadio: Identifiable, Codable, Hashable, Equatable {
     var id: String
     var nombre: String
     var imagenAssetName: String
     var ubicacion: Coordenada
-    var puertas: [Coordenada]
+    let accesos: [Acceso]? 
     var accesibilidad: Accesibilidad?
     var ciudad: String
 }
@@ -102,6 +102,12 @@ struct Partido: Identifiable, Codable, Hashable {
     var estadioID: String            // <- String
 }
 
+struct Acceso: Codable, Equatable, Hashable {
+    let id: String
+//    let lat: Double
+//    let lon: Double
+    let sections: [Int]
+}
 
 // MARK: - Helpers de FanFest
 
