@@ -10,11 +10,10 @@ import SwiftUI
 struct TicketView: View {
     @EnvironmentObject var worldCupStore: WorldCupStore
     
-    let estadio: Estadio // el estadio donde se va a buscar el acceso
+    let estadio: Estadio
     @State private var asiento: String = ""
     @State private var mostrarAcceso = false
     
-    // Define un tipo de resultado para agrupar toda la información de acceso
     struct AccessResult {
         let gateID: String
         let isAccessible: Bool
@@ -25,22 +24,18 @@ struct TicketView: View {
     // MARK: - Lógica de Acceso (Propiedad Computada)
     var accessInfo: AccessResult {
         
-        // 1. Asiento no ingresado (Estado inicial)
         guard !asiento.isEmpty else {
             return AccessResult(gateID: "", isAccessible: false, isSeatFound: false, message: "Enter your seat number to proceed.")
         }
         
-        // 2. Asiento no es un número válido
         guard let numero = Int(asiento) else {
             return AccessResult(gateID: "", isAccessible: false, isSeatFound: false, message: "Invalid seat format.")
         }
         
-        // 3. Información de acceso del estadio no disponible
         guard let accesosDisponibles = estadio.accesos else {
             return AccessResult(gateID: "", isAccessible: false, isSeatFound: false, message: "Gate information is not available for this stadium.")
         }
         
-        // 4. Buscar el Gate correspondiente
         if let gate = accesosDisponibles.first(where: { $0.sections.contains(numero) }) {
             return AccessResult(
                 gateID: gate.id,
@@ -49,21 +44,18 @@ struct TicketView: View {
                 message: "This seat belongs to section \(numero)."
             )
         } else {
-            // 5. Asiento fuera de rango (No encontrado en ninguna sección)
             return AccessResult(gateID: "", isAccessible: false, isSeatFound: false, message: "Section \(numero) is not mapped to an available access gate.")
         }
     }
     
-    // Propiedad para determinar si el boleto puede girarse
     var canFlip: Bool {
-        return accessInfo.isSeatFound // Solo se gira si se encontró la sección
+        return accessInfo.isSeatFound
     }
 
     // MARK: - Body
     var body: some View {
         ZStack {
-            // Usa .rotation3DEffect en el ZStack para aplicar la animación de giro
-            // La cara del reverso tiene una rotación inicial de 180 para que mire hacia atrás
+            
             if mostrarAcceso {
                 reverso
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
@@ -71,11 +63,11 @@ struct TicketView: View {
                 frente
             }
         }
-        .frame(height: 220) // Aumento de altura para mejor UI
+        .frame(height: 220)
         .rotation3DEffect(.degrees(mostrarAcceso ? 180 : 0), axis: (x: 0, y: 1, z: 0))
         .animation(.easeInOut(duration: 0.8), value: mostrarAcceso)
         .onTapGesture {
-            if canFlip { // Solo permite girar si canFlip es true
+            if canFlip {
                 withAnimation { mostrarAcceso.toggle() }
             }
         }
@@ -91,8 +83,8 @@ struct TicketView: View {
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing)
                 )
-                .shadow(radius: 8, x: 0, y: 5) // Sombra más pronunciada
-                .overlay(TicketShape().stroke(Color.white.opacity(0.3), lineWidth: 1)) // Borde sutil
+                .shadow(radius: 8, x: 0, y: 5)
+                .overlay(TicketShape().stroke(Color.white.opacity(0.3), lineWidth: 1))
                 
             VStack(spacing: 12) {
                 Text("ESTADIO: \(estadio.nombre)")
@@ -100,7 +92,7 @@ struct TicketView: View {
                     .fontWeight(.medium)
                     .foregroundStyle(.white.opacity(0.8))
                 
-                Text("Your Ticket")
+                Text("Tu sección")
                     .font(.title2).bold()
                     .foregroundStyle(.white)
                 
@@ -113,7 +105,7 @@ struct TicketView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(canFlip ? Color.green : Color.clear, lineWidth: canFlip ? 2 : 0) // Indicador visual
+                            .stroke(canFlip ? Color.green : Color.clear, lineWidth: canFlip ? 2 : 0)
                     )
                 
                 Divider()
