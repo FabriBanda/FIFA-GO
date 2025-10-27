@@ -6,6 +6,8 @@ FIFA GO is an inclusive and multilingual iOS app built with **SwiftUI** and **Ma
 
 ---
 
+<img src="https://raw.githubusercontent.com/FabriBanda/FIFA-GO/main/AssetsFANGO/Summary.png" width="400" />
+
 ## Features
 
 ### Interactive Map 🗺️
