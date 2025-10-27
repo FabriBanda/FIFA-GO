@@ -1,4 +1,4 @@
-#  FAN GO
+#  FAN GO ⚽️🌎
 
 ### Your all-in-one guide to the 2026 FIFA World Cup
 
@@ -8,30 +8,30 @@ FIFA GO is an inclusive and multilingual iOS app built with **SwiftUI** and **Ma
 
 ## Features
 
-### Interactive Map
+### Interactive Map 🗺️
 - Explore **2026 World Cup stadiums** and **Fan Fests** directly on an interactive map.  
 - Tap any location to see its details, photos, and real-time *Look Around* previews.  
 - Supports **custom markers** with accessibility information.
 
-### Accessibility First
+### Accessibility First ♿️
 - **VoiceOver** support across the app.  
 - **Dynamic Type** for adaptable text sizes.  
 - **Color contrast** compliant with WCAG 2.1 AA.  
 - “Find My Gate” feature that shows accessible entrances based on your seat.
 
-### Multilingual Experience
+### Multilingual Experience 🌐
 Available in **English, Spanish, French, and Portuguese**.  
 The app automatically adapts to your iPhone’s language and region.
 
-### Smart Ticket
+### Smart Ticket 🎟️ 
 - Enter your seat number to locate your **section & gate**.  
 - Detects if your gate supports **wheelchair access**.  
 - Flip the ticket with an elegant 3D animation to reveal gate information.
 
-### Live Translation
+### Live Translation 📸
 Use your camera to translate any sign or printed text instantly — ideal for international fans.
 
-### Guided Tutorial
+### Guided Tutorial 💡
 A built-in onboarding tutorial introduces new users to every feature and button in the app.
 
 ---
