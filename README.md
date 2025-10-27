@@ -48,8 +48,7 @@ A built-in onboarding tutorial introduces new users to every feature and button 
 ---
 
 ## Architecture
-
-The app follows a clean **MVVM + EnvironmentObject** structure for scalability and modularity.
+- The app follows a clean **MVVM + EnvironmentObject** structure for scalability and modularity.
 ---
 
 ## Getting Started
