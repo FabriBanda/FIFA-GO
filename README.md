@@ -2,7 +2,7 @@
 
 ### Your all-in-one guide to the 2026 FIFA World Cup
 
-FIFA GO is an inclusive and multilingual iOS app built with **SwiftUI** and **MapKit** that helps fans easily explore **stadiums, Fan Fests, accessible routes, and live translation features** during the 2026 FIFA World Cup across Mexico, the U.S., and Canada.
+FAN GO is an inclusive and multilingual iOS app built with **SwiftUI** and **MapKit** that helps fans easily explore **stadiums, Fan Fests, accessible routes, and live translation features** during the 2026 FIFA World Cup across Mexico, the U.S., and Canada.
 
 ---
 
